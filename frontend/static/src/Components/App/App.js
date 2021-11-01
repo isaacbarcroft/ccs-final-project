@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, Switch, Redirect, withRouter, useHistory, useLocation  } from 'react-router-dom';
 import Book from '../Book/Book';
 import Header from '../Header/Header';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from '../HomePage/HomePage';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
+import Cookies from 'js-cookie';
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
     email: "",
     is_staff: null,
   });
-  const [profile, setProfile] = useState({
+    const [profile, setProfile] = useState({
     alias: '',
     image: null,
   });
@@ -23,8 +24,10 @@ function App() {
     username: '',
     password: '',
 });
-const [isAuth, setIsAuth] = useState(null);
- const [books, setBooks] = useState([])
+  const [isAuth, setIsAuth] = useState(null);
+  const [books, setBooks] = useState([])
+  const history = useHistory();
+
 
  useEffect(() => {
  
@@ -61,12 +64,36 @@ const [isAuth, setIsAuth] = useState(null);
       }
       }
      
+      async function handleLogoutSubmit(event){
+        // event.preventDefault();
+         const options = {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json',
+                 'X-CSRFToken': Cookies.get('csrftoken'),
+             },
+             body: JSON.stringify(users),
+         };
+         const response = await fetch('/rest-auth/logout/', options)
+         if(!response){
+             console.log(response);
+         } else {
+             console.log(response)
+             const data = await response.json();
+             Cookies.remove('Authorization');
+            setIsAuth(false)
+            history.push("/login")
+            
+         }
+         <Redirect path="/login" />
+        }
+        
 
 
   return (
     <div className="App">
 
-      <Header />
+      <Header handleLogoutSubmit={handleLogoutSubmit} isAuth={isAuth} admin={admin}/>
       <Switch>
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers}/>

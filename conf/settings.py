@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'frontend.apps.FrontendConfig',
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
+    'books.apps.BooksConfig',
 
 ]
 
