@@ -9,7 +9,8 @@ djangorestframework = "*"
 django-rest-auth = "*"
 whitenoise = "*"
 django-allauth = "~=0.43.0"
-pillow = "*"
+pillow = "~=8.4.0"
+gunicorn = "~=20.0.4"
 
 [dev-packages]
 

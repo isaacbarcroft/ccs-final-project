@@ -8,6 +8,7 @@ import HomePage from '../HomePage/HomePage';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Cookies from 'js-cookie';
+import ScrollTop from 'react-scrolltop-button';
 
 function App() {
 
@@ -108,6 +109,18 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
+      <ScrollTop
+      
+      text="^"
+      distance={50}
+      breakpoint={908}
+      style={{ backgroundColor: "#191C1F", color: "white" }}
+      className="scroll-your-role"
+      speed={50}
+      target={0}
+      icon={<i class="bi bi-caret-up-square"></i>}
+    />
+    
     </div>
   );
 }
