@@ -50,7 +50,7 @@ const [isAuth, setIsAuth] = useState(null);
   
     async function getBooks(searchTerm){
       console.log(searchTerm);
-      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=robinbson+Crusoe&key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA`);
+      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=robinbson+Crusoe&key=`);
       if(!response.ok) {
         console.log(response);
       } else {
