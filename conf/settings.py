@@ -26,7 +26,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
-'https://django-ccs-final-project.herokuapp.com/']
+'django-ccs-final-project.herokuapp.com',
+'https://django-ccs-final-project.herokuapp.com/',]
 
 
 # Application definition
