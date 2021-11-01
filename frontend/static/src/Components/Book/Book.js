@@ -1,0 +1,117 @@
+import ReadMoreReact from 'read-more-react';
+import styled from 'styled-components';
+import { useState } from 'react';
+
+function Book(props){
+    const [title, setTitle] = useState();
+    const [author, setAuthor] = useState();
+    const [categories, setCategories] = useState();
+
+    const HoverText = styled.p`
+	color: #000;
+	:hover {
+		cursor: pointer;
+	}
+`
+function handleTitleChange(event){
+    setTitle(event.target.value);
+    console.log(title)
+}
+
+function handleAuthorChange(event){
+    setAuthor(event.target.value);
+    console.log(author)
+}
+
+function handleCategoryChange(event){
+    setCategories(event.target.value);
+    console.log(categories)
+}
+
+function handleSubmit(event){
+    event.preventDefault();
+    // props.submitMessage();
+    // console.log(props)
+    const searchTerm = event.target.value;
+    props.getBooks(searchTerm);
+}
+
+const readMore = <div style={{color: 'blue'}} className="readMore">Read More</div>
+    console.log(props.books)
+    console.log(props)
+    console.log(props.books.items)
+  const bookHTML = props.books.items?.map(book => 
+                            <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">   
+                            <h2>{book.volumeInfo.title}</h2>
+                            <img src={book.volumeInfo.imageLinks?.thumbnail} alt="" />
+                            <p>{book.volumeInfo.authors}, </p>
+                            <p>{book.volumeInfo.description ?
+                            <HoverText><ReadMoreReact text={book.volumeInfo.description}
+                                                        min={25}
+                                                        ideal={50}
+                                                        max={10000000}
+                                                        style={{cursor: 'pointer'}}
+                                                        readMoreText={readMore}/>
+                            </HoverText> : <p classNamet-3 shadow p-3 mb-5 bg-body rounded mt-2>No Image Available</p>}</p>
+                            <p>Category: {book.volumeInfo.categories}</p>
+                            <p>{book.volumeInfo.pageCount} pages</p>
+                            </div>)
+
+
+    return(
+        <>
+            {bookHTML}
+
+            <h2 className="newArticleForm text-center mt-3">Find a Book</h2>
+        <form id="form"className="mt-3 ds-flex justify-content-center mt-3">
+            <a name="form" ></a>
+            <div className="form-group text-left mb-3">
+                <label htmlFor='title'>Title</label>
+                <input type="text"
+                    className="form-control"
+                    id='bookTitle'
+                    placeholder="Title"
+                    onChange={handleTitleChange}
+                    
+                    name='title'
+                    value={title}
+                />
+            </div>
+            <div className="form-group text-left mb-3">
+                <label htmlFor='body'>Author</label>
+                <textarea type="text"
+                    className="form-control"
+                    id='bookAuthor'
+                    placeholder="Author"
+                    onChange={handleAuthorChange}
+                    
+                    name='author'
+                    value={author}
+                />
+            </div>
+            <label htmlFor='body'>Category</label>
+            <input  className="form-control"
+                    onChange={handleCategoryChange} 
+                    name="categories" 
+                    value={categories}
+                    placeholder="Category"
+                     />
+            <div className="form-group text-left mb-3">
+                {/* <label htmlFor='options'>Draft/Submitted</label> */}
+                <button type="button"
+                    className=" homeButton form-control  btn btn-dark"
+                    id='articleOptions'
+                    onClick={handleSubmit}
+                    required
+                    name='submit'
+                    value='SUBMIT'
+                >Submit</button>
+            </div>
+            
+         
+        </form>
+        </>
+    )
+}
+
+export default Book;
