@@ -9,6 +9,8 @@ import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Cookies from 'js-cookie';
 import ScrollTop from 'react-scrolltop-button';
+import Profile from '../Profile/Profile';
+import Groups from '../Groups/Groups';
 
 function App() {
 
@@ -50,7 +52,8 @@ function App() {
  checkAuth()
 }, [isAuth])
 
-
+const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
+const API_KEY = 'AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
   
     async function getBooks(searchTerm){
       console.log(searchTerm);
@@ -96,6 +99,12 @@ function App() {
 
       <Header handleLogoutSubmit={handleLogoutSubmit} isAuth={isAuth} admin={admin}/>
       <Switch>
+        <Route path='/profile'>
+          <Profile />
+        </Route>
+        <Route path='/groups'>
+          <Groups />
+        </Route>
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers}/>
         </Route>
@@ -120,7 +129,7 @@ function App() {
       target={0}
       icon={<i class="bi bi-caret-up-square"></i>}
     />
-    
+
     </div>
   );
 }
