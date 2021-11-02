@@ -11,8 +11,10 @@ import Cookies from 'js-cookie';
 import ScrollTop from 'react-scrolltop-button';
 import Profile from '../Profile/Profile';
 import Groups from '../Groups/Groups';
+import Footer from '../Footer/Footer';
+import Spinner from 'react-bootstrap/Spinner';
 
-function App() {
+function App(props) {
 
   const [admin, setAdmin] = useState({
     username: "",
@@ -28,7 +30,7 @@ function App() {
     password: '',
 });
   const [isAuth, setIsAuth] = useState(null);
-  const [books, setBooks] = useState([])
+  const [books, setBooks] = useState([]);
   const history = useHistory();
 
 
@@ -53,11 +55,11 @@ function App() {
 }, [isAuth])
 
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
-const API_KEY = 'AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
+const API_KEY = 'key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
   
-    async function getBooks(searchTerm){
-      console.log(searchTerm);
-      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=robinbson+Crusoe&key=`);
+    async function getBooks(title, author, categories){
+      console.log(title, author, categories);
+      const response = await fetch(`${BASE_URL}intitle:${title}+inauthor:${author}+insubject:${categories}&${API_KEY}`);
       if(!response.ok) {
         console.log(response);
       } else {
@@ -65,9 +67,45 @@ const API_KEY = 'AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
         setBooks(data);
         console.log({data})
         console.log(books)
+        console.log({title})
+        console.log({author})
+        console.log({categories})
+        console.log(`${BASE_URL}intitle:${title}+inauthor:${author}+insubject:${categories}&${API_KEY}`)
       }
       }
-     
+    
+      async function addBookToLibrary(author, title, description, image, categories){
+        console.log({author})
+        console.log({title})
+        console.log({description})
+        // console.log({title})
+        console.log({categories})
+        const newBook = {
+          author: author,
+          title: title,
+          description: description,
+          // image: image,
+          categories: categories, 
+    
+        };
+        console.log({books});
+        const response = await fetch('/api_v1/books/', {
+          method: 'POST',
+          headers: {
+            'Content-Type' : 'application/json',
+            'X-CSRFToken': Cookies.get('csrftoken'),
+          },
+          body: JSON.stringify(newBook),
+        });
+        if(response.ok){
+          console.log(response)
+          setBooks([...books, newBook]);
+          console.log({books})
+          return response.json(); 
+    }  
+      }
+
+
       async function handleLogoutSubmit(event){
         // event.preventDefault();
          const options = {
@@ -100,7 +138,7 @@ const API_KEY = 'AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
       <Header handleLogoutSubmit={handleLogoutSubmit} isAuth={isAuth} admin={admin}/>
       <Switch>
         <Route path='/profile'>
-          <Profile />
+          <Profile  books={books}/>
         </Route>
         <Route path='/groups'>
           <Groups />
@@ -112,7 +150,7 @@ const API_KEY = 'AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
           <Registration isAuth={isAuth} setIsAuth={setIsAuth} />
         </Route>
         <Route path='/books'>
-          <Book books={books} getBooks={getBooks}/>
+          <Book books={books} getBooks={getBooks} addBookToLibrary={addBookToLibrary}/>
         </Route>
         <Route path='/home'>
           <HomePage />
@@ -129,7 +167,7 @@ const API_KEY = 'AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
       target={0}
       icon={<i class="bi bi-caret-up-square"></i>}
     />
-
+    <Footer />
     </div>
   );
 }
