@@ -77,6 +77,8 @@ const readMore = <div style={{color: 'blue'}} className="readMore">Read More</di
                             <button className="btn btn-dark mx-1" typr='submit' onClick={handleBookLibrary}>Add to Library</button>
                             </div>)
 
+    const groupsHTML = props.groups.map(group => <option value={group.name}>{group.name}</option>)
+
 if(props.setBooks === null) {
     return <Spinner animation='grow' variant='primary'/>
   }
@@ -84,6 +86,7 @@ if(props.setBooks === null) {
         <>
 
         <div className="container" >
+
             <div className="row">
                 <div class="col-8">
                     {bookHTML}
@@ -123,6 +126,10 @@ if(props.setBooks === null) {
                                     value={categories}
                                     placeholder="Category"
                                     />
+                            <label htmlFor=''>Add to Group</label>
+                            <select> 
+                                {groupsHTML}
+                            </select>
                             <div className="form-group text-left mb-3 mt-3">
                                 {/* <label htmlFor='options'>Draft/Submitted</label> */}
                                 <button type="submit"

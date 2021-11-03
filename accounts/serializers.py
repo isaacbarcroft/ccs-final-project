@@ -14,4 +14,4 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class UserDetailsSerializer(UserDetailsSerializer):
     class Meta(UserDetailsSerializer.Meta):
-        fields = ('id', 'username', 'email', 'is_staff')
+        fields = ('id', 'username', 'email', 'is_staff','groups')

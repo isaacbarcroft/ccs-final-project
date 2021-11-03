@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
     'books.apps.BooksConfig',
+    'groups.apps.GroupsConfig',
 
 ]
 

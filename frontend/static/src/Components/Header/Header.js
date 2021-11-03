@@ -18,7 +18,7 @@ function Header(props){
                                 <NavLink  className="" style={{textDecoration: 'none'}} to='/home'>Home</NavLink>
                             </li>
                             <li className="nav-item mx-1 mt-2">
-                                <NavLink to='/profile'>Profile</NavLink>
+                                <NavLink style={{textDecoration: 'none'}} to='/profile'>Profile</NavLink>
                             </li>
     
                             <li className="nav-item mt-2 mx-1">

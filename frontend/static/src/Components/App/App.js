@@ -32,7 +32,40 @@ function App(props) {
   const [isAuth, setIsAuth] = useState(null);
   const [books, setBooks] = useState([]);
   const history = useHistory();
+  const [groups, setGroups] = useState([]);
 
+  async function addGroup(name){
+    const newGroup = {
+      name: name, 
+    };
+    console.log(name);
+    const response = await fetch('/api_v1/groups/', {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(newGroup),
+    });
+    if(response.ok){
+      console.log(response)
+      setGroups([...groups, newGroup]);
+      console.log({groups})
+      return response.json(); 
+}  
+  }
+  useEffect(() => {
+    
+    // GET request using fetch with async/await
+    async function getGroups(){
+    const response = await fetch('/api_v1/groups/');
+    const data = await response.json();
+    console.log({data});
+    setGroups(data);
+    console.log('groups', groups);
+    }// return menuItemsAPI
+    getGroups();
+  },[])
 
  useEffect(() => {
  
@@ -55,11 +88,15 @@ function App(props) {
 }, [isAuth])
 
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
-const API_KEY = 'key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
+const API_KEY = '&key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
+
   
     async function getBooks(title, author, categories){
       console.log(title, author, categories);
-      const response = await fetch(`${BASE_URL}intitle:${title}+inauthor:${author}+insubject:${categories}&${API_KEY}`);
+      const titles = title ? `+intitle:${title}` : '';
+      const authors = author ? `+inauthor:${author}` : '';
+      const category = categories ? `+subject:${categories}` : ''; 
+      const response = await fetch(`${BASE_URL}${titles}${authors}${category}${API_KEY}`);
       if(!response.ok) {
         console.log(response);
       } else {
@@ -70,7 +107,7 @@ const API_KEY = 'key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
         console.log({title})
         console.log({author})
         console.log({categories})
-        console.log(`${BASE_URL}intitle:${title}+inauthor:${author}+insubject:${categories}&${API_KEY}`)
+        console.log(`${BASE_URL}${titles}${authors}${category}${API_KEY}`)
       }
       }
     
@@ -141,7 +178,7 @@ const API_KEY = 'key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
           <Profile  books={books}/>
         </Route>
         <Route path='/groups'>
-          <Groups />
+          <Groups groups={groups} addGroup={addGroup}/>
         </Route>
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers}/>
@@ -150,7 +187,7 @@ const API_KEY = 'key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
           <Registration isAuth={isAuth} setIsAuth={setIsAuth} />
         </Route>
         <Route path='/books'>
-          <Book books={books} getBooks={getBooks} addBookToLibrary={addBookToLibrary}/>
+          <Book books={books} getBooks={getBooks} addBookToLibrary={addBookToLibrary} groups={groups}/>
         </Route>
         <Route path='/home'>
           <HomePage />
