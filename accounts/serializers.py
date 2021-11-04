@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from rest_auth.serializers import UserDetailsSerializer
 
 
-
-
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile

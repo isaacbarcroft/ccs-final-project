@@ -13,9 +13,18 @@ function Groups(props){
        props.addGroup(group)
    }
 
+   function handleMemberSubmit(event){
+        event.preventDefault();
+        
+   }
+
    console.log(props.groups)
     const bookHTML = props.groups?.map(group => group)
     console.log({bookHTML})
+    const preferenceRank = Object.fromEntries(
+        Object.entries(props.groups).map(([key, { author }]) => [author, key])
+      )
+      console.log({preferenceRank})
    const groupsHTML = props.groups.map(group => <div><h2>{group.name}</h2>
                         <div><h4>Books</h4>
                         <h5>{group.books.title}</h5>
@@ -38,10 +47,20 @@ function Groups(props){
                 <nav className='nav-bar'></nav>
                 <form  className="group-form" onSubmit={handleSubmit} >
                 <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{width: '50%'}} />
-                <button type='submit' className="btn btn-dark addGroup-btn">Add Goup</button>
+                <button type='submit' className="btn btn-dark addGroup-btn">Add Group</button>
                 </form>
                 </div>
+                
+            </div>
+            <div className='addGroup'>
+                <h3>Add A Member</h3>
+                <nav className='nav-bar'></nav>
+                <form  className="group-form" onSubmit={handleMemberSubmit} >
+                <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{width: '50%'}} />
+                <button type='submit' className="btn btn-dark addGroup-btn">Add Member</button>
+                </form>
                 </div>
+                
             </div>
         </div>
         </>

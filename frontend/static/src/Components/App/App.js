@@ -30,7 +30,7 @@ function App(props) {
     password: '',
 });
   const [isAuth, setIsAuth] = useState(null);
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState();
   const history = useHistory();
   const [groups, setGroups] = useState([]);
 
@@ -54,6 +54,28 @@ function App(props) {
       return response.json(); 
 }  
   }
+
+//   async function addMember(name){
+//     const newMember = {
+//       members: name, 
+//     };
+//     console.log(name);
+//     const response = await fetch('/api_v1/groups/', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type' : 'application/json',
+//         'X-CSRFToken': Cookies.get('csrftoken'),
+//       },
+//       body: JSON.stringify(newMember),
+//     });
+//     if(response.ok){
+//       console.log(response)
+//       setGroups([...groups, newMember]);
+//       console.log({groups})
+//       return response.json(); 
+// }  
+//   }
+
   useEffect(() => {
     
     // GET request using fetch with async/await
@@ -65,6 +87,7 @@ function App(props) {
     console.log('groups', groups);
     }// return menuItemsAPI
     getGroups();
+    console.log({groups})
   },[])
 
  useEffect(() => {
@@ -111,21 +134,22 @@ const API_KEY = '&key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
       }
       }
     
-      async function addBookToLibrary(author, title, description, image, categories){
+      async function addBookToLibrary(author, title, description, image, categories, pages){
         console.log({author})
         console.log({title})
         console.log({description})
         // console.log({title})
         console.log({categories})
         const newBook = {
-          author: author,
-          title: title,
-          description: description,
+          author,
+          title,
+          description,
           // image: image,
-          categories: categories, 
+          categories, 
+          page_count: pages,
     
         };
-        console.log({books});
+       
         const response = await fetch('/api_v1/books/', {
           method: 'POST',
           headers: {
@@ -136,9 +160,9 @@ const API_KEY = '&key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
         });
         if(response.ok){
           console.log(response)
-          setBooks([...books, newBook]);
-          console.log({books})
-          return response.json(); 
+          // setBooks([...books, newBook]);
+          // console.log({books})
+          // return response.json(); 
     }  
       }
 
@@ -175,7 +199,7 @@ const API_KEY = '&key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
       <Header handleLogoutSubmit={handleLogoutSubmit} isAuth={isAuth} admin={admin}/>
       <Switch>
         <Route path='/profile'>
-          <Profile  books={books}/>
+          <Profile  books={books} isAuth={isAuth}/>
         </Route>
         <Route path='/groups'>
           <Groups groups={groups} addGroup={addGroup}/>

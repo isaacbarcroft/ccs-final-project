@@ -4,10 +4,11 @@ from .models import Book
 
 
 class BookSerializer(serializers.ModelSerializer):
-    author_name=serializers.ReadOnlyField(source= 'author.username')
+    user_name=serializers.ReadOnlyField(source= 'user.username',)
+    # author_name=serializers.ReadOnlyField(source= 'author.username')
     group_name=serializers.ReadOnlyField(source= 'group.name')
    
 
     class Meta:
         model = Book
-        fields = ('id', 'author_name', 'author', 'title', 'description', 'image','categories','group_name')
+        fields = ('id','user_name', 'author', 'title', 'description', 'image','categories','group_name', 'options', 'comments', 'page_count')
