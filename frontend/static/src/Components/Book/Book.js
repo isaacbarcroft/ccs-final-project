@@ -2,7 +2,8 @@ import ReadMoreReact from 'read-more-react';
 import styled from 'styled-components';
 import { useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
+
 
 function Book(props){
     const [title, setTitle] = useState();
@@ -13,7 +14,7 @@ function Book(props){
 
   
     let history = useHistory();
-    
+    const bookmark = <i class="fa-solid faBookmark"></i>
     const redirect = () => {
         history.push('/profile')
     }
@@ -92,7 +93,9 @@ if(!props.books) {
   }
 
 
-  
+  if(!props.isAuth){
+    return <Redirect to="/login" />
+    }
 
 const groupsHTML = props.groups.map(group => <option value={group.name}>{group.name}</option>)
     return(
