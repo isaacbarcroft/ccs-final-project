@@ -24,11 +24,15 @@ function Groups(props){
     const preferenceRank = Object.fromEntries(
         Object.entries(props.groups).map(([key, { author }]) => [author, key])
       )
-      console.log({preferenceRank})
+    const members = props.groups.map(group => group.members)
+    const membersName = members.map(member => member)
+    console.log({membersName})
+    console.log({members})
    const groupsHTML = props.groups.map(group => <div><h2>{group.name}</h2>
                         <div><h4>Books</h4>
                         <h5>{group.books.title}</h5>
-                        <button>Add Member</button>
+                        <p>{group.members.username}</p>
+                        <button>Join Group</button>
                         </div></div>);
 
     return(

@@ -5,12 +5,14 @@ import styled from 'styled-components';
 
 function Profile(props){
     let history = useHistory();
-
+    const [edit, setEdit] = useState(false);
+    console.log({edit})
     const [myBooks, setMyBooks] = useState();
-    console.log(props.books)
+   
     const redirect = () => {
       history.push('/books')
     }
+
     const HoverText = styled.p`
 	color: #000;
 	:hover {
@@ -18,13 +20,16 @@ function Profile(props){
 	}
 `
     const readMore = <div style={{color: 'blue'}} className="readMore">Read More</div>  
-
+    const types = ['No Good', 'Okay', 'Good Read', 'Loved It']
+    const options = [...new Set(types?.map(book => book))];
+    console.log(options)
  
     const handleChange = (event) => {
         const {name, value} = event.target;
         setMyBooks({...myBooks, [name]: value});
       }
-      useEffect(() => {
+
+    useEffect(() => {
         
         async function getMyBooks(){
           const response = await fetch(`/api_v1/books/`);
@@ -38,7 +43,7 @@ function Profile(props){
           }
         }
         getMyBooks();
-      },[,props.isAuth])
+    },[,props.isAuth])
 
 
 
@@ -60,15 +65,13 @@ function Profile(props){
         <form>
         <input onChange={handleChange} value={book.comments}/>
         </form>
-        <option>My Rating: {book.options}</option>
-        <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookToLibrary(book.volumeInfo.authors.toString(), book.volumeInfo.title,book.volumeInfo.description, book.volumeInfo.imageLinks?.thumbnail,book.volumeInfo.categories.toString() )}>Add to Reading List</button>
+        <select>
+        <option>My Rating: {options}</option>
+        </select>
+        <button className="btn btn-dark mx-1" type='submit'>Update</button>
         
         </div>)
-
-
-
-   
-     
+ 
       const booksHTML = myBooks?.map(book => 
           <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">   
           <h2>{book.title}</h2>
@@ -84,21 +87,25 @@ function Profile(props){
           </HoverText> : null }</p>
           {book.categories ? <p>Category: {book.categories}</p> : null }
           {/* {book.volumeInfo?.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null } */}
-          <p>{book.comments}</p>
-          <option>My Rating: {book.options}</option>
-          <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookToLibrary(book.volumeInfo.authors.toString(), book.volumeInfo.title,book.volumeInfo.description, book.volumeInfo.imageLinks?.thumbnail,book.volumeInfo.categories.toString() )}>Add to Reading List</button>
+          <p>My Thoughts: {book.comments}</p>
+          <p>My Rating: <span className='font-italic'>{book.options}</span></p>
+          <button className="btn btn-dark mx-1 mb-5" type='submit' onClick={() => setEdit(true)}>Edit</button>
+          <button>Delete</button>
           
           </div>)
 
     return(
         <>
         <div className='container'>
+            <header>
+            <div> Find a Book
+                <button className='btn btn-dark' onClick={redirect} >Search</button>
+            </div>
+            </header>
         <h1>Profile</h1>
         <div className='Library'>
-            {booksHTML}
-            {booksEditHTML}
-        <div> Find a Book</div>
-            <button onClick={redirect} >Search</button>
+           {edit === false ? booksHTML : booksEditHTML}
+       
         </div>
         </div>
         </>
