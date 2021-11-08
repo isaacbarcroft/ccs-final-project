@@ -18,17 +18,20 @@ function Groups(props) {
         event.preventDefault();
 
     }
-    async function joinGroup(event, name) {
-        const groupName = name
-        console.log(event.target.id);
-        console.log({ name })
+    async function joinGroup(id, name) {
+        const groupName = {
+            name,
+        }
+        console.log(name);
+        // console.log({ id })
         console.log('delete function');
-        const response = await fetch(`/api_v1/groups/${event.target.id}/`, {
+        const response = await fetch(`/api_v1/groups/${id}/`, {
             method: 'PUT',
             headers: {
+                'Content-Type': 'application/json',
                 'X-CSRFToken': Cookies.get('csrftoken'),
             },
-            body: groupName,
+            body: JSON.stringify(groupName),
         });
 
         // const updatedBooks = props.goups.filter(group => book.id !== parseInt(event.target.id));
@@ -49,7 +52,7 @@ function Groups(props) {
                 <div><h4>Books</h4>
                     <h5>{group.books.title}</h5>
                     <p>{group.members.username}</p>
-                    <button id={group.id} onClick={joinGroup(group.name)}>Join Group</button>
+                    <button id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
                 </div>
                 <h3>Members:
                     {members}</h3></div>);

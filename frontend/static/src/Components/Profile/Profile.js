@@ -24,6 +24,13 @@ function Profile(props) {
   console.log({ edit })
   const [myBooks, setMyBooks] = useState();
 
+  const [editBook, setEditBook] = useState({
+    options: '',
+    comments: '',
+    pages_read: null,
+
+  })
+
   const redirect = () => {
     history.push('/books')
   }
@@ -80,6 +87,7 @@ function Profile(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log({ event })
     const formData = new FormData(); /// contructing key - value pairs
     // formData.append('title', book.title);
     // formData.append('body', book.body);
@@ -176,7 +184,8 @@ function Profile(props) {
         Not Finished
         <h2>{book.title}</h2>
         <IconButton color="primary" onClick={() => setEdit(true)}><EditIcon /></IconButton>
-        <BookmarkAddIcon />
+        <div className="iconHover">
+          <a><BookmarkAddIcon /><span>Add Book</span></a></div>
         <BookmarkRemoveIcon />
         {book.image ? <img src={book.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
         <p>{`Written by: ${book.author}`}</p>
@@ -192,7 +201,7 @@ function Profile(props) {
         {book.categories ? <p>Category: {book.categories}</p> : null}
 
         {/* {book.volumeInfo?.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null } */}
-        <div className=" mt-3 shadow p-3 mb-5 bg-body rounded mt-2"> {edit ? <div><form onSubmit={handleSubmit}>
+        <div className=" mt-3 shadow p-3 mb-5 bg-body rounded mt-2"> {edit ? <div><form onSubmit={() => handleSubmit()}>
           <input onChange={handleChange} value={book.comments} />
           <select>
             {optionsHTML}

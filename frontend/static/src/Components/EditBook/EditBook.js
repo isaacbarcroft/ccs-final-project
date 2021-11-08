@@ -13,9 +13,10 @@ const BookCard = ({ book, deleteBook, handleChange, handleSubmit, optionsHTML })
             cursor: pointer;
         }
     `
+
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
     const [edit, setEdit] = useState(false)
-    console.log(book)
+    // console.log(book);
 
     return (
         <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">{book?.finished === true ? "Finished" : "Not Finished"}
@@ -30,24 +31,31 @@ const BookCard = ({ book, deleteBook, handleChange, handleSubmit, optionsHTML })
                     style={{ cursor: 'pointer' }}
                     readMoreText={readMore} />
                 </HoverText> : null}</p>
+
             {book.categories ? <p>Category: {book.categories}</p> : null}
             {/* {book.volumeInfo?.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null } */}
-            <div className=" mt-3 shadow p-3 mb-5 bg-body rounded mt-2">{edit ? <div><form onSubmit={handleSubmit}>
-                <input onChange={handleChange} value={book.comments} />
-                <input>Pages Read:</input>
-                <select>
-                    {optionsHTML}
-                </select>
-                <button className="btn btn-dark mx-1" type='submit'>Update</button>
-            </form>
-                <button className="btn btn-dark mx-1 mb-5" type='submit' >Edit</button>
-                <button id={book.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button>
+            <div className=" mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
+                {edit ?
+                    <div>
+                        <form onSubmit={handleSubmit}>
+                            <input onChange={handleChange} value={book.comments} />
+                            <input type="text" placeholder="Pages Read:" />
+                            <select>
+                                {optionsHTML}
+                            </select>
+                            <button className="btn btn-dark mx-1" type='submit'>Update</button>
+                        </form>
+                        <button className="btn btn-dark mx-1 mb-5" type='submit' >Edit</button>
+                        <button id={book.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button>
+                    </div>
+                    :
+                    <div><p>My Thoughts: {book.comments}</p>
+                        <p>Pages Read: {book.page_count}</p>
+                        <p>My Rating: <span className='font-italic'>{book.options}</span></p>
+                        <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Show Edit</button>
+                    </div>
+                }
             </div>
-                : <div><p>My Thoughts: {book.comments}</p>
-                    <p>Pages Read: {book.page_count}</p>
-                    <p>My Rating: <span className='font-italic'>{book.options}</span></p>
-                    <button className="btn btn-dark mx-1 mb-5" type='submit' onClick={() => setEdit(true)}>Edit</button>
-                </div>}</div>
 
         </div>
     )

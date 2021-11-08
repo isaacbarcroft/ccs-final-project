@@ -1,18 +1,22 @@
 import { useState } from 'react'
 
-function HomePage(){
+function HomePage() {
 
-    return(
+    return (
         <>
-        <div className="container">
-        <h1>Home Page</h1>
-            <div className="groups" >
-                <h2>Groups </h2>
+            <div className="container">
+                <h1>Home Page</h1>
+                <div className='leaderboard'>
+                    <h2>Leaderboard</h2>
+                </div>
+                <div className="groups" >
+                    <h2>Groups </h2>
+
+                </div>
+                <div className="newBooks" >
+                    <h2>Books</h2>
+                </div>
             </div>
-            <div className="newBooks" >
-                <h2>Books</h2>
-            </div>
-        </div>
 
         </>
     )

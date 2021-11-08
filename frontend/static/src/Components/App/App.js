@@ -136,16 +136,7 @@ function App(props) {
   //addBookToList
   async function addBookToLibrary(bookToSubmit, finished) {
     console.log({ finished })
-    // const newBook = {
-    //   author,
-    //   title,
-    //   description,
-    //   // image: image,
-    //   categories, 
-    //   page_count: pages,
-    //   finished
 
-    // };
 
     bookToSubmit.finished = finished
 
@@ -246,7 +237,7 @@ function App(props) {
           <Book books={books} getBooks={getBooks} addBookToLibrary={addBookToLibrary} groups={groups} addBookForLater={addBookForLater} />
         </Route>
         <Route path='/home'>
-          <HomePage />
+          <HomePage books={books} groups={groups} users={users} />
         </Route>
       </Switch>
       <ScrollTop
