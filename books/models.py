@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.db.models.fields import DateTimeField
 from groups.models import Group
+
+
 # Create your models here.
 class Book(models.Model):
     NO_GOOD = 'No Good'
@@ -36,6 +38,14 @@ class Book(models.Model):
     finished = models.BooleanField(
         choices=TRUE_FALSE_CHOICES,
         default=True)
+    pages_read = models.PositiveIntegerField(null=True)
+    # class Meta:
+    #     constraints = [
+    #         models.CheckConstraint(
+    #             name="page_count_range",
+    #             check=models.Q(page_count__range=(1, 25,000)),
+    #         ),
+    #     ]
     # is_published = models.BooleanField(default=False, null=True)
 
     def __str__(self):  

@@ -81,7 +81,7 @@ function Login(props){
                 <div className="container">
                     <div className="row">
                         <div class="col text-center">
-                            <button type="button" className="homeButton btn btn-dark" style={{fontFamily: 'Oswald'}} onClick={() => props.setState({isAuth: false, selection: 'registration'})} >Register</button>
+                            <button type="button" className="homeButton btn btn-dark" style={{fontFamily: 'Oswald'}} onClick={<Redirect to='/register' />}>Register</button>
                         </div>
                     </div>
                 </div>

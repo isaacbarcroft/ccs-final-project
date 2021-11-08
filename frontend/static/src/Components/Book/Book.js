@@ -57,6 +57,9 @@ function handleSubmit(event){
     
 }
 
+
+
+
 function handleBookList(event){
     event.preventDefault();
     props.addBookToLibrary( author, title, )
@@ -69,10 +72,22 @@ const readMore = <div style={{color: 'blue'}} className="readMore">Read More</di
   
  let bookHTML;
 
+ 
+
 if(!props.books) {
     bookHTML = <Spinner animation='grow' variant='primary'/>
   } else {
-      return bookHTML = props.books.items?.map(book => 
+      return bookHTML = props.books.items?.map(book => {
+          const bookToSubmit = {
+            author: book.volumeInfo.authors.toString(),
+            title: book.volumeInfo.title,
+            description: book.volumeInfo.description.toString(),
+            categories: book.volumeInfo.categories.toString(),
+            page_count: book.volumeInfo.pageCount,
+
+        }
+
+        return(
         <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">   
         <h2>{book.volumeInfo.title}</h2>
         {book.volumeInfo.imageLinks?.thumbnail ? <img src={book.volumeInfo.imageLinks?.thumbnail} alt="" /> :  <p style={{width: '50%'}}className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p> }
@@ -87,15 +102,13 @@ if(!props.books) {
         </HoverText> : null }</p>
         {book.volumeInfo.categories ? <p>Category: {book.volumeInfo.categories}</p> : null }
         {book.volumeInfo.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null }
-        <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookToLibrary(book.volumeInfo.authors.toString(), book.volumeInfo.title,book.volumeInfo.description, book.volumeInfo.imageLinks?.thumbnail,book.volumeInfo.categories.toString(), book.volumeInfo.pageCount )}>Add to Reading List</button>
-        <button className="btn btn-dark mx-1" typr='submit' onClick={handleBookLibrary}>Add to Library</button>
+        <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookToLibrary(bookToSubmit, true)}>Add to Reading List</button>
+        <button className="btn btn-dark mx-1" typr='submit' onClick={() => props.addBookToLibrary(bookToSubmit, false)}>Add to Library</button>
         </div>)
+      }
+      ) 
   }
 
-
-  if(!props.isAuth){
-    return <Redirect to="/login" />
-    }
 
 const groupsHTML = props.groups.map(group => <option value={group.name}>{group.name}</option>)
     return(
