@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import Footer from '../Footer/Footer';
 import Cookies from 'js-cookie';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import Form from '../Form/Form';
 
 function Groups(props) {
     const [group, setGroup] = useState([]);
     console.log({ group })
+
     function handleChange(event) {
         setGroup(event.target.value)
     }
@@ -12,19 +15,17 @@ function Groups(props) {
     function handleSubmit(event) {
         event.preventDefault();
         props.addGroup(group)
+        setGroup('');
     }
 
-    function handleMemberSubmit(event) {
-        event.preventDefault();
 
-    }
     async function joinGroup(id, name) {
         const groupName = {
             name,
         }
         console.log(name);
         // console.log({ id })
-        console.log('delete function');
+        console.log('JOIN GROUP');
         const response = await fetch(`/api_v1/groups/${id}/`, {
             method: 'PUT',
             headers: {
@@ -52,7 +53,7 @@ function Groups(props) {
                 <div><h4>Books</h4>
                     <h5>{group.books.title}</h5>
                     <p>{group.members.username}</p>
-                    <button id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
+                    <button id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button><GroupAddIcon />
                 </div>
                 <h3>Members:
                     {members}</h3></div>);
@@ -71,7 +72,7 @@ function Groups(props) {
 
                     <div className="col">
                         <div className='addGroup'>
-                            <h3>Add A Cluub</h3>
+                            <h3>Add A Club</h3>
                             <nav className='nav-bar'></nav>
                             <form className="group-form" onSubmit={handleSubmit} >
                                 <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{ width: '50%' }} />
@@ -83,55 +84,8 @@ function Groups(props) {
                 </div>
                 <div>
                     <div>
-                        <h2 className="newArticleForm text-center mt-3">Find a Book</h2>
-                        {/* <form id="form"className="mt-3 ds-flex justify-content-center mt-3" onSubmit={handleSubmit}>
-                            <a name="form" ></a>
-                            <div className="form-group text-left mb-3">
-                                <label htmlFor='title'>Title</label>
-                                <input type="text"
-                                    className="form-control"
-                                    id='bookTitle'
-                                    placeholder="Title"
-                                    onChange={}
-                                    
-                                    name='title'
-                                    value={title}
-                                />
-                            </div>
-                            <div className="form-group text-left mb-3">
-                                <label htmlFor='body'>Author</label>
-                                <input type="text"
-                                    className="form-control"
-                                    id='bookAuthor'
-                                    placeholder="Author"
-                                    onChange={}
-                                    
-                                    name='author'
-                                    value={}
-                                />
-                            </div>
-                            <label htmlFor='body'>Category</label>
-                            <input  className="form-control"
-                                    onChange={handleCategoryChange} 
-                                    name="categories" 
-                                    value={}
-                                    placeholder="Category"
-                                    />
-                            <label htmlFor=''>Add to Group</label>
-                            <select> 
-                                {groupsHTML}
-                            </select>
-                            <div className="form-group text-left mb-3 mt-3">
-                                <button type="submit"
-                                    className=" homeButton form-control  btn btn-dark"
-                                    id='articleOptions'
-                                    name='submit'
-                                    value='SUBMIT'
-                                >Submit</button>
-                            </div>
-                            
-                        
-                        </form> */}
+
+                        <Form setBooks={props.setBooks} />
                     </div>
 
                 </div>

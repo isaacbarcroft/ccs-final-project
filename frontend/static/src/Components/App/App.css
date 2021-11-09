@@ -37,3 +37,8 @@ transition: 0.50s;
 background-color:#fff;
 color:#3d4f0c;
 }
+
+.userLi {
+  text-decoration:none;
+  list-style-type:none;
+}

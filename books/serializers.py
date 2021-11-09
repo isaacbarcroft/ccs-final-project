@@ -12,3 +12,15 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ('id','user_name', 'author', 'title', 'description', 'image','categories','group_name', 'options', 'comments', 'page_count','finished', 'pages_read')
+
+
+
+class AllBookSerializer(serializers.ModelSerializer):
+    user_name=serializers.ReadOnlyField(source= 'user.username',)
+    # author_name=serializers.ReadOnlyField(source= 'author.username')
+    group_name=serializers.ReadOnlyField(source= 'group.name')
+   
+
+    class Meta:
+        model = Book
+        fields = ('id','user_name','group_name','page_count','finished', 'pages_read')

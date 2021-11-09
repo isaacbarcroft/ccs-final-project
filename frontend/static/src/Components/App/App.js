@@ -13,6 +13,7 @@ import Profile from '../Profile/Profile';
 import Groups from '../Groups/Groups';
 import Footer from '../Footer/Footer';
 import Spinner from 'react-bootstrap/Spinner';
+import Form from '../Form/Form';
 
 function App(props) {
 
@@ -110,29 +111,7 @@ function App(props) {
     checkAuth()
   }, [isAuth])
 
-  const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
-  const API_KEY = '&key=AIzaSyCLgbfwe2wEaHpDS8n2XBRlU3rgv5Gz7DA';
 
-
-  async function getBooks(title, author, categories) {
-    console.log(title, author, categories);
-    const titles = title ? `+intitle:${title}` : '';
-    const authors = author ? `+inauthor:${author}` : '';
-    const category = categories ? `+subject:${categories}` : '';
-    const response = await fetch(`${BASE_URL}${titles}${authors}${category}${API_KEY}`);
-    if (!response.ok) {
-      console.log(response);
-    } else {
-      const data = await response.json();
-      setBooks(data);
-      console.log({ data })
-      console.log(books)
-      console.log({ title })
-      console.log({ author })
-      console.log({ categories })
-      console.log(`${BASE_URL}${titles}${authors}${category}${API_KEY}`)
-    }
-  }
   //addBookToList
   async function addBookToLibrary(bookToSubmit, finished) {
     console.log({ finished })
@@ -225,7 +204,7 @@ function App(props) {
           <Profile books={books} isAuth={isAuth} />
         </Route>
         <Route path='/groups'>
-          <Groups groups={groups} addGroup={addGroup} />
+          <Groups groups={groups} addGroup={addGroup} setBooks={setBooks} />
         </Route>
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />
@@ -234,12 +213,17 @@ function App(props) {
           <Registration isAuth={isAuth} setIsAuth={setIsAuth} />
         </Route>
         <Route path='/books'>
-          <Book books={books} getBooks={getBooks} addBookToLibrary={addBookToLibrary} groups={groups} addBookForLater={addBookForLater} />
+          <Book books={books} addBookToLibrary={addBookToLibrary}
+            groups={groups} addBookForLater={addBookForLater}
+            setBooks={setBooks}
+          />
         </Route>
         <Route path='/home'>
-          <HomePage books={books} groups={groups} users={users} />
+          <HomePage books={books} groups={groups} users={users} isAuth={isAuth} />
         </Route>
+
       </Switch>
+
       <ScrollTop
 
         text="^"

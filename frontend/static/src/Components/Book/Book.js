@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { useHistory, Redirect } from 'react-router-dom';
+import Form from '../Form/Form';
 
 
 function Book(props) {
-    const [title, setTitle] = useState();
-    const [author, setAuthor] = useState();
-    const [categories, setCategories] = useState();
+
     const [pages, setPages] = useState();
     const [search, setSearch] = useState(false);
 
@@ -26,47 +25,18 @@ function Book(props) {
 		cursor: pointer;
 	}
 `
-    function handleTitleChange(event) {
-        setTitle(event.target.value);
-        console.log(title)
-    }
-
-    function handleAuthorChange(event) {
-        setAuthor(event.target.value);
-        console.log(author)
-    }
-
-    function handleCategoryChange(event) {
-        setCategories(event.target.value);
-        console.log(categories)
-    }
-
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        // props.submitMessage();
-        // console.log(props)
-        const searchTerm = event.target.value;
-        console.log({ searchTerm })
-        console.log({ title })
-        console.log({ author })
-        props.getBooks(title, author, categories);
-        setTitle('');
-        setAuthor('');
-        setCategories('');
-
-    }
 
 
 
 
-    function handleBookList(event) {
-        event.preventDefault();
-        props.addBookToLibrary(author, title,)
-    }
-    function handleBookLibrary() {
 
-    }
+    // function handleBookList(event) {
+    //     event.preventDefault();
+    //     props.addBookToLibrary()
+    // }
+    // function handleBookLibrary() {
+
+    // }
 
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
 
@@ -86,6 +56,7 @@ function Book(props) {
                 page_count: book.volumeInfo.pageCount,
 
             }
+
 
             return (
                 <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
@@ -124,55 +95,7 @@ function Book(props) {
                         <div>Back to Profile
                             <button className="btn btn-dark" onClick={redirect} >Back to Profile</button>
                         </div>
-                        <h2 className="newArticleForm text-center mt-3">Find a Book</h2>
-                        <form id="form" className="mt-3 ds-flex justify-content-center mt-3" onSubmit={handleSubmit}>
-                            <a name="form" ></a>
-                            <div className="form-group text-left mb-3">
-                                <label htmlFor='title'>Title</label>
-                                <input type="text"
-                                    className="form-control"
-                                    id='bookTitle'
-                                    placeholder="Title"
-                                    onChange={handleTitleChange}
-                                    name='title'
-                                    value={title}
-                                />
-                            </div>
-                            <div className="form-group text-left mb-3">
-                                <label htmlFor='body'>Author</label>
-                                <input type="text"
-                                    className="form-control"
-                                    id='bookAuthor'
-                                    placeholder="Author"
-                                    onChange={handleAuthorChange}
-
-                                    name='author'
-                                    value={author}
-                                />
-                            </div>
-                            <label htmlFor='body'>Category</label>
-                            <input className="form-control"
-                                onChange={handleCategoryChange}
-                                name="categories"
-                                value={categories}
-                                placeholder="Category"
-                            />
-                            <label htmlFor=''>Add to Group</label>
-                            <select>
-                                {groupsHTML}
-                            </select>
-                            <div className="form-group text-left mb-3 mt-3">
-                                {/* <label htmlFor='options'>Draft/Submitted</label> */}
-                                <button type="submit"
-                                    className=" homeButton form-control  btn btn-dark"
-                                    id='articleOptions'
-                                    name='submit'
-                                    value='SUBMIT'
-                                >Submit</button>
-                            </div>
-
-
-                        </form>
+                        <Form setBooks={props.setBooks} />
                     </div>
                 </div>
             </div>
