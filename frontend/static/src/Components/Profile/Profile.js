@@ -156,8 +156,8 @@ function Profile(props) {
     <>
       <div className='container'>
         <header>
-          <div> Find a Book
-            <button className='btn btn-dark' onClick={redirect} >Search</button>
+          <div>
+            <button className='btn btn-dark' onClick={redirect} >Book Search</button>
           </div>
           <div className="mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
             <h3>Pages Read:{parseFloat(totalPages)}</h3>

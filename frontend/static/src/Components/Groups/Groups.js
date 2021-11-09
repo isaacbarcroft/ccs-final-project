@@ -3,10 +3,16 @@ import Footer from '../Footer/Footer';
 import Cookies from 'js-cookie';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import Form from '../Form/Form';
+import { Redirect, useHistory } from 'react-router-dom';
 
 function Groups(props) {
     const [group, setGroup] = useState([]);
     console.log({ group })
+    let history = useHistory();
+    const redirect = () => {
+        history.push('/groupsearch')
+    }
+
 
     function handleChange(event) {
         setGroup(event.target.value)
@@ -62,6 +68,9 @@ function Groups(props) {
     return (
         <>
             <h1>Groups</h1>
+            <div>
+                <button className='btn btn-dark' onClick={redirect} >Book Search</button>
+            </div>
             <div className="container" >
                 <div className="row">
                     <div class="col-8">

@@ -6,7 +6,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 import Form from '../Form/Form';
 
 
-function Book(props) {
+function GroupBookSearch(props) {
 
     const [pages, setPages] = useState();
     const [search, setSearch] = useState(false);
@@ -15,7 +15,7 @@ function Book(props) {
     let history = useHistory();
 
     const redirect = () => {
-        history.push('/profile')
+        history.push('/groups')
     }
 
 
@@ -41,8 +41,6 @@ function Book(props) {
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
 
     let bookHTML;
-
-
 
     if (!props.books) {
         bookHTML = <Spinner animation='grow' variant='primary' />
@@ -73,8 +71,8 @@ function Book(props) {
                         </HoverText> : null}</p>
                     {book.volumeInfo.categories ? <p>Category: {book.volumeInfo.categories}</p> : null}
                     {book.volumeInfo.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null}
-                    <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookToLibrary(bookToSubmit, true)}>Add to Reading List</button>
-                    <button className="btn btn-dark mx-1" typr='submit' onClick={() => props.addBookToLibrary(bookToSubmit, false)}>Add to Library</button>
+                    <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookGroup(bookToSubmit, true)}>Add to Reading List</button>
+
                 </div>)
         }
         )
@@ -93,7 +91,7 @@ function Book(props) {
                     </div>
                     <div className="col shadow p-3 mb-5 bg-body rounded">
                         <div>
-                            <button className="btn btn-dark" onClick={redirect} >Back to Profile</button>
+                            <button className="btn btn-dark" onClick={redirect} >Back to Groups</button>
                         </div>
                         <Form setBooks={props.setBooks} />
                     </div>
@@ -103,4 +101,4 @@ function Book(props) {
     )
 }
 
-export default Book;
+export default GroupBookSearch;

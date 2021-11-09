@@ -14,6 +14,7 @@ import Groups from '../Groups/Groups';
 import Footer from '../Footer/Footer';
 import Spinner from 'react-bootstrap/Spinner';
 import Form from '../Form/Form';
+import GroupBookSearch from '../GroupBookSearch/GroupBookSearch';
 
 function App(props) {
 
@@ -200,6 +201,11 @@ function App(props) {
 
       <Header handleLogoutSubmit={handleLogoutSubmit} isAuth={isAuth} admin={admin} />
       <Switch>
+        <Route path='/groupsearch'>
+          <GroupBookSearch books={books} addBookToLibrary={addBookToLibrary}
+            groups={groups} addBookForLater={addBookForLater}
+            setBooks={setBooks} />
+        </Route>
         <Route path='/profile'>
           <Profile books={books} isAuth={isAuth} />
         </Route>
