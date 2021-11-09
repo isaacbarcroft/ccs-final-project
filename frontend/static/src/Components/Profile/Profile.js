@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import Cookies from 'js-cookie';
 import BookCard from '../EditBook/EditBook'
 import BookCardUnfinished from '../EditUnfinished/EditUnfinished';
+import CircularProgress from '@mui/material/CircularProgress';
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 
 function Profile(props) {
   let history = useHistory();
@@ -66,13 +69,49 @@ function Profile(props) {
         'X-CSRFToken': Cookies.get('csrftoken'),
       },
     });
+    if (!response.ok) {
+      throw new Error('Network response was not OK');
+    } else {
+      const updatedBooks = [...myBooks]
+      const index = updatedBooks.findIndex(book => book.id === event.target.id);
+      updatedBooks.splice(index, 1);
+      setMyBooks(updatedBooks);
+    }
 
-    const updatedBooks = myBooks.filter(book => book.id !== parseInt(event.target.id));
-    console.log({ updatedBooks })
-    setMyBooks(updatedBooks);
   }
+  async function finishBook(book) {
+    // console.log(event.target.id);
+    // console.log('finish function');
+
+    const updatedBook = {
+      finished: true,
+      pages_read: book.page_count,
+    }
+    // book.finished = true;
+    // book.pages_read = book.page_count;
+    const response = await fetch(`/api_v1/books/${book.id}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(updatedBook),
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not OK');
+    } else {
+      const data = await response.json();
+      const updatedBooks = [...myBooks];
+      const index = updatedBooks.findIndex(book => book.id === data.id);
+      updatedBooks[index] = data;
+      setMyBooks(updatedBooks);
+
+    }
 
 
+    // setMyBooks(updatedBooks)
+  }
   const handleUpdate = async (updatedBook) => {
 
     delete updatedBook.finished;
@@ -91,7 +130,7 @@ function Profile(props) {
       } else {
         formData.append(key, updatedBook[key]);
       }
-
+      console.log({ updatedBook })
     });
 
     const options = {
@@ -114,25 +153,28 @@ function Profile(props) {
   }
 
   const unfinishedHTML = myBooks?.map(book => !book.finished ?
-    <div>
+    < div >
       {console.log(book)}
-      <BookCardUnfinished
+      < BookCardUnfinished
         book={book}
+        finishBook={finishBook}
         deleteBook={deleteBook}
         handleUpdate={handleUpdate}
         options={options} />
-    </div> :
+    </div > :
     null)
 
 
   const booksListHTML = myBooks?.map(book => book.finished ?
     <div>
       {console.log(book)}
-      <BookCard book={book} deleteBook={deleteBook}
+      <BookCard
+        book={book}
+        handleUpdate={handleUpdate}
+        deleteBook={deleteBook}
         options={options} />
     </div>
     : null)
-
 
 
   const pagesRead = myBooks?.map(book => book?.finished === true ? book.page_count : 0);
@@ -156,12 +198,14 @@ function Profile(props) {
     <>
       <div className='container'>
         <header>
+          <Avatar sx={{ bgcolor: deepOrange[500] }}>{props.admin.username.slice(0, 1).toUpperCase()}</Avatar>
           <div>
-            <button className='btn btn-dark' onClick={redirect} >Book Search</button>
+            <button className='btn btn-dark mt-2' onClick={redirect} >Book Search</button>
           </div>
           <div className="mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
             <h3>Pages Read:{parseFloat(totalPages)}</h3>
             <h3>Books Read:{total}</h3>
+            {/* <CircularProgress variant="determinate" value={75} /> */}
           </div>
 
         </header>

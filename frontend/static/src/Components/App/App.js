@@ -15,6 +15,7 @@ import Footer from '../Footer/Footer';
 import Spinner from 'react-bootstrap/Spinner';
 import Form from '../Form/Form';
 import GroupBookSearch from '../GroupBookSearch/GroupBookSearch';
+import CircularStatic from '../ProgressBar/ProgressBar';
 
 function App(props) {
 
@@ -148,7 +149,7 @@ function App(props) {
       author,
       title,
       description,
-      // image: image,
+      image: image,
       categories,
       page_count: pages,
 
@@ -198,7 +199,7 @@ function App(props) {
 
   return (
     <div className="App">
-
+      {/* <CircularStatic /> */}
       <Header handleLogoutSubmit={handleLogoutSubmit} isAuth={isAuth} admin={admin} />
       <Switch>
         <Route path='/groupsearch'>
@@ -207,7 +208,7 @@ function App(props) {
             setBooks={setBooks} />
         </Route>
         <Route path='/profile'>
-          <Profile books={books} isAuth={isAuth} />
+          <Profile books={books} isAuth={isAuth} admin={admin} />
         </Route>
         <Route path='/groups'>
           <Groups groups={groups} addGroup={addGroup} setBooks={setBooks} />

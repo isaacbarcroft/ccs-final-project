@@ -48,11 +48,13 @@ function Book(props) {
         bookHTML = <Spinner animation='grow' variant='primary' />
     } else {
         return bookHTML = props.books.items?.map(book => {
+            console.log('book', book);
             const bookToSubmit = {
                 author: book.volumeInfo.authors.toString(),
                 title: book.volumeInfo.title,
-                description: book.volumeInfo.description.toString(),
-                categories: book.volumeInfo.categories.toString(),
+                image: book.volumeInfo.imageLinks.thumbnail,
+                description: book.volumeInfo.description?.toString(),
+                categories: book.volumeInfo.categories?.toString(),
                 page_count: book.volumeInfo.pageCount,
 
             }

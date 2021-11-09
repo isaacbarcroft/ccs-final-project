@@ -21,9 +21,9 @@ function Header(props) {
                                 <NavLink style={{ textDecoration: 'none' }} to='/profile'>Profile</NavLink>
                             </li>
 
-                            <li className="nav-item mt-2 mx-1">
+                            {/* <li className="nav-item mt-2 mx-1">
                                 <NavLink style={{ textDecoration: 'none' }} to='/books'>Books</NavLink>
-                            </li>
+                            </li> */}
                             <li className="nav-item mt-2">
                                 <NavLink style={{ textDecoration: 'none' }} to='/groups'>Groups</NavLink>
                             </li>
@@ -62,9 +62,9 @@ function Header(props) {
                                 <NavLink className="" style={{ textDecoration: 'none' }} to='/profile'>Profile</NavLink>
                             </li>
 
-                            <li className="nav-item mt-2 mx-1">
+                            {/* <li className="nav-item mt-2 mx-1">
                                 <NavLink style={{ textDecoration: 'none' }} to='/books'>Books</NavLink>
-                            </li>
+                            </li> */}
                             <li className="nav-item mt-2">
                                 <NavLink style={{ textDecoration: 'none' }} to='/groups'>Groups</NavLink>
                             </li>

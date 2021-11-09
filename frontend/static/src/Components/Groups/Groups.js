@@ -55,11 +55,11 @@ function Groups(props) {
     const groupsHTML = props.groups.map(group => {
         const members = group.members.map(member => <div><h4>{member.username}</h4></div>)
         return (
-            <div className="mt-3 shadow p-3 mb-5 bg-body rounded mt-2"><h2>{group.name}</h2>
+            <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2"><h2 className='groupTitle'>{group.name}</h2>
                 <div><h4>Books</h4>
-                    <h5>{group.books.title}</h5>
+                    <h5 >{group.books.title}</h5>
                     <p>{group.members.username}</p>
-                    <button id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button><GroupAddIcon />
+                    <button className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
                 </div>
                 <h3>Members:
                     {members}</h3></div>);
@@ -90,13 +90,6 @@ function Groups(props) {
                         </div>
 
                     </div>
-                </div>
-                <div>
-                    <div>
-
-                        <Form setBooks={props.setBooks} />
-                    </div>
-
                 </div>
             </div>
         </>
