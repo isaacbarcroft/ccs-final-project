@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 
 
 function Header(props) {
@@ -80,7 +82,9 @@ function Header(props) {
                                     <button style={{ textDecoration: 'none' }} className="btn btn-link logout text-light" type="button" onClick={() => props.handleLogoutSubmit()}>Logout</button>
                                 </li>
                             </ul>
+                            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }} className="avatar" sx={{ bgcolor: deepOrange[500] }}>{props.admin.username.slice(0, 1).toUpperCase()}</Avatar>
                         </div>
+
                     </header>
                 </div>
             </nav>

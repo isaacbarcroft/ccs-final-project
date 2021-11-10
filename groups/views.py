@@ -7,9 +7,10 @@ class GroupListAPIView(generics.ListCreateAPIView):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
-
     def perform_create(self,serializer):
-        serializer.save(user=self.request.user)
+        obj = serializer.save()
+        obj.members.add(self.request.user)
+       
 
 class GroupDetailListAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Group.objects.all()

@@ -4,13 +4,19 @@ import Cookies from 'js-cookie';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import Form from '../Form/Form';
 import { Redirect, useHistory } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple } from '@mui/material/colors';
+import BookComment from '../BookComment/BookComment';
+import Group from '../Group/Group';
+
+
 
 function Groups(props) {
     const [group, setGroup] = useState([]);
     console.log({ group })
     let history = useHistory();
     const redirect = () => {
-        history.push('/groupsearch')
+        history.push('/group')
     }
 
 
@@ -24,7 +30,7 @@ function Groups(props) {
         setGroup('');
     }
 
-
+    console.log('selectedBook', props.selectedBook)
     async function joinGroup(id, name) {
         const groupName = {
             name,
@@ -51,20 +57,41 @@ function Groups(props) {
             props.setGroups(updatedGroup);
         }
     }
+    //Comments
+    console.log('comments', props.comments)
+    console.log('select', props.selectedBook)
 
 
-    console.log(props.groups)
+
+
+
+    //MEMBERS
     const members = props.groups.map(group => group.members)
     const membersName = members.map(member => member)
     console.log({ membersName })
     console.log({ members })
-    const groupsHTML = props.groups.map(group => {
+    // const groupsHTML = <Group groups={props.groups} selectedBook={props.selectedBook}
+    //     comments={props.comments} setComments={props.setComments}
+    //     groups={props.groups} setGroups={props.setGroups}
+    //     addGroup={props.addGroup} setBooks={props.setBooks}
+    //     joinGroup={joinGroup}
+
+    // />
+
+    const groupHTML = props.groups.map(group => {
         const members = group.members.map(member => <div><h4>{member.username}</h4></div>)
         return (
-            <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2"><h2 className='groupTitle'>{group.name}</h2>
+            <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
+                <div>
+                    <button className='btn btn-dark' onClick={redirect} >Book Search</button>
+                </div>
+                <h2 className='groupTitle'>{group.name}</h2>
+                <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{group.name.slice(0, 1).toUpperCase()}</Avatar>
                 <div><h4>Books</h4>
-                    <h5 >{group.books.title}</h5>
+                    <h5 >{group.books?.title}</h5>
                     <p>{group.members.username}</p>
+                    <h2>Comments</h2>
+                    <BookComment comments={props.comments} />
                     <button className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
                 </div>
                 <h3>Members:
@@ -80,7 +107,7 @@ function Groups(props) {
             <div className="container" >
                 <div className="row">
                     <div class="col-8">
-                        {groupsHTML}
+                        {groupHTML}
 
                     </div>
 

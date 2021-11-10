@@ -16,6 +16,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Form from '../Form/Form';
 import GroupBookSearch from '../GroupBookSearch/GroupBookSearch';
 import CircularStatic from '../ProgressBar/ProgressBar';
+import Group from '../Group/Group';
 
 function App(props) {
 
@@ -36,6 +37,8 @@ function App(props) {
   const [books, setBooks] = useState();
   const history = useHistory();
   const [groups, setGroups] = useState([]);
+  const [comments, setComments] = useState();
+  const [selectedBook, setSelectedBook] = useState({ id: 0, name: '' });
 
   async function addGroup(name) {
     const newGroup = {
@@ -50,11 +53,12 @@ function App(props) {
       },
       body: JSON.stringify(newGroup),
     });
-    if (response.ok) {
-      console.log(response)
-      setGroups([...groups, newGroup]);
-      console.log({ groups })
-      return response.json();
+
+    if (!response.ok) {
+      throw new Error('Network response was not OK');
+    } else {
+      const data = await response.json();
+      setGroups([...groups, data]);
     }
   }
 
@@ -95,6 +99,26 @@ function App(props) {
 
   useEffect(() => {
 
+    // GET request using fetch with async/await
+    async function getGroupComments(event) {
+      const response = await fetch('/api_v1/books/2145/comments/');
+      const data = await response.json();
+      const matchedBook = books?.find(book => {
+        const bookIdString = book.id.toString()
+        return bookIdString === event.target.value
+      })
+      console.log({ data });
+      setComments(data);
+      setSelectedBook(matchedBook)
+      console.log({ matchedBook })
+      console.log('comments', comments);
+    }// return menuItemsAPI
+    getGroupComments();
+    console.log({ comments })
+  }, [])
+
+  useEffect(() => {
+
     const checkAuth = async () => {
       const response = await fetch('/rest-auth/user/');
       if (!response.ok) {
@@ -112,6 +136,8 @@ function App(props) {
     }
     checkAuth()
   }, [isAuth])
+
+
 
 
   //addBookToList
@@ -211,7 +237,10 @@ function App(props) {
           <Profile books={books} isAuth={isAuth} admin={admin} />
         </Route>
         <Route path='/groups'>
-          <Groups groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
+          <Groups selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
+        </Route>
+        <Route path='/groups/group'>
+          <Group selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
         </Route>
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />

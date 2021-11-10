@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book
+from .models import Book, Comment
 # from groups.serializers import GroupSerializer
 
 
@@ -23,3 +23,14 @@ class AllBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ('id','user_name','group_name','page_count','finished', 'pages_read','avg_rating')
+
+
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    user_name= serializers.ReadOnlyField(source="user.username")
+    user = serializers.CharField()
+    book = serializers.ReadOnlyField(source='book.title')
+    class Meta:
+        model = Comment
+        fields = ('id', 'user', 'body','book', 'user_name')

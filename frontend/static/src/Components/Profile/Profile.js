@@ -14,7 +14,7 @@ function Profile(props) {
   const [edit, setEdit] = useState(false);
   console.log({ edit })
   const [myBooks, setMyBooks] = useState();
-
+  const [finished, setFinished] = useState();
   const [editBook, setEditBook] = useState({
     options: '',
     comments: '',
@@ -181,7 +181,7 @@ function Profile(props) {
   console.log({ pagesRead })
   let total = 0;
   const booksRead = myBooks?.map(book => book?.finished === true ? total++ : null);
-  // const totalPages = pagesRead ? pagesRead.reduce((a, b) => a + b) : null;
+  const totalPages = pagesRead ? pagesRead.reduce((a, b) => a + b) : null;
 
   // var sum = 0;
   // for (var i = 0; i < pagesRead.length; i++) { sum += pagesRead[i]}
@@ -195,26 +195,29 @@ function Profile(props) {
     <>
       <div className='container'>
         <header>
-          <Avatar sx={{ bgcolor: deepOrange[500] }}>{props.admin.username.slice(0, 1).toUpperCase()}</Avatar>
+
           <div>
-            <button className='btn btn-dark mt-2' onClick={redirect} >Book Search</button>
+            <button className='btn btn-dark mt-2 ds-flex justify-content-right' onClick={redirect} >Book Search</button>
           </div>
-          <div className="mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
-            {/* <h3>Pages Read:{parseFloat(totalPages)}</h3> */}
-            <h3>Books Read:{total}</h3>
+          <div className="mt-3 shadow p-3 mb-5 bg-body col rounded mt-2 d-flex justify-content-start">
+            <h4 className='text-left col'>Total Pages Read: {parseFloat(totalPages)}</h4>
+            <h4 className='text-left col'>Total Books Read: {total}</h4>
             {/* <CircularProgress variant="determinate" value={75} /> */}
           </div>
 
         </header>
         <div className="container" >
+          <h1 className="ds-flex justify-content-center">Profile</h1>
           <div className="row">
             <div class="col-6">
-              <h1 className="ds-flex justify-content-center">Profile</h1>
-              <div className='Library'>Saved
+
+              <div className='Library'>
+                <h2>Current</h2>
                 {unfinishedHTML}
               </div>
             </div>
-            <div className="col"> Completed
+            <div className="col">
+              <h2>Completed</h2>
               {booksListHTML}
             </div>
           </div>

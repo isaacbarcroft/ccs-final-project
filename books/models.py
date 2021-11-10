@@ -6,17 +6,8 @@ from django.db.models import IntegerField, Model, URLField
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
+
 class Book(models.Model):
-    # NO_GOOD = 'No Good'
-    # OK = 'Okay'
-    # GOOD_READ = 'Good Read'
-    # LOVE = 'Loved It'
-    # CHOICES = [
-    #     (NO_GOOD, 'No Good'),
-    #     (OK, 'Okay'),
-    #     (GOOD_READ, 'Good Read'),
-    #     (LOVE, 'Loved It'),
-    # ]
     TRUE_FALSE_CHOICES = (
     (True, 'Yes'),
     (False, 'No')
@@ -30,11 +21,6 @@ class Book(models.Model):
     categories = models.CharField(max_length= 255, null=True)
     page_count = models.IntegerField(null=True)
     group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, null=True, related_name="books")
-    # options = models.CharField(
-    #     max_length=10,
-    #     choices=CHOICES,
-    #     default='',
-    # )
     comments = models.TextField(null=True, blank=True)
     finished = models.BooleanField(
         choices=TRUE_FALSE_CHOICES,
@@ -50,3 +36,21 @@ class Book(models.Model):
 
     def __str__(self):  
         return self.title
+
+class Comment(models.Model):
+    # user = models.CharField(max_length=255)
+    body = models.TextField()
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,    
+                           on_delete=models.CASCADE, null=True)
+    def __str__(self):
+        return self.body[:10]
+
+    # def __str__(self):
+    #     return self.book
+
+class Response(models.Model):
+    body=models.TextField()
+    comment=models.ForeignKey(Comment, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,    
+                           on_delete=models.CASCADE, null=True)

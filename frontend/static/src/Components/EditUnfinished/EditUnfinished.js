@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Cookies from 'js-cookie';
 import ReadMoreReact from 'read-more-react';
 import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 
 const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBook }) => {
@@ -76,7 +78,13 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                     </div>
                     :
                     <div><p>My Thoughts: {currentBook.comments}</p>
-                        <p>Pages Read: {currentBook.pages_read}</p><CircularProgress variant="determinate" value={total} />
+                        <p>Pages Read: {currentBook.pages_read}</p>
+                        <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+                            <CircularProgress variant="determinate" value={total} />
+                            <Typography variant="caption" component="div" color="text.secondary">
+                                {`${Math.round(total)}%`}
+                            </Typography>
+                        </Box>
                         <p>My Rating: <span className='font-italic'>{currentBook.options}</span></p>
                         <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button>
                     </div>
