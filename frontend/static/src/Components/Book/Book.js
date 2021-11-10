@@ -76,13 +76,13 @@ function Book(props) {
             }
             const handleClick = (variant) => () => {
                 props.addBookToLibrary(bookToSubmit, true);
-                enqueueSnackbar('I love snacks.', { variant });
+                enqueueSnackbar('Added to Completed', { variant });
             };
 
             const handleClickVariant = (variant) => () => {
                 props.addBookToLibrary(bookToSubmit, false)
                 // variant could be success, error, warning, info, or default
-                enqueueSnackbar('This is a success message!', { variant });
+                enqueueSnackbar('Added to Library', { variant });
             };
 
             // const handleClick = () => {
