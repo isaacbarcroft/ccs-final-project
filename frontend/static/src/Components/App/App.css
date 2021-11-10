@@ -50,6 +50,13 @@ button:focus{
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19) !important;
   transform: translateY(-0.25em) !important;
 }
+.bookBtn:hover{
+  font-size:20px !important;
+  color: #3c3e41 !important;
+  background-color: white !important;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19) !important;
+  transform: translateY(-0.25em) !important;
+}
 .group {
   position:relative;
 }

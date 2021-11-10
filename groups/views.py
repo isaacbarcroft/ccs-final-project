@@ -17,6 +17,7 @@ class GroupDetailListAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class GroupAddMember(generics.UpdateAPIView):
+    queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
     def perform_update(self, serializer):

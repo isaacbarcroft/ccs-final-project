@@ -25,7 +25,15 @@ function GroupBookSearch(props) {
 		cursor: pointer;
 	}
 `
-
+    function handleChange(e) {
+        console.log(e.target)
+        const { name, value } = e.target;
+        console.log(name, value)
+        // setCurrentBook(prevState => ({
+        //     ...prevState,
+        //     [name]: value,
+        // }));
+    }
 
 
 
@@ -39,6 +47,7 @@ function GroupBookSearch(props) {
     // }
 
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
+    const groupsHTML = props.groups?.map(group => <option value={group.name}>{group.name}</option>)
 
     let bookHTML;
 
@@ -49,8 +58,8 @@ function GroupBookSearch(props) {
             const bookToSubmit = {
                 author: book.volumeInfo.authors.toString(),
                 title: book.volumeInfo.title,
-                description: book.volumeInfo.description.toString(),
-                categories: book.volumeInfo.categories.toString(),
+                description: book.volumeInfo.description?.toString(),
+                categories: book.volumeInfo.categories?.toString(),
                 page_count: book.volumeInfo.pageCount,
 
             }
@@ -71,15 +80,20 @@ function GroupBookSearch(props) {
                         </HoverText> : null}</p>
                     {book.volumeInfo.categories ? <p>Category: {book.volumeInfo.categories}</p> : null}
                     {book.volumeInfo.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null}
-                    <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookGroup(bookToSubmit, true)}>Add to Reading List</button>
-
+                    <form>
+                        <select onChange={handleChange} value={''} name="name">
+                            <option>Select option</option>
+                            {groupsHTML}
+                        </select>
+                        <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookGroup(bookToSubmit, true)}>Add to Group</button>
+                    </form>
                 </div>)
         }
         )
     }
 
 
-    const groupsHTML = props.groups?.map(group => <option value={group.name}>{group.name}</option>)
+
     return (
         <>
 

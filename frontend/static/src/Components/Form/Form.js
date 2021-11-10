@@ -54,10 +54,6 @@ function Form(props) {
         } else {
             const data = await response.json();
             props.setBooks(data);
-            console.log({ data })
-            console.log({ title })
-            console.log({ author })
-            console.log({ categories })
             console.log(`${BASE_URL}${titles}${authors}${category}${API_KEY}`)
         }
     }

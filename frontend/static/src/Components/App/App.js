@@ -211,7 +211,7 @@ function App(props) {
           <Profile books={books} isAuth={isAuth} admin={admin} />
         </Route>
         <Route path='/groups'>
-          <Groups groups={groups} addGroup={addGroup} setBooks={setBooks} />
+          <Groups groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
         </Route>
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />

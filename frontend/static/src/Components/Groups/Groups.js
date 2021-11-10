@@ -32,7 +32,7 @@ function Groups(props) {
         console.log(name);
         // console.log({ id })
         console.log('JOIN GROUP');
-        const response = await fetch(`/api_v1/groups/${id}/`, {
+        const response = await fetch(`/api_v1/groups/${id}/groups/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,9 +41,15 @@ function Groups(props) {
             body: JSON.stringify(groupName),
         });
 
-        // const updatedBooks = props.goups.filter(group => book.id !== parseInt(event.target.id));
-        // console.log({updatedBooks})
-        //         setMyBooks(updatedBooks);
+        if (!response.ok) {
+            throw new Error('Network response was not OK');
+        } else {
+            const data = await response.json();
+            const updatedGroup = [...props.groups];
+            const index = updatedGroup.findIndex(group => group.id === data.id);
+            updatedGroup[index] = data;
+            props.setGroups(updatedGroup);
+        }
     }
 
 

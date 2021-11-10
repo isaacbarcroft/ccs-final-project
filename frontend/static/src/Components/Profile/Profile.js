@@ -178,14 +178,11 @@ function Profile(props) {
 
 
   const pagesRead = myBooks?.map(book => book?.finished === true ? book.page_count : 0);
-
+  console.log({ pagesRead })
   let total = 0;
   const booksRead = myBooks?.map(book => book?.finished === true ? total++ : null);
-  console.log(booksRead)
-  console.log({ total })
-  console.log(pagesRead)
-  const totalPages = pagesRead?.reduce((a, b) => a + b)
-  console.log(parseFloat(totalPages))
+  // const totalPages = pagesRead ? pagesRead.reduce((a, b) => a + b) : null;
+
   // var sum = 0;
   // for (var i = 0; i < pagesRead.length; i++) { sum += pagesRead[i]}
   // console.log({sum})
@@ -203,7 +200,7 @@ function Profile(props) {
             <button className='btn btn-dark mt-2' onClick={redirect} >Book Search</button>
           </div>
           <div className="mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
-            <h3>Pages Read:{parseFloat(totalPages)}</h3>
+            {/* <h3>Pages Read:{parseFloat(totalPages)}</h3> */}
             <h3>Books Read:{total}</h3>
             {/* <CircularProgress variant="determinate" value={75} /> */}
           </div>
