@@ -97,25 +97,27 @@ function App(props) {
     console.log({ groups })
   }, [])
 
-  useEffect(() => {
 
-    // GET request using fetch with async/await
-    async function getGroupComments(event) {
-      const response = await fetch('/api_v1/books/2145/comments/');
-      const data = await response.json();
-      const matchedBook = books?.find(book => {
-        const bookIdString = book.id.toString()
-        return bookIdString === event.target.value
-      })
-      console.log({ data });
-      setComments(data);
-      setSelectedBook(matchedBook)
-      console.log({ matchedBook })
-      console.log('comments', comments);
-    }// return menuItemsAPI
+  // GET request using fetch with async/await
+  async function getGroupComments(event) {
+    console.log('etv', event.target.value) // group ID--- Need the Book ID
+    const response = await fetch(`/api_v1/books/${event.target.value}/comments/`);
+
+    const data = await response.json();
+    const matchedBook = books?.find(book => {
+      const bookIdString = book.id.toString()
+      return bookIdString === event.target.value
+    })
+    console.log({ data });
+    setComments(data);
+    setSelectedBook(matchedBook)
+    console.log({ matchedBook })
+    console.log('comments', comments);
     getGroupComments();
     console.log({ comments })
-  }, [])
+  }// return menuItemsAPI
+
+
 
   useEffect(() => {
 
@@ -237,7 +239,7 @@ function App(props) {
           <Profile books={books} isAuth={isAuth} admin={admin} />
         </Route>
         <Route path='/groups'>
-          <Groups selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
+          <Groups getGroupComments={getGroupComments} selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
         </Route>
         <Route path='/groups/group'>
           <Group selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />

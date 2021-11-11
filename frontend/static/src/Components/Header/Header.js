@@ -12,7 +12,7 @@ function Header(props) {
                 <div className="container">
                     <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px' }} href="/">Chatty Books</a>
                     <div className="username d-flex justify-content-center">
-                        <p className="d-flex justify-content-center" style={{ color: 'white', fontFamily: 'Oswald', }}> <span style={{ fontWeight: 'bold' }}>{`  ${props.admin.username.toUpperCase()}`}</span></p>
+                        <p className="d-flex justify-content-center" style={{ color: 'white', fontFamily: 'Oswald', }}> <span style={{ fontWeight: 'bold', weight: 700, fontSize: '30px' }}>{`  ${props.admin.username.toUpperCase()}`}</span></p>
                     </div>
 
                     <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
@@ -21,7 +21,7 @@ function Header(props) {
                                 <NavLink className="" style={{ textDecoration: 'none' }} to='/home'>Home</NavLink>
                             </li>
                             <li className="nav-item mx-1 mt-2">
-                                <NavLink style={{ textDecoration: 'none' }} to='/profile'>Profile</NavLink>
+                                <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/profile'>Profile</NavLink>
                             </li>
 
                             {/* <li className="nav-item mt-2 mx-1">
@@ -60,17 +60,17 @@ function Header(props) {
                         <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                             <ul className="navbar-nav ml-auto text-light">
                                 <li className="nav-item mt-2 mx-1">
-                                    <NavLink className="" style={{ textDecoration: 'none' }} to='/home'>Home</NavLink>
+                                    <NavLink className="" style={{ textDecoration: 'none', color: 'white' }} to='/home'>Home</NavLink>
                                 </li>
                                 <li className="nav-item mt-2 mx-1">
-                                    <NavLink className="" style={{ textDecoration: 'none' }} to='/profile'>Profile</NavLink>
+                                    <NavLink className="" style={{ textDecoration: 'none', color: 'white' }} to='/profile'>Profile</NavLink>
                                 </li>
 
                                 {/* <li className="nav-item mt-2 mx-1">
                                 <NavLink style={{ textDecoration: 'none' }} to='/books'>Books</NavLink>
                             </li> */}
                                 <li className="nav-item mt-2">
-                                    <NavLink style={{ textDecoration: 'none' }} to='/groups'>Groups</NavLink>
+                                    <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/groups'>Groups</NavLink>
                                 </li>
                                 {/* <li className="nav-item mt-2 mx-1">
                                 <NavLink style={{textDecoration: 'none'}} to='/register'>Register</NavLink>
@@ -103,23 +103,23 @@ function Header(props) {
                 <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto text-light">
                         <li className="nav-item mt-2 mx-1">
-                            <NavLink className="" style={{ textDecoration: 'none' }} to='/home'>Home</NavLink>
+                            <NavLink className="" style={{ textDecoration: 'none', color: 'white' }} to='/home'>Home</NavLink>
                         </li>
                         {/* <li className="nav-item">
                             <NavLink to='/profile'>Profile</NavLink>
                         </li> */}
 
                         <li className="nav-item mt-2">
-                            <NavLink style={{ textDecoration: 'none' }} to='/books'>Books</NavLink>
+                            <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/books'>Books</NavLink>
                         </li>
                         <li className="nav-item mt-2 mx-1">
-                            <NavLink style={{ textDecoration: 'none' }} to='/register'>Register</NavLink>
+                            <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/register'>Register</NavLink>
                         </li>
                         <li className="nav-item mt-2 mx-1">
-                            <NavLink style={{ textDecoration: 'none' }} to='/login'>Login</NavLink>
+                            <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/login'>Login</NavLink>
                         </li>
                         <li className="btn-link">
-                            <button style={{ textDecoration: 'none' }} className="btn btn-link logout text-light" type="button" onClick={() => props.handleLogoutSubmit()}>Logout</button>
+                            <button style={{ textDecoration: 'none', color: 'white' }} className="btn btn-link logout text-light" type="button" onClick={() => props.handleLogoutSubmit()}>Logout</button>
                         </li>
                     </ul>
                 </div>

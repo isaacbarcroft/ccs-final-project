@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book, Comment
+from .models import Book, Comment, Response
 # from groups.serializers import GroupSerializer
 
 
@@ -34,3 +34,11 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('id', 'user', 'body','book', 'user_name')
+
+
+class ResponseSerializer(serializers.ModelSerializer):
+    user_name= serializers.ReadOnlyField(source="user.username")
+    comment = serializers.ReadOnlyField(source='comment.body')
+    class Meta: 
+        model = Response
+        fields = ('id', 'user_name', 'body', 'comment')

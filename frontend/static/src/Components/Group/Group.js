@@ -29,20 +29,30 @@ function Group(props) {
 
 
     const HTML = props.groups.map(group => {
+        const matches = group.name.match(/\b(\w)/g);
+        const name = matches.join('')
+        const nameHTML = name.toUpperCase();
+
         const members = group.members.map(member => <div><h4>{member.username}</h4></div>)
+        const books = group.books.map(book =>
+            <div id={book.id}>
+                <h3>{book.title}</h3>
+                <p>{book.author}</p>
+                <img src={book.image} />
+            </div>)
         return (
             <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2" id={group.id} ><h2 className='groupTitle'>{group.name}</h2>
-                <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{group.name.slice(0, 1).toUpperCase()}</Avatar>
+                <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{nameHTML}</Avatar>
                 <div id={group.id}>
-                    <h4>Books</h4>
+                    {/* <h4>Books</h4>
                     <h5 >{group.books?.title}</h5>
                     <p>{group.members.username}</p>
                     <h2>Comments</h2>
-                    <BookComment comments={props.comments} />
+                    <BookComment comments={props.comments} /> */}
                     <button className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => props.joinGroup(group.id, group.name)}>Join Group</button>
                 </div>
-                <h3>Members:
-                    {members}</h3>
+                <h3>Members: {members}</h3>
+                <h3>Books: {books}</h3>
                 <GroupBookSearch />
             </div>);
     })

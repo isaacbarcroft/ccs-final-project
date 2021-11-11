@@ -16,7 +16,7 @@ class Book(models.Model):
     author = models.CharField(max_length= 255, null=True)
     title = models.CharField(max_length= 255, null=True)
     description = models.TextField(null=True)
-    image = models.URLField(null=True)
+    image = models.URLField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     categories = models.CharField(max_length= 255, null=True)
     page_count = models.IntegerField(null=True)

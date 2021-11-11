@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Book, Comment
-from .serializers import BookSerializer, AllBookSerializer, CommentSerializer
+from .models import Book, Comment, Response 
+from .serializers import BookSerializer, AllBookSerializer, CommentSerializer, ResponseSerializer
 from rest_framework import generics 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import get_object_or_404
@@ -48,3 +48,19 @@ class CommentListAPIView(generics.ListCreateAPIView):
 class CommentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+
+class ResponseListAPIView(generics.ListCreateAPIView):
+    serializer_class = ResponseSerializer
+
+    def get_queryset(self):
+        comment = self.kwargs['comment']
+        return Response.objects.filter(comment=comment)
+
+    def perform_create(self, serializer):
+        comment = get_object_or_404(Comment, id=self.kwargs['comment'])
+        serializer.save(comment=comment, user=self.request.user)
+
+class ResponseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Response.objects.all()
+    serializer_class = ResponseSerializer
