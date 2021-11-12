@@ -241,8 +241,8 @@ function App(props) {
         <Route path='/groups'>
           <Groups getGroupComments={getGroupComments} selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
         </Route>
-        <Route path='/groups/group'>
-          <Group selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
+        <Route path='/group/:id'>
+          <Group selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} books={books} addBookToLibrary={addBookToLibrary} />
         </Route>
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />

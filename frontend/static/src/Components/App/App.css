@@ -68,7 +68,7 @@ button:focus{
 .groupTitle{
   position:absolute;
   top: 10px;
-  left:10px;
+  left:45px;
 }
 .avatar{
   font-family: 'Mochiy Pop P One', sans-serif;
@@ -78,5 +78,5 @@ button:focus{
 .groupAvatar{
   position: absolute;
   top:10px;
-  right:10px;
+  left:0px;
 }

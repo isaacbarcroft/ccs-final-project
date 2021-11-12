@@ -3,11 +3,12 @@ import Footer from '../Footer/Footer';
 import Cookies from 'js-cookie';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import Form from '../Form/Form';
-import { Redirect, useHistory } from 'react-router-dom';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import BookComment from '../BookComment/BookComment';
 import Group from '../Group/Group';
+
 
 
 
@@ -86,26 +87,25 @@ function Groups(props) {
         const matches = group.name.match(/\b(\w)/g);
         const name = matches.join('')
         const nameHTML = name.toUpperCase();
-
         const members = group.members.map(member => <div><h4>{member.username}</h4></div>)
+
         return (
-            <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
-                <div>
-                    <button className='btn btn-dark' onClick={redirect} >Book Search</button>
-                </div>
-                <h2 className='groupTitle'>{group.name}</h2>
-                <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{nameHTML}</Avatar>
-                {/* <div><h4>Books</h4>
-                    <h5 >{group.books?.title}</h5>
+            <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/group/${group.id}`}>
+                <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
+                    <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{nameHTML}</Avatar>
+                    <h2 className='groupTitle'>{group.name}</h2>
+
+                    <div><h4>Books</h4>
+                        {/* <h5 >{group.books?.title}</h5>
                     <p>{group.members.username}</p>
                     <h2>Comments</h2>
-                    <BookComment comments={props.comments} />
-                    <button className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
-                </div> */}
-                {/* <h3>Members:
+                    <BookComment comments={props.comments} /> */}
+                        <button className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
+                    </div>
+                    {/* <h3>Members:
                     {members}</h3> */}
 
-            </div>);
+                </div></NavLink >);
     })
 
     return (
@@ -119,13 +119,7 @@ function Groups(props) {
                     <div class="col-8">
                         {groupList}
                         {groupHTML}
-                        <Group groups={props.groups} selectedBook={props.selectedBook}
-                            comments={props.comments} setComments={props.setComments}
-                            groups={props.groups} setGroups={props.setGroups}
-                            addGroup={props.addGroup} setBooks={props.setBooks}
-                            joinGroup={joinGroup}
 
-                        />
                     </div>
 
 

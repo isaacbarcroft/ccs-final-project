@@ -81,9 +81,22 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                         <p>Pages Read: {currentBook.pages_read}</p>
                         <Box sx={{ position: 'relative', display: 'inline-flex' }}>
                             <CircularProgress variant="determinate" value={total} />
-                            <Typography variant="caption" component="div" color="text.secondary">
-                                {`${Math.round(total)}%`}
-                            </Typography>
+                            <Box
+                                sx={{
+                                    top: 0,
+                                    left: 0,
+                                    bottom: 0,
+                                    right: 0,
+                                    position: 'absolute',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                            >
+                                <Typography variant="caption" component="div" color="text.secondary">
+                                    {`${Math.round(total)}%`}
+                                </Typography>
+                            </Box>
                         </Box>
                         <p>My Rating: <span className='font-italic'>{currentBook.options}</span></p>
                         <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button>

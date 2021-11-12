@@ -8,8 +8,9 @@ import BookComment from '../BookComment/BookComment';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import Button from '@mui/material/Button';
 
-function GroupBookSearch(props) {
 
+function GroupBookSearch(props) {
+    console.log({ props })
     const [pages, setPages] = useState();
     const [search, setSearch] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
@@ -26,7 +27,10 @@ function GroupBookSearch(props) {
 	:hover {
 		cursor: pointer;
 	}
+
 `
+
+
     function handleChange(e) {
         console.log(e.target)
         const { name, value } = e.target;
@@ -37,7 +41,7 @@ function GroupBookSearch(props) {
         // }));
     }
 
-
+    console.log('group', props?.group?.name)
 
 
     // function handleBookList(event) {
@@ -63,12 +67,13 @@ function GroupBookSearch(props) {
                 description: book.volumeInfo.description?.toString(),
                 categories: book.volumeInfo.categories?.toString(),
                 page_count: book.volumeInfo.pageCount,
+                group: props.group.name,
                 finished: false,
 
             }
             const handleClick = (variant) => () => {
-                props.addBookToLibrary(bookToSubmit, true);
-                enqueueSnackbar('Added to Completed', { variant });
+
+                enqueueSnackbar('Added to Group', { variant });
             };
 
             return (
