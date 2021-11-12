@@ -17,6 +17,7 @@ import Form from '../Form/Form';
 import GroupBookSearch from '../GroupBookSearch/GroupBookSearch';
 import CircularStatic from '../ProgressBar/ProgressBar';
 import Group from '../Group/Group';
+import GroupBook from '../GroupBook/GroupBook';
 
 function App(props) {
 
@@ -238,11 +239,14 @@ function App(props) {
         <Route path='/profile'>
           <Profile books={books} isAuth={isAuth} admin={admin} />
         </Route>
+        <Route path='/groups/:id'>
+          <Group selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} books={books} addBookToLibrary={addBookToLibrary} />
+        </Route>
         <Route path='/groups'>
           <Groups getGroupComments={getGroupComments} selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
         </Route>
-        <Route path='/group/:id'>
-          <Group selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} books={books} addBookToLibrary={addBookToLibrary} />
+        <Route path='/groups/:id/books/:id'>
+          <GroupBook />
         </Route>
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />

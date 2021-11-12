@@ -66,15 +66,14 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                         <form onSubmit={handleSubmit}>
                             <textarea onChange={handleChange} type='text' value={currentBook.comments} name='comments' placeholder="Comments" />
                             <input type="number" placeholder="Pages Read:" name='pages_read' onChange={handleChange} value={currentBook.pages_read} />
-                            <select onChange={handleChange} value={currentBook.options} name="options">
-                                <option>Select option</option>
-                                {optionsHTML}
-                            </select>
+
                             <button className="btn btn-dark mx-1" type='submit'>Update</button>
                         </form>
-                        <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(false)}>Cancel</button>
-                        <button type="button" id={currentBook.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button>
-                        <button type='button' id={currentBook.id} onClick={() => finishBook(currentBook)} className='btn btn-dark mx-1 mb-5'>Mark Complete</button>
+                        <div className="col">
+                            <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(false)}>Cancel</button>
+                            <button type="button" id={currentBook.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button>
+                            <button type='button' id={currentBook.id} onClick={() => finishBook(currentBook)} className='btn btn-dark mx-1 mb-5'>Mark Complete</button>
+                        </div>
                     </div>
                     :
                     <div><p>My Thoughts: {currentBook.comments}</p>

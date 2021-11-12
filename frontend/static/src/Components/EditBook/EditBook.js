@@ -81,16 +81,16 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
                         <form onSubmit={handleSubmit}>
                             <textarea onChange={handleChange} type='text' value={currentBook.comments} name='comments' placeholder="Comments" />
                             {/* <input type="number" placeholder="Pages Read:" name='pages_read' onChange={handleChange} value={currentBook.pages_read} /> */}
-                            <select onChange={handleChange} value={currentBook.options} name="options">
+                            {/* <select onChange={handleChange} value={currentBook.options} name="options">
                                 <option>Select option</option>
                                 {optionsHTML}
-                            </select>
+                            </select> */}
                             <Box
                                 sx={{
                                     '& > legend': { mt: 2 },
                                 }}
                             >
-                                <Typography component="legend">Controlled</Typography>
+                                <Typography component="legend">My Rating</Typography>
                                 <Rating
                                     name="avg_rating"
                                     value={parseInt(currentBook.avg_rating)}

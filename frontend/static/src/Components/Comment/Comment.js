@@ -17,10 +17,11 @@ function Comment(props) {
     }, [])
 
     console.log({ comments })
-    const commentHTML = comments.map(comment =>
-        <div id={comment.book}>
-            <p>{comment.body}</p>
-            <p>{comment.user_name}</p>
+    const commentHTML = comments?.map(comment =>
+        <div className="comment-list" key={comment.id} value={comment?.book}>
+            <h4>{comment?.user_name}</h4>
+            <p>{comment?.body}</p>
+            <p>{comment?.user_name}</p>
         </div>)
 
 

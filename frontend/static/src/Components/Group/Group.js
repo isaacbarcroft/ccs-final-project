@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Form from '../Form/Form';
-import { Redirect, useHistory, useParams, useLocation } from 'react-router-dom';
+import { Redirect, useHistory, useParams, useLocation, Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import BookComment from '../BookComment/BookComment';
@@ -11,20 +11,20 @@ import ReadMoreReact from 'read-more-react';
 import Spinner from 'react-bootstrap/Spinner';
 import GroupBookSearch from '../GroupBookSearch/GroupBookSearch';
 import Cookies from 'js-cookie';
+import GroupBook from '../GroupBook/GroupBook';
 
 
 function Group(props) {
     const { id } = useParams()
-    const { enqueueSnackbar } = useSnackbar();
     const [group, setGroup] = useState();
-    const [comments, setComments] = useState();
+
+    const { enqueueSnackbar } = useSnackbar();
+
     const [comment, setComment] = useState('');
-    const currentGroup = props.groups.filter((group) => group.id === parseInt(id))[0]
+    const [comments, setComments] = useState();
+
+    // const currentGroup = props.groups.filter((group) => group.id === parseInt(id))[0]
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
-
-    let location = useLocation();
-    // console.log(location);
-
 
     const HoverText = styled.p`
 	color: #000;
@@ -33,21 +33,15 @@ function Group(props) {
 	}
 `
 
-
     useEffect(() => {
         async function getGroup() {
             const response = await fetch(`/api_v1/groups/${id}`);
             const data = await response.json();
-            console.log({ data });
             setGroup(data);
 
         }
         getGroup();
-
-
-    }, [])
-    console.log({ group })
-
+    }, []);
 
     useEffect(() => {
         async function getComments() {
@@ -60,12 +54,14 @@ function Group(props) {
         console.log({ comments })
 
     }, [])
+
+
     async function addBookToGroup(bookToSubmit, finished) {
         console.log({ finished })
 
 
         bookToSubmit.finished = finished
-
+        bookToSubmit.group = group.id;
 
         console.log({ bookToSubmit })
         const response = await fetch('/api_v1/books/', {
@@ -76,20 +72,26 @@ function Group(props) {
             },
             body: JSON.stringify(bookToSubmit),
         });
-        if (response.ok) {
-            console.log(response)
-            // setBooks([...books, newBook]);
-            // console.log({books})
-            // return response.json(); 
+
+        if (!response.ok) {
+            console.error('There has been a problem with your fetch operation:', response);
+            return
         }
+
+        const data = await response.json();
+        setGroup((prevState) => (
+            {
+                ...prevState,
+                books: [...prevState.books, data],
+            }
+        ));
+        props.setBooks();
     }
-
-
-    console.log({ comments })
 
     function handleCommentChange(event) {
         setComment(event.target.value);
     }
+
     function handleSubmit(event) {
         event.preventDefault();
         props.submitComment(comment, props.books);
@@ -98,55 +100,20 @@ function Group(props) {
         props.getComments(event)
     }
 
-    function HTML() {
-        const matches = group?.name.match(/\b(\w)/g);
-        const name = matches?.join('');
-        const nameHTML = name?.toUpperCase();
-
-        const members = group?.members.map(member => <div><h4>{member.username}</h4></div>)
-        console.log(group?.books)
-        const books = group?.books.map(book =>
-            <div id={book.id}>
-                <h3>{book.title}</h3>
-                <p>{book.author}</p>
-                <img src={book.image} />
-            </div>)
-
-        return (
-            <>
-                <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2" id={group?.id} ><h2 className='groupTitle'>{group?.name}</h2>
-                    <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{nameHTML}</Avatar>
-                    <div id={group?.id}>
-                        {/* <h4>Books</h4>
-                    <h5 >{group.books?.title}</h5>
-                    <p>{group.members.username}</p>
-                    <h2>Comments</h2>
-                    <BookComment comments={props.comments} /> */}
-                        <button className='btn btn-dark joinGroupBtn' id={group?.id} onClick={() => props.joinGroup(group.id, group.name)}>Join Group</button>
-                    </div>
-                    <h3>Members: {members}</h3>
-                    <h3>Books: {books}</h3>
-                    <p>{props.books}</p>
-                    <GroupBookSearch groups={props.groups} setBooks={props.setBooks} group={group} />
-                </div>
-            </>
-        )
+    if (!group) {
+        return <div>Loading ...</div>
     }
 
-    let bookHTML;
 
-    // console.log('group name', typeof group.name)
-
-    if (!props.books) {
-        bookHTML = <Spinner animation='grow' variant='primary' />
-    } else {
-        return bookHTML = props.books.items?.map(book => {
+    let booksHTML;
+    if (props.books) {
+        booksHTML = props.books.items?.map(book => {
             console.log('book', book);
             const bookToSubmit = {
                 author: book.volumeInfo.authors?.toString(),
                 title: book.volumeInfo.title,
                 image: book.volumeInfo.imageLinks?.thumbnail,
-                group: group.id,
+                // group: group.id,
                 description: book.volumeInfo.description?.toString(),
                 categories: book.volumeInfo.categories?.toString(),
                 page_count: book.volumeInfo.pageCount,
@@ -189,20 +156,44 @@ function Group(props) {
                 </div >)
         }
         )
+    } else {
+        booksHTML = group.books.map(book =>
+            <div id={book.id} className="mb-5">
+                <Link style={{ textDecoration: 'none' }} to={`/groups/${id}/books/${book.id}`}>
+                    <h3>{book.title}</h3>
+                </Link>
+                <p>{book.author}</p>
+                <img src={book.image} />
+            </div>
+        );
     }
 
+
+    const matches = group.name.match(/\b(\w)/g);
+    const name = matches.join('');
+    const avatarHTML = name?.toUpperCase();
+
+    const membersHTML = group.members.map(member => <div><h4>{member.username}</h4></div>);
+
+
     return (
-        <>
-            <HTML group={group} />
-            {/* {commentHTML} */}
-            {/* {bookHTML} */}
-            <form className="Comments-form" onSubmit={handleSubmit}>
 
-                <textarea name="text" type="text" placeholder='comments' />
-                <button type="submit" className="submit_btn">Submit</button>
-            </form>
+        <div className="container">
+            <div className="row">
+                <div className="col-8">
+                    <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2" id={group?.id} ><h2 className='groupTitle'>{group?.name}</h2>
+                        <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{avatarHTML}</Avatar>
+                        <h3>Members: {membersHTML}</h3>
+                        <h3>Books: {booksHTML}</h3>
+                    </div>
+                </div>
+                <div className="col mt-5">
+                    <GroupBookSearch setBooks={props.setBooks} />
+                </div>
 
-        </>
+            </div>
+        </div>
+
     )
 }
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Redirect } from 'react-router-dom';
 
 function Form(props) {
 
@@ -51,6 +51,7 @@ function Form(props) {
         const response = await fetch(`${BASE_URL}${titles}${authors}${category}${API_KEY}`);
         if (!response.ok) {
             console.log(response);
+            return null
         } else {
             const data = await response.json();
             props.setBooks(data);

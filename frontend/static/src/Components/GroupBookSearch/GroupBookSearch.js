@@ -53,12 +53,12 @@ function GroupBookSearch(props) {
     // }
 
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
-    const groupsHTML = props.groups?.map(group => <option value={group.name}>{group.name}</option>)
+
 
     let bookHTML;
 
     if (!props.books) {
-        bookHTML = <Spinner animation='grow' variant='primary' />
+        // bookHTML = <Spinner animation='grow' variant='primary' />
     } else {
         return bookHTML = props.books.items?.map(book => {
             const bookToSubmit = {
@@ -92,10 +92,7 @@ function GroupBookSearch(props) {
                     {book.volumeInfo.categories ? <p>Category: {book.volumeInfo.categories}</p> : null}
                     {book.volumeInfo.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null}
                     <form>
-                        <select onChange={handleChange} value={''} name="name">
-                            <option>Select option</option>
-                            {groupsHTML}
-                        </select>
+
                         <Button className="bookBtn btn btn-dark mx-1"
                             variant="contained"
                             type="submit"
@@ -116,15 +113,15 @@ function GroupBookSearch(props) {
         <>
 
             <div className="container" >
-
+                <div>
+                    <button className="btn btn-dark backToGroups" onClick={redirect} >Back to Groups</button>
+                </div>
                 <div className="row">
                     <div class="col-6">
                         {bookHTML}
                     </div>
                     <div className="col shadow p-3 mb-5 bg-body rounded">
-                        <div>
-                            <button className="btn btn-dark" onClick={redirect} >Back to Groups</button>
-                        </div>
+
                         <Form setBooks={props.setBooks} />
                     </div>
                 </div>
