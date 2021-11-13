@@ -86,3 +86,7 @@ button:focus{
   right:100px;
 
 }
+
+.cardImg{
+  max-height: 50%
+}

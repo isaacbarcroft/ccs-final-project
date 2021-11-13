@@ -15,10 +15,12 @@ import Group from '../Group/Group';
 function Groups(props) {
     const [group, setGroup] = useState([]);
     console.log({ group })
+
     let history = useHistory();
     const redirect = () => {
         history.push('/group')
     }
+
 
 
     function handleChange(event) {
@@ -32,6 +34,7 @@ function Groups(props) {
     }
 
     console.log('selectedBook', props.selectedBook)
+
 
 
     async function joinGroup(id, name) {

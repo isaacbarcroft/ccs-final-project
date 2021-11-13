@@ -18,7 +18,7 @@ function Header(props) {
                     <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                         <ul className="navbar-nav ml-auto text-light">
                             <li className="nav-item mt-2 mx-1">
-                                <NavLink className="" style={{ textDecoration: 'none' }} to='/home'>Home</NavLink>
+                                <NavLink className="" style={{ textDecoration: 'none' }} to='/leaderboard'>Leader Board</NavLink>
                             </li>
                             <li className="nav-item mx-1 mt-2">
                                 <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/profile'>Profile</NavLink>
@@ -60,7 +60,7 @@ function Header(props) {
                         <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                             <ul className="navbar-nav ml-auto text-light">
                                 <li className="nav-item mt-2 mx-1">
-                                    <NavLink className="" style={{ textDecoration: 'none', color: 'white' }} to='/home'>Home</NavLink>
+                                    <NavLink className="" style={{ textDecoration: 'none', color: 'white' }} to='/leaderboard'>Leader Board</NavLink>
                                 </li>
                                 <li className="nav-item mt-2 mx-1">
                                     <NavLink className="" style={{ textDecoration: 'none', color: 'white' }} to='/profile'>Profile</NavLink>
@@ -103,7 +103,7 @@ function Header(props) {
                 <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto text-light">
                         <li className="nav-item mt-2 mx-1">
-                            <NavLink className="" style={{ textDecoration: 'none', color: 'white' }} to='/home'>Home</NavLink>
+                            <NavLink className="" style={{ textDecoration: 'none', color: 'white' }} to='/leaderboard'>Leader Board</NavLink>
                         </li>
                         {/* <li className="nav-item">
                             <NavLink to='/profile'>Profile</NavLink>

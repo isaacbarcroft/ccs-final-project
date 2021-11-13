@@ -4,6 +4,7 @@ from .serializers import BookSerializer, AllBookSerializer, CommentSerializer, R
 from rest_framework import generics 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import get_object_or_404
+from .permissions import IsOwnerOrReadOnly
 
 # Create your views here.
 
@@ -14,7 +15,7 @@ class BookListAPIView(generics.ListCreateAPIView):
     permission_classes =(IsAuthenticatedOrReadOnly,)
     
     def get_queryset(self):
-        return Book.objects.filter(user=self.request.user)
+        return Book.objects.filter(user=self.request.user, group__isnull=True)
 
 
     def perform_create(self, serializer):
@@ -48,7 +49,7 @@ class CommentListAPIView(generics.ListCreateAPIView):
 class CommentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-
+    permission_classes= IsOwnerOrReadOnly
 
 class AllCommentListAPIView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()

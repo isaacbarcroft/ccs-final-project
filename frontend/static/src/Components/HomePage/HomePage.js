@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
-function HomePage({ groups, users, books, isAuth }) {
+
+function LeaderBoard({ groups, users, books, isAuth }) {
 
     const [allBooks, setAllBooks] = useState();
     // const leaderboard = 
@@ -27,9 +28,6 @@ function HomePage({ groups, users, books, isAuth }) {
     const usersList = [...new Set(userList?.map(book => book.user_name.toUpperCase()))];
     const activeUsers = usersList.map(name => <div style={{ textDecoration: 'none', ListStyleType: 'none' }}><li className="userLi" style={{ textDecoration: 'none' }}>{name}</li></div>);
     const userTotals = allBooksRead?.filter(book => book?.user_name);
-
-    console.log({ userTotals })
-
     //PAGE_COUNT
     let total = 0;
     const booksRead = allBooks?.map(book => book?.finished === true ? total++ : null);
@@ -38,6 +36,9 @@ function HomePage({ groups, users, books, isAuth }) {
 
     //GROUP_HTML
     const groupHTML = groups.map(group => <div><h4>{group.name}</h4></div>)
+
+
+
 
 
     return (
@@ -65,4 +66,4 @@ function HomePage({ groups, users, books, isAuth }) {
     )
 }
 
-export default HomePage;
+export default LeaderBoard;

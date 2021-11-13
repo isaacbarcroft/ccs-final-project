@@ -7,7 +7,8 @@ import { useHistory, Redirect } from 'react-router-dom';
 import Form from '../Form/Form';
 import Button from '@mui/material/Button';
 import { SnackbarProvider, useSnackbar } from 'notistack';
-import RecipeReviewCard from '../Card/Card';
+import CardHTML from '../Card/Card';
+import Card from 'react-bootstrap/Card';
 
 
 
@@ -47,9 +48,10 @@ function Book(props) {
 
 
     if (!props.books) {
-        // bookHTML = <Spinner animation='grow' variant='primary' />
+        <div>Loading ...</div>
     } else {
-        return bookHTML = props.books.items?.map(book => {
+
+        bookHTML = props.books.items?.map(book => {
             console.log('book', book);
             const bookToSubmit = {
                 author: book.volumeInfo.authors?.toString(),
@@ -72,52 +74,73 @@ function Book(props) {
             };
 
             return (
-                <div className="row">
-                    {/* <RecipeReviewCard /> */}
-                    <div className="col-6">
-                        <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
-                            {/* <RecipeReviewCard books={props.books} /> */}
-                            <h2>{book.volumeInfo.title}</h2>
 
-
-                            {book.volumeInfo.imageLinks?.thumbnail ? <img src={book.volumeInfo.imageLinks?.thumbnail} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
-                            <p>{`Written by: ${book.volumeInfo.authors}`}</p>
-                            <p>{book.volumeInfo.description ?
+                <Card style={{ flexDirection: 'row', marginBottom: '30px' }}>
+                    {book.volumeInfo.imageLinks?.thumbnail ?
+                        <Card.Img className="cardImg" variant="top" src={book.volumeInfo.imageLinks?.thumbnail} />
+                        : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
+                    <Card.Body>
+                        <Card.Title>{book.volumeInfo.title}</Card.Title>
+                        <Card.Title>{book.volumeInfo.authors}</Card.Title>
+                        {book.volumeInfo.description ?
+                            <Card.Text>
                                 <HoverText><ReadMoreReact text={book.volumeInfo.description}
                                     min={25}
                                     ideal={50}
                                     max={10000000}
                                     style={{ cursor: 'pointer' }}
                                     readMoreText={readMore} />
-                                </HoverText> : null}</p>
-                            {book.volumeInfo.categories ? <p>Category: {book.volumeInfo.categories}</p> : null}
-                            {book.volumeInfo.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null}
-                            <Button className="bookBtn btn btn-dark mx-1"
-                                variant="contained"
-                                type="submit"
-                                onClick={handleClick('success')}>Add To Completed
+                                </HoverText>
+                            </Card.Text> : null}
+                        <Button className="bookBtn btn btn-dark mx-1"
+                            variant="contained"
+                            type="submit"
+                            onClick={handleClick('success')}>Add To Completed
 
-                            </Button>
-                            <Button className="bookBtn btn btn-dark mx-1"
-                                variant="contained"
-                                type="submit"
-                                onClick={handleClickVariant('success')}>Add To Library</Button>
-                            {/* <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookToLibrary(bookToSubmit, true)}>Add to Reading List</button>
-                    <button className="btn btn-dark mx-1" typr='submit' onClick={() => props.addBookToLibrary(bookToSubmit, false)}>Add to Library</button> */}
-                        </div>
-                    </div >
-                    {/* <div className="col shadow p-3 mb-5 bg-body rounded">
-                        <Form setBooks={props.setBooks} />
-                    </div> */}
+                        </Button>
+                        <Button className="bookBtn btn btn-dark mx-1"
+                            variant="contained"
+                            type="submit"
+                            onClick={handleClickVariant('success')}>Add To Library</Button>
+                    </Card.Body>
+                </Card>
 
-                </div>
+
+                // <div className="row">
+
+                //     <div className="col-6">
+                //         <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
+                //             {/* <RecipeReviewCard books={props.books} /> */}
+                //             <h2>{book.volumeInfo.title}</h2>
+
+
+                //             {book.volumeInfo.imageLinks?.thumbnail ? <img src={book.volumeInfo.imageLinks?.thumbnail} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
+                //             <p>{`Written by: ${book.volumeInfo.authors}`}</p>
+                //             <p>{book.volumeInfo.description ?
+                //                 <HoverText><ReadMoreReact text={book.volumeInfo.description}
+                //                     min={25}
+                //                     ideal={50}
+                //                     max={10000000}
+                //                     style={{ cursor: 'pointer' }}
+                //                     readMoreText={readMore} />
+                //                 </HoverText> : null}</p>
+                //             {book.volumeInfo.categories ? <p>Category: {book.volumeInfo.categories}</p> : null}
+                //             {book.volumeInfo.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null}
+                //             
+                //             {/* <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookToLibrary(bookToSubmit, true)}>Add to Reading List</button>
+                //     <button className="btn btn-dark mx-1" typr='submit' onClick={() => props.addBookToLibrary(bookToSubmit, false)}>Add to Library</button> */}
+                //         </div>
+                //     </div >
+                //     {/* <div className="col shadow p-3 mb-5 bg-body rounded">
+                //         <Form setBooks={props.setBooks} />
+                //     </div> */}
+
+                // </div >
             )
         }
         )
     }
 
-
-    const groupsHTML = props.groups?.map(group => <option value={group.name}>{group.name}</option>)
     return (
         <>
 
@@ -126,10 +149,11 @@ function Book(props) {
                     <button className="btn btn-dark mb-3" onClick={redirect} >Back to Profile</button>
                 </div>
                 <div className="row">
-                    <div className="col-6 mt-3">
+                    <div className="col-8 mt-3">
+                        {/* <CardHTML books={props.books} /> */}
                         {bookHTML}
                     </div>
-                    <div className="col shadow p-3 mb-5 bg-body rounded">
+                    <div className="col-4 shadow p-3 mb-5 bg-body rounded">
                         <Form setBooks={props.setBooks} />
                     </div>
                 </div>

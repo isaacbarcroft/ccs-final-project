@@ -24,7 +24,7 @@ class Book(models.Model):
     comments = models.TextField(null=True, blank=True)
     finished = models.BooleanField(
         choices=TRUE_FALSE_CHOICES,
-        default=True)
+        default=False)
     pages_read = models.PositiveIntegerField(null=True, default=0)
     avg_rating = models.PositiveSmallIntegerField(
         default=1,

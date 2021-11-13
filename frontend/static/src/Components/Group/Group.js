@@ -17,6 +17,8 @@ import GroupBook from '../GroupBook/GroupBook';
 function Group(props) {
     const { id } = useParams()
     const [group, setGroup] = useState();
+    console.log({ props })
+    console.log({ group })
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -54,6 +56,8 @@ function Group(props) {
         console.log({ comments })
 
     }, [])
+
+
 
 
     async function addBookToGroup(bookToSubmit, finished) {
@@ -183,6 +187,7 @@ function Group(props) {
                 <div className="col-8">
                     <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2" id={group?.id} ><h2 className='groupTitle'>{group?.name}</h2>
                         <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{avatarHTML}</Avatar>
+                        <button className="deleteGroup" type='button' id={group?.id} onClick={(event) => props.deleteGroup(event)}>Delete Group</button>
                         <h3>Members: {membersHTML}</h3>
                         <h3>Books: {booksHTML}</h3>
                     </div>

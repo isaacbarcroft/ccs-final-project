@@ -4,7 +4,7 @@ import './App.css';
 import { Route, Switch, Redirect, withRouter, useHistory, useLocation } from 'react-router-dom';
 import Book from '../Book/Book';
 import Header from '../Header/Header';
-import HomePage from '../HomePage/HomePage';
+import LeaderBoard from '../HomePage/HomePage';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Cookies from 'js-cookie';
@@ -61,6 +61,28 @@ function App(props) {
       const data = await response.json();
       setGroups([...groups, data]);
     }
+  }
+
+
+  async function deleteGroup(event) {
+    console.log(event.target.id);
+    console.log('delete function');
+    const response = await fetch(`/api_v1/groups/${event.target.id}/`, {
+      method: 'DELETE',
+      headers: {
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not OK');
+    } else {
+      const updatedGroups = [...groups]
+      const index = updatedGroups.findIndex(group => group.id === event.id);
+      updatedGroups.splice(index, 1);
+      setGroups(updatedGroups);
+      <Redirect to='groups' />
+    }
+
   }
 
   async function addMember(name) {
@@ -239,15 +261,16 @@ function App(props) {
         <Route path='/profile'>
           <Profile books={books} isAuth={isAuth} admin={admin} />
         </Route>
+        <Route path='/groups/:id/books/:id'>
+          <GroupBook groups={groups} users={users} admin={admin} />
+        </Route>
         <Route path='/groups/:id'>
-          <Group selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} books={books} addBookToLibrary={addBookToLibrary} />
+          <Group deleteGroup={deleteGroup} selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} books={books} addBookToLibrary={addBookToLibrary} />
         </Route>
         <Route path='/groups'>
           <Groups getGroupComments={getGroupComments} selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} />
         </Route>
-        <Route path='/groups/:id/books/:id'>
-          <GroupBook />
-        </Route>
+
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />
         </Route>
@@ -260,8 +283,8 @@ function App(props) {
             setBooks={setBooks}
           />
         </Route>
-        <Route path='/home'>
-          <HomePage books={books} groups={groups} users={users} isAuth={isAuth} />
+        <Route path='/leaderboard'>
+          <LeaderBoard books={books} groups={groups} users={users} isAuth={isAuth} />
         </Route>
 
       </Switch>
