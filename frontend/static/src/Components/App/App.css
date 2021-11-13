@@ -90,3 +90,9 @@ button:focus{
 .cardImg{
   max-height: 50%
 }
+
+.editBTN {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}

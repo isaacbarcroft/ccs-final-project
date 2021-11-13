@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { deepOrange, deepPurple, green } from '@mui/material/colors';
 
 
 function Header(props) {
@@ -82,7 +82,7 @@ function Header(props) {
                                     <button style={{ textDecoration: 'none' }} className="btn btn-link logout text-light" type="button" onClick={() => props.handleLogoutSubmit()}>Logout</button>
                                 </li>
                             </ul>
-                            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }} className="avatar" sx={{ bgcolor: deepOrange[500] }}>{props.admin.username.slice(0, 1).toUpperCase()}</Avatar>
+                            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }} className="avatar" sx={{ bgcolor: green[500] }}>{props.admin.username.slice(0, 1).toUpperCase()}</Avatar>
                         </div>
 
                     </header>
@@ -102,16 +102,16 @@ function Header(props) {
                 </div>
                 <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto text-light">
-                        <li className="nav-item mt-2 mx-1">
+                        {/* <li className="nav-item mt-2 mx-1">
                             <NavLink className="" style={{ textDecoration: 'none', color: 'white' }} to='/leaderboard'>Leader Board</NavLink>
-                        </li>
+                        </li> */}
                         {/* <li className="nav-item">
                             <NavLink to='/profile'>Profile</NavLink>
                         </li> */}
 
-                        <li className="nav-item mt-2">
+                        {/* <li className="nav-item mt-2">
                             <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/books'>Books</NavLink>
-                        </li>
+                        </li> */}
                         <li className="nav-item mt-2 mx-1">
                             <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/register'>Register</NavLink>
                         </li>

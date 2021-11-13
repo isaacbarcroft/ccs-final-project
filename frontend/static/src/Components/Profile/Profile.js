@@ -54,6 +54,7 @@ function Profile(props) {
         setMyBooks(data);
         console.log({ data })
         console.log({ myBooks })
+        props.setBooks();
       }
     }
     getMyBooks();
@@ -181,7 +182,7 @@ function Profile(props) {
   console.log({ pagesRead })
   let total = 0;
   const booksRead = myBooks?.map(book => book?.finished === true ? total++ : null);
-  const totalPages = pagesRead ? pagesRead.reduce((a, b) => a + b) : null;
+  const totalPages = pagesRead ? pagesRead?.reduce((a, b) => a + b) : null;
 
   // var sum = 0;
   // for (var i = 0; i < pagesRead.length; i++) { sum += pagesRead[i]}
@@ -212,12 +213,12 @@ function Profile(props) {
             <div class="col-6">
 
               <div className='Library'>
-                <h2>Current</h2>
+                <h2>In Progress</h2>
                 {unfinishedHTML}
               </div>
             </div>
             <div className="col">
-              <h2>Completed</h2>
+              <h2>Have Read</h2>
               {booksListHTML}
             </div>
           </div>

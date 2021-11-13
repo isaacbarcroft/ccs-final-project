@@ -6,6 +6,7 @@ import ReadMoreReact from 'read-more-react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import Card from 'react-bootstrap/Card';
 
 
 const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
@@ -60,21 +61,25 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
 
 
     return (
-        <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">{currentBook?.finished === true ? "Finished" : "Not Finished"}
-            <h2>{currentBook.title}</h2>
-            {currentBook.image ? <img src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
-            <p>{`Written by: ${currentBook.author}`}</p>
-            <p>{currentBook.description ?
-                <HoverText><ReadMoreReact text={currentBook.description}
-                    min={25}
-                    ideal={50}
-                    max={10000000}
-                    style={{ cursor: 'pointer' }}
-                    readMoreText={readMore} />
-                </HoverText> : null}</p>
+        <Card style={{ marginBottom: '30px' }}>
 
-            {currentBook.categories ? <p>Category: {currentBook.categories}</p> : null}
-            {currentBook.page_count ? <p>Total Pages: {currentBook.page_count}</p> : null}
+            {currentBook.image ? <Card.Img src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
+            <Card.Body>
+                <Card.Title>{currentBook.title}</Card.Title>
+                <Card.Subtitle>{`Written by: ${currentBook.author}`}</Card.Subtitle>
+                <Card.Text>{currentBook.description ?
+                    <HoverText><ReadMoreReact text={currentBook.description}
+                        min={25}
+                        ideal={50}
+                        max={10000000}
+                        style={{ cursor: 'pointer' }}
+                        readMoreText={readMore} />
+                    </HoverText> : null}</Card.Text>
+
+                {currentBook.categories ? <p>Category: {currentBook.categories}</p> : null}
+                {currentBook.page_count ? <p>Total Pages: {currentBook.page_count}</p> : null}
+            </Card.Body>
+
             <div className=" mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
                 {edit ?
                     <div className='col'>
@@ -108,12 +113,12 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
                         <p>My Rating: <span className='font-italic'>{currentBook.options}</span></p>
                         <Typography component="legend">Rating</Typography>
                         <Rating name="read-only" value={currentBook.avg_rating} readOnly />
-                        <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button>
+                        <button className=" editBTN btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button>
                     </div>
                 }
             </div>
 
-        </div>
+        </Card>
     )
 }
 

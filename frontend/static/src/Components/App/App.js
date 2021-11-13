@@ -216,9 +216,6 @@ function App(props) {
     });
     if (response.ok) {
       console.log(response)
-      // setBooks([...books, newBook]);
-      // console.log({books})
-      // return response.json(); 
     }
   }
 
@@ -259,7 +256,7 @@ function App(props) {
             setBooks={setBooks} />
         </Route>
         <Route path='/profile'>
-          <Profile books={books} isAuth={isAuth} admin={admin} />
+          <Profile books={books} isAuth={isAuth} admin={admin} setBooks={setBooks} />
         </Route>
         <Route path='/groups/:id/books/:id'>
           <GroupBook groups={groups} users={users} admin={admin} />
@@ -285,6 +282,9 @@ function App(props) {
         </Route>
         <Route path='/leaderboard'>
           <LeaderBoard books={books} groups={groups} users={users} isAuth={isAuth} />
+        </Route>
+        <Route path='/'>
+          <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />
         </Route>
 
       </Switch>

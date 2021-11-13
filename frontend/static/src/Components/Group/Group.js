@@ -11,7 +11,7 @@ import ReadMoreReact from 'read-more-react';
 import Spinner from 'react-bootstrap/Spinner';
 import GroupBookSearch from '../GroupBookSearch/GroupBookSearch';
 import Cookies from 'js-cookie';
-import GroupBook from '../GroupBook/GroupBook';
+import Card from 'react-bootstrap/Card';
 
 
 function Group(props) {
@@ -40,7 +40,7 @@ function Group(props) {
             const response = await fetch(`/api_v1/groups/${id}`);
             const data = await response.json();
             setGroup(data);
-
+            props.setBooks();
         }
         getGroup();
     }, []);
@@ -151,24 +151,20 @@ function Group(props) {
                         onClick={handleClick('success')}>Add To Group
 
                     </Button>
-                    {/* <Button className="bookBtn btn btn-dark mx-1"
-                        // color="palette.success.dark"
-                        type="submit"
-                        onClick={handleClickVariant('success')}>Add To Library</Button> */}
-                    {/* <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookToLibrary(bookToSubmit, true)}>Add to Reading List</button>
-                    <button className="btn btn-dark mx-1" typr='submit' onClick={() => props.addBookToLibrary(bookToSubmit, false)}>Add to Library</button> */}
                 </div >)
         }
         )
     } else {
         booksHTML = group.books.map(book =>
-            <div id={book.id} className="mb-5">
-                <Link style={{ textDecoration: 'none' }} to={`/groups/${id}/books/${book.id}`}>
-                    <h3>{book.title}</h3>
-                </Link>
-                <p>{book.author}</p>
-                <img src={book.image} />
-            </div>
+            <Card id={book.id} style={{ width: '20rem', height: '30rem', marginBottom: '30px' }}>
+                <Card.Body>
+                    <Link style={{ textDecoration: 'none' }} to={`/groups/${id}/books/${book.id}`}>
+                        <Card.Title>{book.title}</Card.Title>
+                    </Link>
+                    <Card.Subtitle>{book.author}</Card.Subtitle>
+                </Card.Body>
+                <Card.Img src={book.image} />
+            </Card>
         );
     }
 
@@ -192,7 +188,7 @@ function Group(props) {
                         <h3>Books: {booksHTML}</h3>
                     </div>
                 </div>
-                <div className="col mt-5">
+                <div className="col-4 mt-5">
                     <GroupBookSearch setBooks={props.setBooks} />
                 </div>
 

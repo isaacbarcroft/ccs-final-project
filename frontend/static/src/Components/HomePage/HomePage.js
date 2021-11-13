@@ -22,7 +22,8 @@ function LeaderBoard({ groups, users, books, isAuth }) {
 
     const allBooksRead = allBooks?.filter(book => book?.finished);
     console.log({ allBooksRead })
-
+    const user = allBooksRead.filter(person => person.user_name)
+    console.log({ user })
     const pagesRead = allBooksRead?.map(book => book?.finished === true ? book.page_count : 0);
     const userList = [...new Set(allBooksRead?.filter(book => book.user_name !== 'admin'))]
     const usersList = [...new Set(userList?.map(book => book.user_name.toUpperCase()))];

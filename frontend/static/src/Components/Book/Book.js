@@ -81,7 +81,7 @@ function Book(props) {
                         : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
                     <Card.Body>
                         <Card.Title>{book.volumeInfo.title}</Card.Title>
-                        <Card.Title>{book.volumeInfo.authors}</Card.Title>
+                        <Card.Subtitle>{book.volumeInfo.authors}</Card.Subtitle>
                         {book.volumeInfo.description ?
                             <Card.Text>
                                 <HoverText><ReadMoreReact text={book.volumeInfo.description}

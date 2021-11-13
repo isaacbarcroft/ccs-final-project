@@ -6,7 +6,7 @@ import ReadMoreReact from 'read-more-react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-
+import Card from 'react-bootstrap/Card';
 
 const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBook }) => {
 
@@ -45,27 +45,29 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
     const optionsHTML = options.map(option => <option value={option}>{option}</option>)
 
     return (
-        <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">{currentBook?.finished === false ? "Not Finished" : "Finished"}
-            <h2>{currentBook.title}</h2>
-            {currentBook.image ? <img src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
-            <p>{`Written by: ${currentBook.author}`}</p>
-            <p>{currentBook.description ?
-                <HoverText><ReadMoreReact text={currentBook.description}
-                    min={25}
-                    ideal={50}
-                    max={10000000}
-                    style={{ cursor: 'pointer' }}
-                    readMoreText={readMore} />
-                </HoverText> : null}</p>
+        <Card style={{ marginBottom: '30px' }}>
+            {currentBook.image ? <Card.Img src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
+            <Card.Body>
+                <Card.Title>{currentBook.title}</Card.Title>
+                <Card.Subtitle>{`Written by: ${currentBook.author}`}</Card.Subtitle>
+                <Card.Text>{currentBook.description ?
+                    <HoverText><ReadMoreReact text={currentBook.description}
+                        min={25}
+                        ideal={50}
+                        max={10000000}
+                        style={{ cursor: 'pointer' }}
+                        readMoreText={readMore} />
+                    </HoverText> : null}</Card.Text>
 
-            {currentBook.categories ? <p>Category: {currentBook.categories}</p> : null}
-            {currentBook.page_count ? <p>{currentBook.page_count} pages</p> : null}
+                {currentBook.categories ? <p>Category: {currentBook.categories}</p> : null}
+                {currentBook.page_count ? <p>{currentBook.page_count} pages</p> : null}
+            </Card.Body>
             <div className=" mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
                 {edit ?
                     <div>
                         <form onSubmit={handleSubmit}>
                             <textarea onChange={handleChange} type='text' value={currentBook.comments} name='comments' placeholder="Comments" />
-                            <input type="number" placeholder="Pages Read:" name='pages_read' onChange={handleChange} value={currentBook.pages_read} />
+                            <input type="number" placeholder="Pages Read:" name='pages_read' onChange={handleChange} max={currentBook.page_count} value={currentBook.pages_read} />
 
                             <button className="btn btn-dark mx-1" type='submit'>Update</button>
                         </form>
@@ -97,13 +99,12 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                                 </Typography>
                             </Box>
                         </Box>
-                        <p>My Rating: <span className='font-italic'>{currentBook.options}</span></p>
-                        <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button>
+                        <button className=" editBTN btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button>
                     </div>
                 }
             </div>
 
-        </div>
+        </Card>
     )
 }
 
