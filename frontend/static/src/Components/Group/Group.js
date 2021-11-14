@@ -17,8 +17,6 @@ import Card from 'react-bootstrap/Card';
 function Group(props) {
     const { id } = useParams()
     const [group, setGroup] = useState();
-    console.log({ props })
-    console.log({ group })
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -49,11 +47,9 @@ function Group(props) {
         async function getComments() {
             const response = await fetch(`/api_v1/books/comments`);
             const data = await response.json();
-            console.log({ data });
             setComments(data);
         }
         getComments();
-        console.log({ comments })
 
     }, [])
 
@@ -61,13 +57,11 @@ function Group(props) {
 
 
     async function addBookToGroup(bookToSubmit, finished) {
-        console.log({ finished })
 
 
         bookToSubmit.finished = finished
         bookToSubmit.group = group.id;
 
-        console.log({ bookToSubmit })
         const response = await fetch('/api_v1/books/', {
             method: 'POST',
             headers: {
@@ -99,7 +93,6 @@ function Group(props) {
     function handleSubmit(event) {
         event.preventDefault();
         props.submitComment(comment, props.books);
-        console.log(props)
         setComment('');
         props.getComments(event)
     }
@@ -112,12 +105,10 @@ function Group(props) {
     let booksHTML;
     if (props.books) {
         booksHTML = props.books.items?.map(book => {
-            console.log('book', book);
             const bookToSubmit = {
                 author: book.volumeInfo.authors?.toString(),
                 title: book.volumeInfo.title,
                 image: book.volumeInfo.imageLinks?.thumbnail,
-                // group: group.id,
                 description: book.volumeInfo.description?.toString(),
                 categories: book.volumeInfo.categories?.toString(),
                 page_count: book.volumeInfo.pageCount,

@@ -22,12 +22,6 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
     const [edit, setEdit] = useState(false)
     const [currentBook, setCurrentBook] = useState(book);
     const optionsHTML = options.map(option => <option value={option}>{option}</option>)
-
-
-
-
-
-
     const [value, setValue] = useState(2);
 
 
@@ -44,9 +38,7 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
         />
     </Box>
     function handleChange(e) {
-        console.log(e.target)
         const { name, value } = e.target;
-        console.log(name, value)
         setCurrentBook(prevState => ({
             ...prevState,
             [name]: value,
@@ -63,7 +55,7 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
     return (
         <Card style={{ marginBottom: '30px' }}>
 
-            {currentBook.image ? <Card.Img src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
+            {currentBook.image ? <Card.Img className="cardImgP" src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
             <Card.Body>
                 <Card.Title>{currentBook.title}</Card.Title>
                 <Card.Subtitle>{`Written by: ${currentBook.author}`}</Card.Subtitle>

@@ -104,38 +104,6 @@ function Book(props) {
                             onClick={handleClickVariant('success')}>Add To Library</Button>
                     </Card.Body>
                 </Card>
-
-
-                // <div className="row">
-
-                //     <div className="col-6">
-                //         <div className="backgroundDiv mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
-                //             {/* <RecipeReviewCard books={props.books} /> */}
-                //             <h2>{book.volumeInfo.title}</h2>
-
-
-                //             {book.volumeInfo.imageLinks?.thumbnail ? <img src={book.volumeInfo.imageLinks?.thumbnail} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
-                //             <p>{`Written by: ${book.volumeInfo.authors}`}</p>
-                //             <p>{book.volumeInfo.description ?
-                //                 <HoverText><ReadMoreReact text={book.volumeInfo.description}
-                //                     min={25}
-                //                     ideal={50}
-                //                     max={10000000}
-                //                     style={{ cursor: 'pointer' }}
-                //                     readMoreText={readMore} />
-                //                 </HoverText> : null}</p>
-                //             {book.volumeInfo.categories ? <p>Category: {book.volumeInfo.categories}</p> : null}
-                //             {book.volumeInfo.pageCount ? <p>{book.volumeInfo.pageCount} pages</p> : null}
-                //             
-                //             {/* <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookToLibrary(bookToSubmit, true)}>Add to Reading List</button>
-                //     <button className="btn btn-dark mx-1" typr='submit' onClick={() => props.addBookToLibrary(bookToSubmit, false)}>Add to Library</button> */}
-                //         </div>
-                //     </div >
-                //     {/* <div className="col shadow p-3 mb-5 bg-body rounded">
-                //         <Form setBooks={props.setBooks} />
-                //     </div> */}
-
-                // </div >
             )
         }
         )

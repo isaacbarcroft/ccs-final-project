@@ -1,33 +1,90 @@
 import { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+
 
 function Comment(props) {
+    const [editableComment, setEditableComment] = useState(props.comment);
+    const [isEditing, setIsEditing] = useState(false);
 
-    const [comments, setComments] = useState();
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setEditableComment(prevState => ({
+            ...prevState,
+            [name]: value,
+        }));
+    }
 
-    // useEffect(() => {
-    //     async function getComments() {
-    //         const response = await fetch(`/api_v1/books/comments`);
-    //         const data = await response.json();
-    //         console.log({ data });
-    //         setComments(data);
-    //     }
-    //     getComments();
-    //     console.log({ comments })
+    async function editComment(event, text) {
+        const newComment = {
+            user_name: props.admin.username,
+            book: props.book.title,
+            body: editableComment.body,
+        };
 
-    // }, [])
+        const response = await fetch(`/api_v1/books/${props.book.id}/comments/${event.id}/`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken'),
+            },
+            body: JSON.stringify(newComment),
 
-    console.log({ comments })
-    const commentHTML = comments?.map(comment =>
-        <div className="comment-list" key={comment.id} value={comment?.book}>
-            <h4>{comment?.user_name}</h4>
-            <p>{comment?.body}</p>
-            <p>{comment?.user_name}</p>
-        </div>)
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not OK');
+        } else {
+            const data = await response.json();
+            // const updatedComments = [...book.book_comments]; /// ?????
+            // const index = updatedComments.findIndex(comment => comment.id === data.id);
+            // updatedComments[index] = data;
+            setEditableComment('')
+        }
+    }
 
+    async function deleteComment(event) {
+        const response = await fetch(`/api_v1/books/${props.book.id}/comments/${event.id}/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': Cookies.get('csrftoken'),
+            },
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not OK');
+        } else {
+            const updatedComments = [...props.book.book_comments]
+            const index = updatedComments.findIndex(comment => comment.id === event.id);
+            updatedComments.splice(index, 1);
+            setEditableComment(updatedComments);
+        }
+
+    }
+
+    console.log({ props })
 
     return (
         <>
-            {commentHTML}
+            {isEditing ?
+                <form>
+                    {console.log({ editableComment })}
+                    <textarea onChange={handleChange} type='text' value={editableComment.body} name='body' />
+                    <p>{editableComment.user_name}</p>
+                    <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setIsEditing(false)}>Cancel</button>
+                    <button type='button' id={editableComment.id} onClick={() => editComment(editableComment)} className='btn btn-dark mx-1 mb-5'>Submit</button>
+                </form>
+                : (
+                    <div>
+                        <p className="commentBody">{props.comment.body}</p>
+                        <p className="commentUser">{props.comment.user_name}</p>
+                        {props.comment.user_name === props.admin.username ? (
+                            <div>
+                                <button className="btn delete-btn" value={props.comment.id} onClick={() => deleteComment(props.comment)}>Delete</button>
+                                <button className="btn edit-btn" value={props.comment.id} onClick={() => setIsEditing(true)}>Edit</button>
+                            </div>
+                        ) : (null)
+                        }
+                    </div >
+                )
+            }
         </>
     )
 }

@@ -10,20 +10,27 @@ function LeaderBoard({ groups, users, books, isAuth }) {
         async function getAllBooks() {
             const response = await fetch(`/api_v1/books/all/`);
             if (!response.ok) {
-                console.log(response);
             } else {
                 const data = await response.json();
                 setAllBooks(data);
-                console.log({ data })
             }
         }
         getAllBooks();
     }, [, isAuth])
 
     const allBooksRead = allBooks?.filter(book => book?.finished);
-    console.log({ allBooksRead })
-    const user = allBooksRead.filter(person => person.user_name)
-    console.log({ user })
+    const listOfUsers = [...new Set(allBooksRead?.map((user) => user.user_name))]
+    const userInfo = listOfUsers.map((user) => {
+        return allBooksRead.filter((book) => book.user_name === user)
+
+    })
+    const next = userInfo.map((user) => {
+        return user.map((book) => book.page_count).reduce((prevValue, currentValue) => prevValue + currentValue)
+    })
+    console.log({ next })
+
+
+    const user = allBooksRead?.filter(person => person.user_name)
     const pagesRead = allBooksRead?.map(book => book?.finished === true ? book.page_count : 0);
     const userList = [...new Set(allBooksRead?.filter(book => book.user_name !== 'admin'))]
     const usersList = [...new Set(userList?.map(book => book.user_name.toUpperCase()))];

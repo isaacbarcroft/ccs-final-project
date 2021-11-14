@@ -12,7 +12,6 @@ import { deepOrange, deepPurple } from '@mui/material/colors';
 function Profile(props) {
   let history = useHistory();
   const [edit, setEdit] = useState(false);
-  console.log({ edit })
   const [myBooks, setMyBooks] = useState();
   const [finished, setFinished] = useState();
   const [editBook, setEditBook] = useState({
@@ -36,8 +35,6 @@ function Profile(props) {
   const types = ['No Good', 'Okay', 'Good Read', 'Loved It']
   const options = [...new Set(types?.map(book => book))];
 
-  // console.log(optionsHTML)
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setMyBooks({ ...myBooks, [name]: value });
@@ -48,12 +45,9 @@ function Profile(props) {
     async function getMyBooks() {
       const response = await fetch(`/api_v1/books/`);
       if (!response.ok) {
-        console.log(response);
       } else {
         const data = await response.json();
         setMyBooks(data);
-        console.log({ data })
-        console.log({ myBooks })
         props.setBooks();
       }
     }
@@ -62,8 +56,6 @@ function Profile(props) {
 
 
   async function deleteBook(event) {
-    console.log(event.target.id);
-    console.log('delete function');
     const response = await fetch(`/api_v1/books/${event.target.id}`, {
       method: 'DELETE',
       headers: {
@@ -81,8 +73,6 @@ function Profile(props) {
 
   }
   async function finishBook(book) {
-    // console.log(event.target.id);
-    // console.log('finish function');
 
     const updatedBook = {
       finished: true,
@@ -121,7 +111,6 @@ function Profile(props) {
       delete updatedBook.image;
     }
 
-    console.log(typeof updatedBook.finished)
 
     const formData = new FormData(); /// contructing key - value pairs
     const keys = Object.keys(updatedBook);
@@ -131,7 +120,6 @@ function Profile(props) {
       } else {
         formData.append(key, updatedBook[key]);
       }
-      console.log({ updatedBook })
     });
 
     const options = {
@@ -143,7 +131,6 @@ function Profile(props) {
     }
     const response = await fetch(`/api_v1/books/${updatedBook.id}/`, options);
     if (!response.ok) {
-      console.log(response);
     } else {
       const data = await response.json();
       const books = [...myBooks];
@@ -155,7 +142,6 @@ function Profile(props) {
 
   const unfinishedHTML = myBooks?.map(book => !book.finished ?
     < div >
-      {console.log(book)}
       < BookCardUnfinished
         book={book}
         finishBook={finishBook}
@@ -168,7 +154,6 @@ function Profile(props) {
 
   const booksListHTML = myBooks?.map(book => book.finished ?
     <div>
-      {console.log(book)}
       <BookCard
         book={book}
         handleUpdate={handleUpdate}
@@ -179,14 +164,12 @@ function Profile(props) {
 
 
   const pagesRead = myBooks?.map(book => book?.finished === true ? book.page_count : 0);
-  console.log({ pagesRead })
   let total = 0;
   const booksRead = myBooks?.map(book => book?.finished === true ? total++ : null);
   const totalPages = pagesRead ? pagesRead?.reduce((a, b) => a + b) : null;
 
   // var sum = 0;
   // for (var i = 0; i < pagesRead.length; i++) { sum += pagesRead[i]}
-  // console.log({sum})
 
   if (!props.isAuth) {
     return <Redirect to="/login" />
@@ -198,7 +181,7 @@ function Profile(props) {
         <header>
 
           <div>
-            <button className='btn btn-dark mt-2 ds-flex justify-content-right' onClick={redirect} >Book Search</button>
+            <button className='btn btn-dark mt-2 ds-flex justify-content-right' onClick={redirect} >Search</button>
           </div>
           <div className="mt-3 shadow p-3 mb-5 bg-body col rounded mt-2 d-flex justify-content-start">
             <h4 className='text-left col'>Total Pages Read: {parseFloat(totalPages)}</h4>

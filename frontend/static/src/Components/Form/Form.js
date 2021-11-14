@@ -6,31 +6,23 @@ function Form(props) {
     const [title, setTitle] = useState();
     const [author, setAuthor] = useState();
     const [categories, setCategories] = useState();
-    console.log({ props })
     function handleTitleChange(event) {
         setTitle(event.target.value);
-        console.log(title)
     }
 
     function handleAuthorChange(event) {
         setAuthor(event.target.value);
-        console.log(author)
     }
 
     function handleCategoryChange(event) {
         setCategories(event.target.value);
-        console.log(categories)
     }
 
     function handleSubmit(event) {
         event.preventDefault();
 
         // props.submitMessage();
-        // console.log(props)
         const searchTerm = event.target.value;
-        console.log({ searchTerm })
-        console.log({ title })
-        console.log({ author })
         getBooks(title, author, categories);
         setTitle('');
         setAuthor('');
@@ -44,30 +36,27 @@ function Form(props) {
 
 
     async function getBooks(title, author, categories) {
-        console.log(title, author, categories);
         const titles = title ? `+intitle:${title}` : '';
         const authors = author ? `+inauthor:${author}` : '';
         const category = categories ? `+subject:${categories}` : '';
         const response = await fetch(`${BASE_URL}${titles}${authors}${category}${API_KEY}`);
         if (!response.ok) {
-            console.log(response);
             return null
         } else {
             const data = await response.json();
             props.setBooks(data);
-            console.log(`${BASE_URL}${titles}${authors}${category}${API_KEY}`)
         }
     }
 
 
     return (
         <>
-            <div className="container">
+            <div className="container formDiv">
                 <h2 className="newArticleForm text-center mt-3">Find a Book</h2>
                 <form id="form" className="mt-3 ds-flex justify-content-center mt-3" onSubmit={handleSubmit}>
                     <a name="form" ></a>
                     <div className="form-group text-left mb-3">
-                        <label htmlFor='title'>Title</label>
+                        <label className="text-align-left" htmlFor='title'>Title</label>
                         <input type="text"
                             className="form-control"
                             id='bookTitle'

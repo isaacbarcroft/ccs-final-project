@@ -13,7 +13,7 @@ class ResponseSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     user_name= serializers.ReadOnlyField(source="user.username")
-    user = serializers.CharField()
+    # user = serializers.ReadOnlyField(source='')
     book = serializers.ReadOnlyField(source='book.title')
     class Meta:
         model = Comment

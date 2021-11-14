@@ -27,12 +27,11 @@ function Login(props) {
         };
         const response = await fetch('/rest-auth/login/', options).catch(handleError);
         if (!response) {
-            console.log(response);
         } else {
-            console.log(response)
             const data = await response.json();
             Cookies.set('Authorization', `Token ${data.key}`);
             props.setIsAuth(true)
+
             // (props.isAuth ? <Redirect to="")
         }
     }

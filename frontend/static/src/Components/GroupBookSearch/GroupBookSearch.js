@@ -10,7 +10,6 @@ import Button from '@mui/material/Button';
 
 
 function GroupBookSearch(props) {
-    console.log({ props })
     const [pages, setPages] = useState();
     const [search, setSearch] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
@@ -32,16 +31,13 @@ function GroupBookSearch(props) {
 
 
     function handleChange(e) {
-        console.log(e.target)
         const { name, value } = e.target;
-        console.log(name, value)
         // setCurrentBook(prevState => ({
         //     ...prevState,
         //     [name]: value,
         // }));
     }
 
-    console.log('group', props?.group?.name)
 
 
     // function handleBookList(event) {

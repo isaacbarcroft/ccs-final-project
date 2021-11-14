@@ -49,12 +49,12 @@ class CommentListAPIView(generics.ListCreateAPIView):
 class CommentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes= IsOwnerOrReadOnly
+    permission_classes = [IsOwnerOrReadOnly]
 
 class AllCommentListAPIView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes =(IsAuthenticatedOrReadOnly,)
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ResponseListAPIView(generics.ListCreateAPIView):

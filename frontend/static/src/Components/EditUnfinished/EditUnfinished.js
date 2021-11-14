@@ -22,11 +22,9 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
     const [edit, setEdit] = useState(false);
     const [currentBook, setCurrentBook] = useState(book);
-    // console.log(book);
 
     function handleChange(e) {
         const { name, value } = e.target;
-        console.log(name, value)
         setCurrentBook(prevState => ({
             ...prevState,
             [name]: value,
@@ -39,14 +37,14 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
         setEdit(false);
     }
     const total = currentBook.page_count ? Math.round(parseInt(currentBook.pages_read / currentBook.page_count * 100)) : null
-    console.log('count', currentBook.page_count)
-    console.log('read', parseInt(currentBook.pages_read))
-    console.log({ total })
+        ('count', currentBook.page_count)
+        ('read', parseInt(currentBook.pages_read))
+        ({ total })
     const optionsHTML = options.map(option => <option value={option}>{option}</option>)
 
     return (
         <Card style={{ marginBottom: '30px' }}>
-            {currentBook.image ? <Card.Img src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
+            {currentBook.image ? <Card.Img className="cardImgP" src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
             <Card.Body>
                 <Card.Title>{currentBook.title}</Card.Title>
                 <Card.Subtitle>{`Written by: ${currentBook.author}`}</Card.Subtitle>

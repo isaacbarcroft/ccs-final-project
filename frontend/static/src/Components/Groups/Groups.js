@@ -14,7 +14,6 @@ import Group from '../Group/Group';
 
 function Groups(props) {
     const [group, setGroup] = useState([]);
-    console.log({ group })
 
     let history = useHistory();
     const redirect = () => {
@@ -33,17 +32,10 @@ function Groups(props) {
         setGroup('');
     }
 
-    console.log('selectedBook', props.selectedBook)
-
-
-
     async function joinGroup(id, name) {
         const groupName = {
             name,
         }
-        console.log(name);
-        // console.log({ id })
-        console.log('JOIN GROUP');
         const response = await fetch(`/api_v1/groups/${id}/groups/`, {
             method: 'PUT',
             headers: {
@@ -64,8 +56,6 @@ function Groups(props) {
         }
     }
     //Comments
-    console.log('comments', props.comments)
-    console.log('select', props.selectedBook)
 
     const groupList = props.groups.map(group =>
         <div>
@@ -78,8 +68,6 @@ function Groups(props) {
     //MEMBERS
     const members = props.groups.map(group => group.members)
     const membersName = members.map(member => member)
-    console.log({ membersName })
-    console.log({ members })
     // const groupsHTML = 
     // const groupName = props.groups.map(group => {
     //     const matches = group.name.match(/\b(\w)/g);
