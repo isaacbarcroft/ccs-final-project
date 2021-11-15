@@ -102,7 +102,7 @@ function GroupBook(props) {
 
 
         commentHTML = book?.book_comments.map(book_comment => {
-            console.log({ book_comment })
+            // console.log({ book_comment })
             return (
                 <Comment setBook={setBook} book={book} comment={book_comment} admin={props.admin} />
             )
@@ -160,22 +160,28 @@ function GroupBook(props) {
                             </div>
                         </div>
                         <div className="commentForm">
-                            <form className="Message-form" onSubmit={handleSubmit}>
-                                <textarea
-                                    className="textArea"
-                                    name="text"
-                                    value={comment}
-                                    type="text"
-                                    placeholder={book.title ? `thoughts on  #${book?.title}` : 'comment'}
-                                    onChange={handleTextChange}
-                                    cols="25"
-                                    rows="3"
-                                />
-                                <IconButton type="submit">
-                                    <SendIcon />
-                                </IconButton>
-                                {/* <button type="submit" className="submit_btn btn btn-dark mx-2">Submit</button> */}
-                            </form>
+                            <div class="box-footer">
+                                <form className="Message-form" onSubmit={handleSubmit}>
+
+                                    <div class="input-group">
+                                        <textarea
+                                            className="textArea form-control"
+                                            name="text"
+                                            value={comment}
+                                            type="text"
+                                            placeholder={book.title ? `thoughts on  #${book?.title}` : 'comment'}
+                                            onChange={handleTextChange}
+                                            cols="25"
+                                            rows="3"
+                                        />
+                                        <span class="input-group-btn">
+                                            <IconButton type="submit">
+                                                <SendIcon type="button" className="btn-warning btn-flat" />
+                                            </IconButton>
+                                        </span> </div>
+                                    {/* <button type="submit" className="submit_btn btn btn-dark mx-2">Submit</button> */}
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

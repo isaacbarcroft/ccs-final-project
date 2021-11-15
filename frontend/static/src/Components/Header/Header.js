@@ -10,7 +10,7 @@ function Header(props) {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav">
                 <div className="container">
-                    <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px' }} href="/">Chatty Books</a>
+                    <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px' }} href="/">Book Brag</a>
                     <div className="username d-flex justify-content-center">
                         <p className="d-flex justify-content-center" style={{ color: 'white', fontFamily: 'Oswald', }}> <span style={{ fontWeight: 'bold', weight: 700, fontSize: '30px' }}>{`  ${props.admin.username.toUpperCase()}`}</span></p>
                     </div>
@@ -27,7 +27,7 @@ function Header(props) {
                             {/* <li className="nav-item mt-2 mx-1">
                                 <NavLink style={{ textDecoration: 'none' }} to='/books'>Books</NavLink>
                             </li> */}
-                            <li className="nav-item mt-2">
+                            <li className="nav-item mt-2 mx-1">
                                 <NavLink style={{ textDecoration: 'none' }} to='/groups'>Groups</NavLink>
                             </li>
                             {/* <li className="nav-item mt-2 mx-1">
@@ -52,7 +52,7 @@ function Header(props) {
 
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav">
                 <div className="container">
-                    <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px' }} href="/">Chatty Books</a>
+                    <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px', color: "#4caf50" }} href="/">Book Brag</a>
 
                     <header>
                         <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
@@ -67,7 +67,7 @@ function Header(props) {
                                 {/* <li className="nav-item mt-2 mx-1">
                                 <NavLink style={{ textDecoration: 'none' }} to='/books'>Books</NavLink>
                             </li> */}
-                                <li className="nav-item mt-2">
+                                <li className="nav-item mt-2 mx-1">
                                     <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/groups'>Groups</NavLink>
                                 </li>
                                 {/* <li className="nav-item mt-2 mx-1">
@@ -97,7 +97,7 @@ function Header(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav">
             <div className="container">
-                <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px' }} href="/">Chatty Books</a>
+                <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px' }} href="/">Book Brag</a>
                 <div class="date">
                     {/* <p className="d-flex justify-content-center"style={{color: 'white', fontFamily: 'Oswald',}}>  {state.date.toLocaleDateString()}</p> */}
                 </div>

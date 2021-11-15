@@ -54,6 +54,7 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
         handleUpdate(currentBook);
         setEdit(false);
     }
+    console.log({ currentBook })
 
 
     return (
@@ -100,20 +101,22 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
                             </Box>
                             <button className="btn btn-dark mx-1" type='submit'>Update</button>
                         </form>
-
-                        <IconButton type='button' onClick={() => setEdit(false)}>
-                            <EditOffIcon />
-                        </IconButton>
-                        <IconButton id={currentBook.id} onClick={(e) => deleteBook(e)}>
-                            <DeleteIcon />
-                        </IconButton>
-                        {/* <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(false)}>Cancel</button>
-                        <button type='button' id={currentBook.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button> */}
+                        <div className="col">
+                            <IconButton type='button' onClick={() => setEdit(false)}>
+                                <EditOffIcon type='button' onClick={() => setEdit(false)} />
+                            </IconButton>
+                            <IconButton >
+                                <DeleteIcon type='button' id={currentBook.id} onClick={(e) => deleteBook(e)} />
+                            </IconButton>
+                            {/* <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(false)}>Cancel</button>
+                            <button type='button' id={currentBook.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button> */}
+                        </div>
                     </div>
                     :
-                    <div className="col"><p>My Thoughts: {currentBook.comments}</p>
+                    <div className="col">
+                        <p>My Thoughts: {currentBook.comments ? currentBook.comments : <p></p>} </p>
                         <p>Pages Read: {currentBook.page_count}</p>
-                        <p>My Rating: <span className='font-italic'>{currentBook.options}</span></p>
+                        {/* <p>My Rating: <span className='font-italic'>{currentBook.options}</span></p> */}
                         <Typography component="legend">Rating</Typography>
                         <Rating name="read-only" value={currentBook.avg_rating} readOnly />
                         <IconButton aria-label="delete"

@@ -19,6 +19,8 @@ function Comment(props) {
         }));
     }
 
+    // console.log('com', props.book)
+
     async function editComment(event, text) {
         const newComment = {
             user_name: props.admin.username,
@@ -39,16 +41,22 @@ function Comment(props) {
             throw new Error('Network response was not OK');
         } else {
             const data = await response.json();
-            // const books = [...myBooks];
-            // const index = myBooks.findIndex(book => book.id === updatedBook.id);
-            // books[index] = data;
-            // setMyBooks(books);
+            console.log({ data })
+            // const updatedBooks = [...myBooks]
+            // const index = updatedBooks.findIndex(book => book.id === event.target.id);
+            // updatedBooks.splice(index, 1);
+            // setMyBooks(updatedBooks);
 
-            const updatedComments = [...props.book.book_comments]; /// ?????
-            const index = props.book.book_comments.findIndex(comment => comment.id === updatedComments.id);
-            updatedComments[index] = data;
-
-            setEditableComment('')
+            const updatedComment = { ...props.book }; /// ?????
+            const comments = [...updatedComment.book_comments]
+            const index = comments.findIndex(comment => comment.id === event.id);
+            console.log(event.id)
+            console.log(data.id)
+            console.log({ index })
+            updatedComment[index] = data;
+            updatedComment.book_comments[index] = comments;
+            console.log(updatedComment)
+            props.setBook(updatedComment);
         }
     }
 
@@ -62,15 +70,17 @@ function Comment(props) {
         if (!response.ok) {
             throw new Error('Network response was not OK');
         } else {
-            const updatedComments = [...props.book.book_comments]
-            const index = updatedComments.findIndex(comment => comment.id === event.id);
-            updatedComments.splice(index, 1);
-            setEditableComment(updatedComments);
+            const updatedBook = { ...props.book };
+            const comments = [...updatedBook.book_comments];
+            const index = comments.findIndex(comment => comment.id === event.id);
+            comments.splice(index, 1)
+            updatedBook.book_comments = comments;
+            props.setBook(updatedBook);
         }
 
     }
 
-    console.log({ props })
+    // console.log({ props })
 
     return (
         <>
@@ -78,7 +88,7 @@ function Comment(props) {
 
 
                 <form>
-                    {console.log({ editableComment })}
+
                     <textarea onChange={handleChange} type='text' value={editableComment.body} name='body' />
                     <p>{editableComment.user_name}</p>
                     <IconButton onClick={() => setIsEditing(false)}>

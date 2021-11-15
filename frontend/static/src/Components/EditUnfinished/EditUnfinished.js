@@ -69,24 +69,24 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
             </Card.Body>
             <div className=" mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
                 {edit ?
-                    <div>
+                    <div className="col">
                         <form onSubmit={handleSubmit}>
                             <textarea onChange={handleChange} type='text' value={currentBook.comments} name='comments' placeholder="Comments" />
                             <input type="number" placeholder="Pages Read:" name='pages_read' onChange={handleChange} max={currentBook.page_count} value={currentBook.pages_read} />
                             <IconButton type='submit'>
-                                <DoneIcon />
+                                <DoneIcon type='submit' />
                             </IconButton>
                             {/* <button className="btn btn-dark mx-1" type='submit'>Update</button> */}
                         </form>
                         <div className="col">
                             <IconButton type='button' onClick={() => setEdit(false)}>
-                                <EditOffIcon />
+                                <EditOffIcon type='button' onClick={() => setEdit(false)} />
                             </IconButton>
                             <IconButton id={currentBook.id} onClick={(e) => deleteBook(e)} >
-                                <DeleteIcon />
+                                <DeleteIcon id={currentBook.id} onClick={(e) => deleteBook(e)} />
                             </IconButton>
                             <IconButton id={currentBook.id} onClick={() => finishBook(currentBook)}>
-                                <BookmarkAdded />
+                                <BookmarkAdded id={currentBook.id} onClick={() => finishBook(currentBook)} />
                             </IconButton>
                             {/* <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(false)}>Cancel</button>
                             <button type="button" id={currentBook.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button>
@@ -94,7 +94,8 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                         </div>
                     </div>
                     :
-                    <div><p>My Thoughts: {currentBook.comments}</p>
+                    <div className="col">
+                        <p>My Thoughts: {currentBook.comments}</p>
                         <p>Pages Read: {currentBook.pages_read}</p>
                         <Box sx={{ position: 'relative', display: 'inline-flex' }}>
                             <CircularProgress variant="determinate" value={total} />
@@ -116,7 +117,7 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                             </Box>
                         </Box>
                         <IconButton type='button' onClick={() => setEdit(true)}>
-                            <EditIcon />
+                            <EditIcon type='button' onClick={() => setEdit(true)} />
                         </IconButton>
                         {/* <button className=" editBTN btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button> */}
                     </div>

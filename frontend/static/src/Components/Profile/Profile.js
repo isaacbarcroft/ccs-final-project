@@ -8,6 +8,7 @@ import BookCardUnfinished from '../EditUnfinished/EditUnfinished';
 import CircularProgress from '@mui/material/CircularProgress';
 import Avatar from '@mui/material/Avatar';
 import { deepOrange, deepPurple } from '@mui/material/colors';
+import StatCard from '../StatCard/StatCard';
 
 function Profile(props) {
   let history = useHistory();
@@ -56,6 +57,7 @@ function Profile(props) {
 
 
   async function deleteBook(event) {
+    console.log(event.target.id)
     const response = await fetch(`/api_v1/books/${event.target.id}`, {
       method: 'DELETE',
       headers: {
@@ -67,6 +69,7 @@ function Profile(props) {
     } else {
       const updatedBooks = [...myBooks]
       const index = updatedBooks.findIndex(book => book.id === event.target.id);
+      console.log({ index })
       updatedBooks.splice(index, 1);
       setMyBooks(updatedBooks);
     }
@@ -179,29 +182,25 @@ function Profile(props) {
     <>
       <div className='container'>
         <header>
-
           <div>
-            <button className='btn btn-dark mt-2 ds-flex justify-content-right' onClick={redirect} >Search</button>
+            <h1 style={{ fontFamily: 'Oswald' }} className="d-flex justify-content-left">My Library</h1>
+
+            <button className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Search</button>
           </div>
-          <div className="mt-3 shadow p-3 mb-5 bg-body col rounded mt-2 d-flex justify-content-start">
-            <h4 className='text-left col'>Total Pages Read: {parseFloat(totalPages)}</h4>
-            <h4 className='text-left col'>Total Books Read: {total}</h4>
-            {/* <CircularProgress variant="determinate" value={75} /> */}
-          </div>
+          {/* <div className="mt-3 shadow p-3 mb-5 bg-body col rounded mt-2 d-flex justify-content-start"> */}
+          <StatCard totalpages={totalPages} total={total} />
+
 
         </header>
         <div className="container" >
-          <h1 className="ds-flex justify-content-center">Profile</h1>
-          <div className="row">
-            <div class="col-6">
 
-              <div className='Library'>
-                <h2>In Progress</h2>
-                {unfinishedHTML}
-              </div>
+          <div className="row">
+            <div className="col-6">
+              <h2 style={{ fontFamily: 'Oswald', fontSize: '30px' }} >In Progress</h2>
+              {unfinishedHTML}
             </div>
             <div className="col">
-              <h2>Have Read</h2>
+              <h2 style={{ fontFamily: 'Oswald', fontSize: '30px' }}>Have Read</h2>
               {booksListHTML}
             </div>
           </div>

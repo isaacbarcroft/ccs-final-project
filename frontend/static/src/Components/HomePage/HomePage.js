@@ -24,8 +24,9 @@ function LeaderBoard({ groups, users, books, isAuth }) {
         return allBooksRead.filter((book) => book.user_name === user)
 
     })
+    const reducer = (previousValue, currentValue) => previousValue + currentValue;
     const next = userInfo.map((user) => {
-        return user.map((book) => book.page_count).reduce((prevValue, currentValue) => prevValue + currentValue)
+        return user.map((book) => book.page_count).reduce(reducer)
     })
     console.log({ userInfo })
 
@@ -36,6 +37,8 @@ function LeaderBoard({ groups, users, books, isAuth }) {
     const usersList = [...new Set(userList?.map(book => book.user_name.toUpperCase()))];
     const activeUsers = usersList.map(name => <div style={{ textDecoration: 'none', ListStyleType: 'none' }}><li className="userLi" style={{ textDecoration: 'none' }}>{name}</li></div>);
     const userTotals = allBooksRead?.filter(book => book?.user_name);
+    console.log({ userTotals })
+    console.log({ next })
     //PAGE_COUNT
     let total = 0;
     const booksRead = allBooks?.map(book => book?.finished === true ? total++ : null);
@@ -61,6 +64,7 @@ function LeaderBoard({ groups, users, books, isAuth }) {
                         {activeUsers}
                     </ul>
                 </div>
+
                 <div className="groups mt-3 shadow p-3 mb-5 bg-body rounded mt-2" >
                     <h2>Groups </h2>
                     {groupHTML}

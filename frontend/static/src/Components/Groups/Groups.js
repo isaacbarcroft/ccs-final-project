@@ -80,7 +80,7 @@ function Groups(props) {
         const matches = group.name.match(/\b(\w)/g);
         const name = matches.join('')
         const nameHTML = name.toUpperCase();
-        const members = group.members.map(member => <div><h4>{member.username}</h4></div>)
+        const members = group.members.map(member => <div><h4>{member.username.toUpperCase()}</h4></div>)
         const title = group.books?.map(book => <div><h5>{book.title}</h5></div>)
 
         return (
@@ -89,24 +89,27 @@ function Groups(props) {
                     <div className="col bookDiv">
                         <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{nameHTML}</Avatar>
                         <h2 className='groupTitle'>{group.name}</h2>
-                        <div><h4>Books:</h4>
+                        <div><h4 style={{ fontFamily: 'Oswald' }}>Books:</h4>
                             <h5 style={{ fontStyle: 'italic' }}>{title}</h5>
                         </div>
                         <div className="border"></div>
                         <div className="col">
-                            <p>{group.members.username}</p>
+                            <p>{group.members?.username}</p>
                         </div>
-                        <button className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
+
                     </div>
                     <h3 style={{ textAlign: 'start' }}>Members:
-                        {members}</h3>
-
+                    </h3>
+                    <p>{members}</p>
+                    {group.members?.username !== props.admin.username ? (
+                        <button style={{ position: 'absolute', bottom: '5px', width: '20%' }} className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
+                    ) : (null)}
                 </div></NavLink >);
     })
 
     return (
         <>
-            <h1>Groups</h1>
+            <h1 style={{ fontFamily: 'Oswald' }}>Groups</h1>
             <div>
                 {/* <button className='btn btn-dark' onClick={redirect} >Book Search</button> */}
             </div>
@@ -120,11 +123,11 @@ function Groups(props) {
 
                     <div className="col">
                         <div className='addGroup'>
-                            <h3>Add A Club</h3>
+                            <h3 style={{ fontFamily: 'Oswald' }}>Add Group</h3>
                             <nav className='nav-bar'></nav>
                             <form className="group-form" onSubmit={handleSubmit} >
                                 <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{ width: '50%' }} />
-                                <button type='submit' className="btn btn-dark addGroup-btn">Add Group</button>
+                                <button type='submit' className="btn btn-dark addGroup-btn mx-2">Add Group</button>
                             </form>
                         </div>
 
