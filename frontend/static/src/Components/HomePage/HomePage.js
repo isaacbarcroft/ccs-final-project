@@ -27,7 +27,7 @@ function LeaderBoard({ groups, users, books, isAuth }) {
     const next = userInfo.map((user) => {
         return user.map((book) => book.page_count).reduce((prevValue, currentValue) => prevValue + currentValue)
     })
-    console.log({ next })
+    console.log({ userInfo })
 
 
     const user = allBooksRead?.filter(person => person.user_name)

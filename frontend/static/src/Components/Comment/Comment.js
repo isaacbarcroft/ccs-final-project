@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
+import EditOffIcon from '@mui/icons-material/EditOff';
+import SendIcon from '@mui/icons-material/Send';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 function Comment(props) {
@@ -34,9 +39,15 @@ function Comment(props) {
             throw new Error('Network response was not OK');
         } else {
             const data = await response.json();
-            // const updatedComments = [...book.book_comments]; /// ?????
-            // const index = updatedComments.findIndex(comment => comment.id === data.id);
-            // updatedComments[index] = data;
+            // const books = [...myBooks];
+            // const index = myBooks.findIndex(book => book.id === updatedBook.id);
+            // books[index] = data;
+            // setMyBooks(books);
+
+            const updatedComments = [...props.book.book_comments]; /// ?????
+            const index = props.book.book_comments.findIndex(comment => comment.id === updatedComments.id);
+            updatedComments[index] = data;
+
             setEditableComment('')
         }
     }
@@ -64,22 +75,44 @@ function Comment(props) {
     return (
         <>
             {isEditing ?
+
+
                 <form>
                     {console.log({ editableComment })}
                     <textarea onChange={handleChange} type='text' value={editableComment.body} name='body' />
                     <p>{editableComment.user_name}</p>
-                    <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setIsEditing(false)}>Cancel</button>
-                    <button type='button' id={editableComment.id} onClick={() => editComment(editableComment)} className='btn btn-dark mx-1 mb-5'>Submit</button>
+                    <IconButton onClick={() => setIsEditing(false)}>
+                        <EditOffIcon />
+                    </IconButton>
+                    <IconButton id={editableComment.id} onClick={() => editComment(editableComment)}>
+                        <SendIcon id={editableComment.id} onClick={() => editComment(editableComment)} />
+                    </IconButton>
+                    {/* <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setIsEditing(false)}>Cancel</button>
+                    <button type='button' id={editableComment.id} onClick={() => editComment(editableComment)} className='btn btn-dark mx-1 mb-5'>Submit</button> */}
                 </form>
+
+
+
                 : (
                     <div>
-                        <p className="commentBody">{props.comment.body}</p>
-                        <p className="commentUser">{props.comment.user_name}</p>
+                        <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">{props.comment.user_name}</span> <span class="direct-chat-timestamp pull-right">{props.comment.created_at}</span> </div>
+                        <div class="direct-chat-text"> {props.comment.body} </div>
+
+                        {/* <p className="commentBody">{props.comment.body}</p>
+                        <p className="commentUser">{props.comment.user_name}</p> */}
                         {props.comment.user_name === props.admin.username ? (
                             <div>
-                                <button className="btn delete-btn" value={props.comment.id} onClick={() => deleteComment(props.comment)}>Delete</button>
-                                <button className="btn edit-btn" value={props.comment.id} onClick={() => setIsEditing(true)}>Edit</button>
+                                <IconButton aria-label="delete"
+                                    value={props.comment.id} onClick={() => setIsEditing(true)}>
+                                    <EditIcon color="primary" />
+                                </IconButton >
+                                <IconButton value={props.comment.id} onClick={() => deleteComment(props.comment)}>
+                                    <DeleteIcon />
+                                </IconButton>
+                                {/* <button className="btn delete-btn btn-dark" value={props.comment.id} onClick={() => deleteComment(props.comment)}>Delete</button>
+                                <button className="btn edit-btn btn-dark" value={props.comment.id} onClick={() => setIsEditing(true)}>Edit</button> */}
                             </div>
+
                         ) : (null)
                         }
                     </div >

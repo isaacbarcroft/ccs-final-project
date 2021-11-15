@@ -62,8 +62,18 @@ function Book(props) {
                 page_count: book.volumeInfo.pageCount,
 
             }
+            const bookToSubmit2 = {
+                author: book.volumeInfo.authors?.toString(),
+                title: book.volumeInfo.title,
+                image: book.volumeInfo.imageLinks?.thumbnail,
+                description: book.volumeInfo.description?.toString(),
+                categories: book.volumeInfo.categories?.toString(),
+                page_count: book.volumeInfo.pageCount,
+                pages_read: book.volumeInfo.pageCount,
+
+            }
             const handleClick = (variant) => () => {
-                props.addBookToLibrary(bookToSubmit, true);
+                props.addBookToLibrary(bookToSubmit2, true);
                 enqueueSnackbar('Added to Completed', { variant });
             };
 

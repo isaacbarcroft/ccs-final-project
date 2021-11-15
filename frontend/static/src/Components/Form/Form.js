@@ -51,12 +51,12 @@ function Form(props) {
 
     return (
         <>
-            <div className="container formDiv">
+            <div className="container formDiv relative">
                 <h2 className="newArticleForm text-center mt-3">Find a Book</h2>
                 <form id="form" className="mt-3 ds-flex justify-content-center mt-3" onSubmit={handleSubmit}>
                     <a name="form" ></a>
                     <div className="form-group text-left mb-3">
-                        <label className="text-align-left" htmlFor='title'>Title</label>
+                        <label className="text-align-left label" htmlFor='title'>Title</label>
                         <input type="text"
                             className="form-control"
                             id='bookTitle'
@@ -67,7 +67,7 @@ function Form(props) {
                         />
                     </div>
                     <div className="form-group text-left mb-3">
-                        <label htmlFor='body'>Author</label>
+                        <label className="text-align-left label" htmlFor='body'>Author</label>
                         <input type="text"
                             className="form-control"
                             id='bookAuthor'
@@ -78,14 +78,14 @@ function Form(props) {
                             value={author}
                         />
                     </div>
-                    <label htmlFor='body'>Category</label>
+                    <label className="text-align-left label" htmlFor='body'>Category</label>
                     <input className="form-control"
                         onChange={handleCategoryChange}
                         name="categories"
                         value={categories}
                         placeholder="Category"
                     />
-                    <label htmlFor=''>Add to Group</label>
+
                     <div className="form-group text-left mb-3 mt-3">
                         {/* <label htmlFor='options'>Draft/Submitted</label> */}
                         <button type="submit"

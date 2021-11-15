@@ -147,15 +147,17 @@ function Group(props) {
         )
     } else {
         booksHTML = group.books.map(book =>
-            <Card id={book.id} style={{ width: '20rem', height: '30rem', marginBottom: '30px' }}>
+
+            <Card id={book.id} style={{ width: '20rem', height: '30rem', marginTop: '30px', marginBottom: '30px' }}>
                 <Card.Body>
                     <Link style={{ textDecoration: 'none' }} to={`/groups/${id}/books/${book.id}`}>
                         <Card.Title>{book.title}</Card.Title>
                     </Link>
                     <Card.Subtitle>{book.author}</Card.Subtitle>
                 </Card.Body>
-                <Card.Img src={book.image} />
+                <Card.Img src={book.image} alt="book cover" />
             </Card>
+
         );
     }
 
@@ -164,7 +166,10 @@ function Group(props) {
     const name = matches.join('');
     const avatarHTML = name?.toUpperCase();
 
-    const membersHTML = group.members.map(member => <div><h4>{member.username}</h4></div>);
+    const membersHTML = group.members.map(member =>
+        <div>
+            <li style={{ textAlign: 'start', listStyle: 'none' }}>{member.username.toUpperCase()}</li>
+        </div>);
 
 
     return (
@@ -172,11 +177,25 @@ function Group(props) {
         <div className="container">
             <div className="row">
                 <div className="col-8">
-                    <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2" id={group?.id} ><h2 className='groupTitle'>{group?.name}</h2>
-                        <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{avatarHTML}</Avatar>
-                        <button className="deleteGroup" type='button' id={group?.id} onClick={(event) => props.deleteGroup(event)}>Delete Group</button>
-                        <h3>Members: {membersHTML}</h3>
-                        <h3>Books: {booksHTML}</h3>
+                    <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2" id={group?.id} >
+                        <h2 className='groupTitle'>{group?.name}</h2>
+                        <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }}
+                            className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>
+                            {avatarHTML}
+                        </Avatar>
+                        {/* <button className="deleteGroup"
+                            type='button' id={group?.id}
+                            onClick={(event) => props.deleteGroup(event)}>Delete Group</button> */}
+                        <h3 style={{ textAlign: 'start', marginTop: '40px' }}>Members: </h3>
+                        <ul>
+                            {membersHTML}
+                        </ul>
+                        <h3>Books: </h3>
+                        <div className="container bookGroup" >
+                            <div clasName="bookCardGroup">
+                                {booksHTML}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="col-4 mt-5">
@@ -184,7 +203,7 @@ function Group(props) {
                 </div>
 
             </div>
-        </div>
+        </div >
 
     )
 }

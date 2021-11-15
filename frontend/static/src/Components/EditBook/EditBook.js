@@ -7,6 +7,10 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import Card from 'react-bootstrap/Card';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
+import EditOffIcon from '@mui/icons-material/EditOff';
 
 
 const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
@@ -53,7 +57,7 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
 
 
     return (
-        <Card style={{ marginBottom: '30px' }}>
+        <Card style={{ marginBottom: '30px', flexDirection: 'row' }}>
 
             {currentBook.image ? <Card.Img className="cardImgP" src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
             <Card.Body>
@@ -96,16 +100,27 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
                             </Box>
                             <button className="btn btn-dark mx-1" type='submit'>Update</button>
                         </form>
-                        <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(false)}>Cancel</button>
-                        <button type='button' id={currentBook.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button>
+
+                        <IconButton type='button' onClick={() => setEdit(false)}>
+                            <EditOffIcon />
+                        </IconButton>
+                        <IconButton id={currentBook.id} onClick={(e) => deleteBook(e)}>
+                            <DeleteIcon />
+                        </IconButton>
+                        {/* <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(false)}>Cancel</button>
+                        <button type='button' id={currentBook.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button> */}
                     </div>
                     :
-                    <div><p>My Thoughts: {currentBook.comments}</p>
+                    <div className="col"><p>My Thoughts: {currentBook.comments}</p>
                         <p>Pages Read: {currentBook.page_count}</p>
                         <p>My Rating: <span className='font-italic'>{currentBook.options}</span></p>
                         <Typography component="legend">Rating</Typography>
                         <Rating name="read-only" value={currentBook.avg_rating} readOnly />
-                        <button className=" editBTN btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button>
+                        <IconButton aria-label="delete"
+                            type='button' onClick={() => setEdit(true)}>
+                            <EditIcon />
+                        </IconButton >
+                        {/* <button className=" editBTN btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button> */}
                     </div>
                 }
             </div>

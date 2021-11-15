@@ -53,9 +53,7 @@ function Header(props) {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav">
                 <div className="container">
                     <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px' }} href="/">Chatty Books</a>
-                    <div class="date">
-                        <p className="d-flex justify-content-center" style={{ color: 'white', fontFamily: 'Oswald', }}> WELCOME <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>{`  ${props.admin.username.toUpperCase()}`}</span></p>
-                    </div>
+
                     <header>
                         <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                             <ul className="navbar-nav ml-auto text-light">
@@ -82,7 +80,10 @@ function Header(props) {
                                     <button style={{ textDecoration: 'none' }} className="btn btn-link logout text-light" type="button" onClick={() => props.handleLogoutSubmit()}>Logout</button>
                                 </li>
                             </ul>
-                            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }} className="avatar" sx={{ bgcolor: green[500] }}>{props.admin.username.slice(0, 1).toUpperCase()}</Avatar>
+                            <div class="user">
+                                <p className="mx-3 mt-3" style={{ color: 'white', fontFamily: 'Oswald', color: "#4caf50" }}> WELCOME <span style={{ fontWeight: 'bold', marginLeft: '5px', color: "#4caf50" }}>{`  ${props.admin.username.toUpperCase()}`}</span></p>
+                            </div>
+                            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }} className="avatar" sx={{ bgcolor: green[500], width: 30, height: 30 }}>{props.admin.username.slice(0, 1).toUpperCase()}</Avatar>
                         </div>
 
                     </header>

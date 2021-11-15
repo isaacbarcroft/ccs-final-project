@@ -14,6 +14,8 @@ class ResponseSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     user_name= serializers.ReadOnlyField(source="user.username")
     # user = serializers.ReadOnlyField(source='')
+    created_at=serializers.DateTimeField(format="%d-%m-%Y %H:%M:%S", read_only=True)
+
     book = serializers.ReadOnlyField(source='book.title')
     class Meta:
         model = Comment

@@ -3,13 +3,14 @@ import { useParams, useHistory } from 'react-router-dom';
 import Comment from '../Comment/Comment';
 import Cookies from 'js-cookie';
 import Card from 'react-bootstrap/Card';
+import SendIcon from '@mui/icons-material/Send';
+import IconButton from '@mui/material/IconButton';
 
 function GroupBook(props) {
     const [book, setBook] = useState();
     const { id } = useParams()
     const [comment, setComment] = useState('');
     const [edit, setEdit] = useState();
-    const [commentEditable, setCommentEditable] = useState();
     let history = useHistory();
     const redirect = () => {
         history.push(`/groups/${book.group}`)
@@ -37,7 +38,7 @@ function GroupBook(props) {
 
     async function submitComment(text) {
         const newComment = {
-            user: props.admin.username,
+            user_name: props.admin.username,
             book: book.title,
             body: text,
         };
@@ -103,7 +104,7 @@ function GroupBook(props) {
         commentHTML = book?.book_comments.map(book_comment => {
             console.log({ book_comment })
             return (
-                <Comment book={book} comment={book_comment} admin={props.admin} />
+                <Comment setBook={setBook} book={book} comment={book_comment} admin={props.admin} />
             )
         })
         // :
@@ -130,16 +131,50 @@ function GroupBook(props) {
             </header>
             <div className="container">
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-4">
                         {booksHTML}
                     </div>
-                    <div className="col mt-3 shadow p-3 mb-5 bg-body rounded mt-3">
-                        <h4>Comments</h4>
-                        {commentHTML}
+                    <div className="col-md-8">
+                        <div className="page-content page-container" id="page-content">
+                            <div className="padding">
+                                <div className="row container d-flex justify-content-center">
+
+                                    <div className="box box-warning direct-chat direct-chat-warning">
+                                        <div className="box-header with-border">
+                                            <div className="box-body">
+                                                <div className="direct-chat-messages">
+                                                    <div className="direct-chat-msg">
+                                                        <div class="box-body">
+                                                            <div class="direct-chat-messages">
+                                                                <div class="direct-chat-msg">
+                                                                    {commentHTML}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div className="commentForm">
                             <form className="Message-form" onSubmit={handleSubmit}>
-                                <textarea name="text" value={comment} type="text" placeholder={book.title ? `thoughts on  #${book?.title}` : 'comment'} onChange={handleTextChange} />
-                                <button type="submit" className="submit_btn">Submit</button>
+                                <textarea
+                                    className="textArea"
+                                    name="text"
+                                    value={comment}
+                                    type="text"
+                                    placeholder={book.title ? `thoughts on  #${book?.title}` : 'comment'}
+                                    onChange={handleTextChange}
+                                    cols="25"
+                                    rows="3"
+                                />
+                                <IconButton type="submit">
+                                    <SendIcon />
+                                </IconButton>
+                                {/* <button type="submit" className="submit_btn btn btn-dark mx-2">Submit</button> */}
                             </form>
                         </div>
                     </div>

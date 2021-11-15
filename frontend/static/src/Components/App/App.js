@@ -166,7 +166,7 @@ function App(props) {
 
 
   //addBookToList
-  async function addBookToLibrary(bookToSubmit, finished) {
+  async function addBookToLibrary(bookToSubmit, finished, pageRead) {
     console.log({ finished })
 
 

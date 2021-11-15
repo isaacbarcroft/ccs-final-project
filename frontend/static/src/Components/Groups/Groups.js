@@ -98,7 +98,7 @@ function Groups(props) {
                         </div>
                         <button className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
                     </div>
-                    <h3>Members:
+                    <h3 style={{ textAlign: 'start' }}>Members:
                         {members}</h3>
 
                 </div></NavLink >);
