@@ -9,7 +9,7 @@ function Header(props) {
 
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav">
-                <div className="container">
+                <div style={{ display: 'flex', justifyContent: 'space-between' }} className="container">
                     <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px' }} href="/">Book Brag</a>
                     <div className="username d-flex justify-content-center">
                         <p className="d-flex justify-content-center" style={{ color: 'white', fontFamily: 'Oswald', }}> <span style={{ fontWeight: 'bold', weight: 700, fontSize: '30px' }}>{`  ${props.admin.username.toUpperCase()}`}</span></p>
@@ -51,10 +51,10 @@ function Header(props) {
         return (
 
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav">
-                <div className="container">
+                <div style={{ display: 'flex', justifyContent: 'space-between' }} className="container">
                     <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px', color: "#4caf50" }} href="/">Book Brag</a>
 
-                    <header>
+                    <header style={{ display: 'flex', justifyContent: 'space-between' }} >
                         <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                             <ul className="navbar-nav ml-auto text-light">
                                 <li className="nav-item mt-2 mx-1">

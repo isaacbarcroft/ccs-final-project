@@ -89,11 +89,11 @@ function GroupBook(props) {
     let commentHTML;
     if (book) {
         booksHTML =
-            <Card id={book.id} style={{ flexDirection: 'row', marginBottom: '30px' }}>
+            <Card id={book.id} style={{ flexDirection: 'row', marginBottom: '30px', marginTop: '20px' }}>
                 <Card.Img className="cardImg" variant="top" src={book.image} />
                 <Card.Body>
-                    <Card.Title>{book.title}</Card.Title>
-                    <Card.Text>{book.author}</Card.Text>
+                    <Card.Title style={{ fontSize: '25px' }}>{book.title}</Card.Title>
+                    <Card.Subtitle >{book.author}</Card.Subtitle>
                 </Card.Body>
 
             </Card>

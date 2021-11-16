@@ -123,9 +123,10 @@ function Book(props) {
         <>
 
             <div className="container" >
-                <div>
-                    <button className="btn btn-dark mb-3" onClick={redirect} >Back to Profile</button>
-                </div>
+                <header style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <h1 style={{ fontFamily: 'Oswald' }}> Book Search</h1>
+                    <button style={{ marginTop: '10px' }} className="btn btn-dark mb-3" onClick={redirect} >Back to Profile</button>
+                </header>
                 <div className="row">
                     <div className="col-8 mt-3">
                         {/* <CardHTML books={props.books} /> */}

@@ -116,7 +116,6 @@ function Group(props) {
 
             }
 
-
             const handleClick = (variant) => () => {
                 addBookToGroup(bookToSubmit)
                 enqueueSnackbar('Added to Completed', { variant });
@@ -162,7 +161,6 @@ function Group(props) {
         );
     }
 
-
     const matches = group.name.match(/\b(\w)/g);
     const name = matches.join('');
     const avatarHTML = name?.toUpperCase();
@@ -181,7 +179,7 @@ function Group(props) {
                 <div style={{ paddingLeft: '50px' }} className="col-8">
                     <div style={{ paddingLeft: '50px !important' }} className="group mt-2 shadow p-5 mb-5 bg-body rounded" id={group?.id} >
                         <h2 className='groupTitle'>{group?.name}</h2>
-                        <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }}
+                        <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', left: '15px' }}
                             className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>
                             {avatarHTML}
                         </Avatar>

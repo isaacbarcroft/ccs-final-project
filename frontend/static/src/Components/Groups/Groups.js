@@ -102,7 +102,7 @@ function Groups(props) {
                     </h3>
                     <p>{members}</p>
                     {group.members?.username !== props.admin.username ? (
-                        <button style={{ position: 'absolute', bottom: '5px', width: '20%' }} className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
+                        <button style={{ position: 'absolute', bottom: '15px', width: '20%' }} className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
                     ) : (null)}
                 </div></NavLink >);
     })
