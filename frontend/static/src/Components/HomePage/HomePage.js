@@ -1,31 +1,41 @@
 import { useState, useEffect } from 'react'
 import LeaderBoardCard from '../LeaderBoardCard/LeaderBoardCard';
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple, green } from '@mui/material/colors';
 
 function LeaderBoard({ groups, users, books, isAuth }) {
 
-    const [allBooks, setAllBooks] = useState();
-    // const leaderboard = 
+    const [allUsers, setAllUsers] = useState();
     useEffect(() => {
 
         async function getAllBooks() {
-            const response = await fetch(`/api_v1/books/all/`);
+            const response = await fetch(`/api_v1/books/stats/`);
             if (!response.ok) {
             } else {
                 const data = await response.json();
-                setAllBooks(data);
+                setAllUsers(data);
             }
         }
         getAllBooks();
     }, [, isAuth])
 
-    const allBooksRead = allBooks?.filter(book => book?.finished);
+    const usersHTML = allUsers?.filter(user => user.username !== 'admin').map(user =>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }} ClassName="row">
+            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }} className="avatar" sx={{ bgcolor: green[500], width: 30, height: 30 }}>{user.username.slice(0, 1).toUpperCase()}</Avatar>
+            <li style={{ textAlign: 'left', listStyle: 'none', marginLeft: '5px', fontSize: 'calc(1.275rem + .3vw) ' }}>{user.username.toUpperCase()}</li>
+        </div>
+    )
+
+    console.log({ allUsers })
+
+    const allBooksRead = allUsers?.filter(book => book?.finished);
     const listOfUsers = [...new Set(allBooksRead?.map((user) => user.user_name))]
     const userInfo = listOfUsers.map((user) => {
         return allBooksRead.filter((book) => book.user_name === user)
 
     })
     const reducer = (previousValue, currentValue) => previousValue + currentValue;
-    const next = userInfo.map((user) => {
+    const next = userInfo?.map((user) => {
         return user.map((book) => book.page_count).reduce(reducer)
     })
     console.log({ userInfo })
@@ -35,42 +45,30 @@ function LeaderBoard({ groups, users, books, isAuth }) {
     const pagesRead = allBooksRead?.map(book => book?.finished === true ? book.page_count : 0);
     const userList = [...new Set(allBooksRead?.filter(book => book.user_name !== 'admin'))]
     const usersList = [...new Set(userList?.map(book => book.user_name.toUpperCase()))];
-    const activeUsers = usersList.map(name => <div style={{ textDecoration: 'none', ListStyleType: 'none' }}><li className="userLi" style={{ textDecoration: 'none' }}>{name}</li></div>);
-    const userTotals = allBooksRead?.filter(book => book?.user_name);
-    console.log({ userTotals })
-    console.log({ next })
-    //PAGE_COUNT
-    let total = 0;
-    const booksRead = allBooks?.map(book => book?.finished === true ? total++ : null);
-    const totalPages = pagesRead?.reduce((a, b) => a + b)
-    //PAGE_COUNT
 
     //GROUP_HTML
-    const groupHTML = groups.map(group => <div><h4>{group.name}</h4></div>)
-    const pagesReadHTML = next.map(total => <div>{total}</div>)
-
-
-
+    const groupHTML = groups?.map(group => <div><h4 style={{ textAlign: 'left', marginLeft: '10px', fontSize: 'calc(1.275rem + .3vw)' }}>{group.name}</h4></div>)
 
     return (
         <>
             <div className="container">
-                <div className='leaderboard mt-3 shadow p-3 mb-5 bg-body rounded mt-2'>
-                    <h2>Leaderboard</h2>
-                    <LeaderBoardCard groups={groups} isAuth={isAuth} allBooks={allBooks} />
-                    <p>Total Pages Read:{parseFloat(totalPages)}</p>
-                    <p>Chatty Users</p>
-                    <ul style={{ textDecoration: 'none' }}>
-                        {activeUsers}
-                    </ul>
-                </div>
-                {pagesReadHTML}
-                <div className="groups mt-3 shadow p-3 mb-5 bg-body rounded mt-2" >
-                    <h2>Groups </h2>
-                    {groupHTML}
-                </div>
-                <div className="newBooks mt-3 shadow p-3 mb-5 bg-body rounded mt-2" >
-                    <h2>Books</h2>
+                <div className="row">
+                    <div className="col-8">
+                        <div className='leaderboard mt-3 shadow p-3 mb-5 bg-body rounded mt-2'>
+                            <h2 style={{ textAlign: 'left', fontFamily: 'Oswald' }} >Leaderboard</h2>
+                            <LeaderBoardCard style={{ flex: '1 1 250px' }} groups={groups} isAuth={isAuth} allUsers={allUsers} />
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="groups mt-3 shadow p-3 mb-5 bg-body rounded mt-2" >
+                            <h2 style={{ textAlign: 'left', fontFamily: 'Oswald' }}>Groups </h2>
+                            {groupHTML}
+                        </div>
+                        <div className="groups mt-3 shadow p-3 mb-5 bg-body rounded mt-2" >
+                            <h2 style={{ textAlign: 'left', fontFamily: 'Oswald' }}>Users </h2>
+                            {usersHTML}
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -97,6 +97,14 @@ button:focus{
   top:10px;
   left:0px;
 }
+.leaderboardStat{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
 
 .textArea{
   padding: 12px 20px;
@@ -742,18 +750,18 @@ a.bg-warning:hover,
 a.bg-warning:focus,
 button.bg-warning:hover,
 button.bg-warning:focus {
-  background-color: #fa3a0e !important;
+  background-color: #fa3a0e;
 }
 
 .bg-danger {
-  background-color: #f5365c !important;
+  background-color: #f5365c;
 }
 
 a.bg-danger:hover,
 a.bg-danger:focus,
 button.bg-danger:hover,
 button.bg-danger:focus {
-  background-color: #ec0c38 !important;
+  background-color: #ec0c38;
 }
 
 .bg-default {

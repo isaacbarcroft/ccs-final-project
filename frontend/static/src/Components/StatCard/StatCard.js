@@ -39,7 +39,7 @@ function StatCard(props) {
                                     </div>
                                     <div className="col-auto">
                                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                            <i className="fas fa-chart-pie"><ImportContactsIcon /></i>
+                                            <i className="fas"><ImportContactsIcon /></i>
                                         </div>
                                     </div>
                                 </div>
