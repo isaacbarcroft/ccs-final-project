@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from .models import Book, Comment, Response 
-from .serializers import BookSerializer, AllBookSerializer, CommentSerializer, ResponseSerializer
+from .models import Book, Comment, Response
+from .serializers import BookSerializer, AllBookSerializer, CommentSerializer, ResponseSerializer, UserStatsSerializer
 from rest_framework import generics 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import get_object_or_404
 from .permissions import IsOwnerOrReadOnly
+from accounts.models import User
 
 # Create your views here.
 
@@ -71,3 +72,7 @@ class ResponseListAPIView(generics.ListCreateAPIView):
 class ResponseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Response.objects.all()
     serializer_class = ResponseSerializer
+
+class UsersStatsListAPIView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserStatsSerializer

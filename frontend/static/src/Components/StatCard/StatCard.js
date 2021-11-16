@@ -9,7 +9,7 @@ function StatCard(props) {
             <div style={{ position: 'relative', marginRight: '100px' }} className="header-body">
                 <div className="row" style={{ justifyContent: 'right' }}>
                     <div style={{ marginRight: '150px' }} className="col-xl-3 col-lg-6">
-                        <div className="card card-stats mb-4 mb-xl-0">
+                        <div style={{ marginTop: '10px' }} className="card card-stats mb-4 mb-xl-0">
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col">
@@ -30,7 +30,7 @@ function StatCard(props) {
                         </div>
                     </div>
                     <div className="col-xl-3 col-lg-6">
-                        <div className="card card-stats mb-4 mb-xl-0">
+                        <div style={{ marginTop: '10px' }} className="card card-stats mb-4 mb-xl-0">
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col">

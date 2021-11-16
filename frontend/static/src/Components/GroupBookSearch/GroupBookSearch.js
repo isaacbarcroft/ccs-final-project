@@ -109,14 +109,14 @@ function GroupBookSearch(props) {
         <>
 
             <div className="container" >
-                <div>
-                    <button className="btn btn-dark backToGroups mt-2" onClick={redirect} >Back to Groups</button>
+                <div style={{ display: 'flex', justifyContent: 'end', maginBottom: '10px' }}>
+                    <button style={{ marginBottom: '10px' }} className="btn btn-dark backToGroups mt-2" onClick={redirect} >Back to Groups</button>
                 </div>
                 <div className="row">
                     <div class="col-6">
                         {bookHTML}
                     </div>
-                    <div className="shadow p-3 mb-5 bg-body rounded">
+                    <div style={{ display: 'flex' }} className="shadow p-3 mb-5 bg-body rounded">
                         <Form setBooks={props.setBooks} />
                     </div>
                 </div>

@@ -13,4 +13,5 @@ urlpatterns = [
     path('comments/', views.AllCommentListAPIView.as_view(), name='all_comments'),
     path('all/', views.AllBookListAPIView.as_view(), name='all_books'),
     path('', views.BookListAPIView.as_view(), name='book_list'),  
+    path('stats/', views.UsersStatsListAPIView.as_view(), name='users_stats'),
 ]

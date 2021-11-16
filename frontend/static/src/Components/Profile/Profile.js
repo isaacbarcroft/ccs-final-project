@@ -205,7 +205,7 @@ function Profile(props) {
               <h1 style={{ fontFamily: 'Oswald' }} className="d-flex justify-content-left">My Library</h1>
               <button className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Search</button>
             </div>
-            <div>
+            <div style={{ marginTop: '10px' }}>
               <StatCard totalpages={totalPages} total={total} />
             </div>
           </div>

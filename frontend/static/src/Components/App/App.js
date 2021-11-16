@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Route, Switch, Redirect, withRouter, useHistory, useLocation } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory, } from 'react-router-dom';
 import Book from '../Book/Book';
 import Header from '../Header/Header';
 import LeaderBoard from '../HomePage/HomePage';
@@ -12,12 +12,10 @@ import ScrollTop from 'react-scrolltop-button';
 import Profile from '../Profile/Profile';
 import Groups from '../Groups/Groups';
 import Footer from '../Footer/Footer';
-import Spinner from 'react-bootstrap/Spinner';
-import Form from '../Form/Form';
 import GroupBookSearch from '../GroupBookSearch/GroupBookSearch';
-import CircularStatic from '../ProgressBar/ProgressBar';
 import Group from '../Group/Group';
 import GroupBook from '../GroupBook/GroupBook';
+import SplashPage from '../SplashPage/SplashPage';
 
 function App(props) {
 
@@ -284,6 +282,7 @@ function App(props) {
           <LeaderBoard books={books} groups={groups} users={users} isAuth={isAuth} />
         </Route>
         <Route path='/'>
+          <SplashPage />
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />
         </Route>
 

@@ -84,7 +84,7 @@ button:focus{
 .groupTitle{
   position:absolute;
   top: 10px;
-  left:60px;
+  left:70px;
   font-size: 30px;
 }
 .avatar{
@@ -97,18 +97,14 @@ button:focus{
   top:10px;
   left:0px;
 }
-.backToGroups{
-  position: absolute;
-  top:75px;
-  right:100px;
 
-}
 .textArea{
   padding: 12px 20px;
   box-sizing: border-box;
   border: 2px solid #f39c12;
   resize: none;
   background-color:aliceblue;
+  border-radius: 3px;
   
 }
 
@@ -171,7 +167,7 @@ body {
 
 .box {
   position: relative;
-  border-radius: 3px;
+  border-radius: 5px;
   background: aliceblue;
   border-top: 3px solid #d2d6de;
   margin-bottom: 20px;
@@ -453,8 +449,8 @@ body {
 }
 
 .box-footer {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   border-top: 1px solid #f4f4f4;

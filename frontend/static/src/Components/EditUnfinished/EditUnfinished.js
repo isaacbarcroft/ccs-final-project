@@ -82,9 +82,6 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                             <IconButton type='button' onClick={() => setEdit(false)}>
                                 <EditOffIcon type='button' onClick={() => setEdit(false)} />
                             </IconButton>
-                            <IconButton id={currentBook.id} onClick={(e) => deleteBook(e)} >
-                                <DeleteIcon id={currentBook.id} onClick={(e) => deleteBook(e)} />
-                            </IconButton>
                             <IconButton id={currentBook.id} onClick={() => finishBook(currentBook)}>
                                 <BookmarkAdded id={currentBook.id} onClick={() => finishBook(currentBook)} />
                             </IconButton>
@@ -116,9 +113,14 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                                 </Typography>
                             </Box>
                         </Box>
-                        <IconButton type='button' onClick={() => setEdit(true)}>
-                            <EditIcon type='button' onClick={() => setEdit(true)} />
-                        </IconButton>
+                        <div style={{ display: 'flex' }} >
+                            <IconButton id={currentBook.id} onClick={(e) => deleteBook(e)} >
+                                <DeleteIcon id={currentBook.id} onClick={(e) => deleteBook(e)} />
+                            </IconButton>
+                            <IconButton type='button' onClick={() => setEdit(true)}>
+                                <EditIcon type='button' onClick={() => setEdit(true)} />
+                            </IconButton>
+                        </div>
                         {/* <button className=" editBTN btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button> */}
                     </div>
                 }

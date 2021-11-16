@@ -109,11 +109,12 @@ function Groups(props) {
 
     return (
         <>
-            <h1 style={{ fontFamily: 'Oswald' }}>Groups</h1>
+
             <div>
                 {/* <button className='btn btn-dark' onClick={redirect} >Book Search</button> */}
             </div>
             <div className="container" >
+                <h1 style={{ fontFamily: 'Oswald', display: 'flex', marginTop: '10px' }}>Groups</h1>
                 <div className="row">
                     <div class="col-8">
                         {/* {groupList} */}

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Book, Comment, Response
+from accounts.models import User
 # from groups.serializers import GroupSerializer
 
 
@@ -48,3 +49,30 @@ class AllBookSerializer(serializers.ModelSerializer):
 
 
 
+class UserStatsSerializer(serializers.ModelSerializer):
+    books_read = serializers.SerializerMethodField()
+    pages_read = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ('username', 'books_read','pages_read')
+
+    def get_books_read(self, obj):
+        books = Book.objects.filter(user=obj)
+        books_read = 0
+
+        for book in books:
+            if book.finished:
+                books_read = books_read + 1
+                
+        return books_read
+        
+
+    def get_pages_read(self, obj):
+        books = Book.objects.filter(user=obj)
+        pages_read = 0 
+
+        for book in books:
+            pages_read = pages_read + book.pages_read 
+
+        return pages_read

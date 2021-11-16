@@ -166,9 +166,9 @@ function Group(props) {
     const avatarHTML = name?.toUpperCase();
 
     const membersHTML = group.members.map(member =>
-        <div style={{ display: 'flex', alignItems: 'center' }} ClassName="row">
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }} ClassName="row">
             <Avatar style={{ textAlign: 'left', fontFamily: 'Mochiy Pop P One' }} className="avatar" sx={{ bgcolor: green[500], width: 30, height: 30 }}>{member.username.slice(0, 1).toUpperCase()}</Avatar>
-            <li style={{ textAlign: 'left', listStyle: 'none' }}>{member.username.toUpperCase()}</li>
+            <li style={{ textAlign: 'left', listStyle: 'none', marginLeft: '5px' }}>{member.username.toUpperCase()}</li>
         </div>);
 
 
@@ -176,13 +176,14 @@ function Group(props) {
 
         <div className="container">
             <div className="row">
-                <div style={{ paddingLeft: '50px' }} className="col-8">
+                <div style={{ paddingLeft: '50px', marginTop: '55px' }} className="col-8">
                     <div style={{ paddingLeft: '50px !important' }} className="group mt-2 shadow p-5 mb-5 bg-body rounded" id={group?.id} >
                         <h2 className='groupTitle'>{group?.name}</h2>
                         <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', left: '15px' }}
                             className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>
                             {avatarHTML}
                         </Avatar>
+                        <div className="border"></div>
                         {/* <button className="deleteGroup"
                             type='button' id={group?.id}
                             onClick={(event) => props.deleteGroup(event)}>Delete Group</button> */}
@@ -198,7 +199,7 @@ function Group(props) {
                         {/* </div> */}
                     </div>
                 </div>
-                <div className="col-4 mt-5">
+                <div className="col-4 mt-2">
                     <GroupBookSearch setBooks={props.setBooks} />
                 </div>
 
