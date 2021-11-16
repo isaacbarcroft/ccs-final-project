@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Form from '../Form/Form';
 import { Redirect, useHistory, useParams, useLocation, Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { deepOrange, deepPurple, green } from '@mui/material/colors';
 import BookComment from '../BookComment/BookComment';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import Button from '@mui/material/Button';
@@ -12,6 +12,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import GroupBookSearch from '../GroupBookSearch/GroupBookSearch';
 import Cookies from 'js-cookie';
 import Card from 'react-bootstrap/Card';
+
 
 
 function Group(props) {
@@ -148,14 +149,14 @@ function Group(props) {
     } else {
         booksHTML = group.books.map(book =>
 
-            <Card id={book.id} style={{ width: '20rem', height: '30rem', marginTop: '30px', marginBottom: '30px' }}>
+            <Card id={book.id} style={{ flex: '1 1 250px', marginTop: '30px', marginBottom: '30px', marginRight: '30px' }}>
+                <Link style={{ textDecoration: 'none' }} to={`/groups/${id}/books/${book.id}`}>
+                    <Card.Img src={book.image} alt="book cover" />
+                </Link>
                 <Card.Body>
-                    <Link style={{ textDecoration: 'none' }} to={`/groups/${id}/books/${book.id}`}>
-                        <Card.Title>{book.title}</Card.Title>
-                    </Link>
+                    <Card.Title>{book.title}</Card.Title>
                     <Card.Subtitle>{book.author}</Card.Subtitle>
                 </Card.Body>
-                <Card.Img src={book.image} alt="book cover" />
             </Card>
 
         );
@@ -167,8 +168,9 @@ function Group(props) {
     const avatarHTML = name?.toUpperCase();
 
     const membersHTML = group.members.map(member =>
-        <div>
-            <li style={{ textAlign: 'start', listStyle: 'none' }}>{member.username.toUpperCase()}</li>
+        <div style={{ display: 'flex', alignItems: 'center' }} ClassName="row">
+            <Avatar style={{ textAlign: 'left', fontFamily: 'Mochiy Pop P One' }} className="avatar" sx={{ bgcolor: green[500], width: 30, height: 30 }}>{member.username.slice(0, 1).toUpperCase()}</Avatar>
+            <li style={{ textAlign: 'left', listStyle: 'none' }}>{member.username.toUpperCase()}</li>
         </div>);
 
 
@@ -176,8 +178,8 @@ function Group(props) {
 
         <div className="container">
             <div className="row">
-                <div className="col-8">
-                    <div className="group mt-3 shadow p-3 mb-5 bg-body rounded mt-2" id={group?.id} >
+                <div style={{ paddingLeft: '50px' }} className="col-8">
+                    <div style={{ paddingLeft: '50px !important' }} className="group mt-2 shadow p-5 mb-5 bg-body rounded" id={group?.id} >
                         <h2 className='groupTitle'>{group?.name}</h2>
                         <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }}
                             className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>
@@ -190,12 +192,12 @@ function Group(props) {
                         <ul>
                             {membersHTML}
                         </ul>
-                        <h3>Books: </h3>
-                        <div className="container bookGroup" >
-                            <div clasName="bookCardGroup">
-                                {booksHTML}
-                            </div>
+                        <h3 style={{ textAlignLast: 'justify' }}>Books: </h3>
+                        {/* <div className="container bookGroup" > */}
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }} clasName="bookCardGroup">
+                            {booksHTML}
                         </div>
+                        {/* </div> */}
                     </div>
                 </div>
                 <div className="col-4 mt-5">

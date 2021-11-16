@@ -16,7 +16,6 @@ function GroupBook(props) {
         history.push(`/groups/${book.group}`)
     }
 
-    console.log({ comment })
 
     useEffect(() => {
         getBook();
@@ -26,7 +25,6 @@ function GroupBook(props) {
         getBook()
     }, [comment])
 
-    console.log({ book })
 
 
     async function getBook() {
@@ -126,7 +124,7 @@ function GroupBook(props) {
         <>
             <header>
                 <div>
-                    <button className="btn btn-dark backToGroups" onClick={redirect} >Back to Groups</button>
+                    <button className="btn btn-dark backToGroups mt-2" onClick={redirect} >Back to Group</button>
                 </div>
             </header>
             <div className="container">
@@ -134,7 +132,7 @@ function GroupBook(props) {
                     <div className="col-4">
                         {booksHTML}
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-6">
                         <div className="page-content page-container" id="page-content">
                             <div className="padding">
                                 <div className="row container d-flex justify-content-center">

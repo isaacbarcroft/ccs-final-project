@@ -55,8 +55,8 @@ function Form(props) {
                 <h2 className="newArticleForm text-center mt-3">Find a Book</h2>
                 <form id="form" className="mt-3 ds-flex justify-content-center mt-3" onSubmit={handleSubmit}>
                     <a name="form" ></a>
-                    <div className="form-group text-left mb-3">
-                        <label className="text-align-left label" htmlFor='title'>Title</label>
+                    <div style={{ display: 'flex', flexDirection: 'column' }} className="form-group text-left mb-3">
+                        <label className="text-left label" htmlFor='title'>Title</label>
                         <input type="text"
                             className="form-control"
                             id='bookTitle'
@@ -66,7 +66,7 @@ function Form(props) {
                             value={title}
                         />
                     </div>
-                    <div className="form-group text-left mb-3">
+                    <div style={{ display: 'flex', flexDirection: 'column' }} className="form-group text-left mb-3">
                         <label className="text-align-left label" htmlFor='body'>Author</label>
                         <input type="text"
                             className="form-control"
@@ -78,14 +78,15 @@ function Form(props) {
                             value={author}
                         />
                     </div>
-                    <label className="text-align-left label" htmlFor='body'>Category</label>
-                    <input className="form-control"
-                        onChange={handleCategoryChange}
-                        name="categories"
-                        value={categories}
-                        placeholder="Category"
-                    />
-
+                    <div style={{ display: 'flex', flexDirection: 'column' }} className="form-group text-left mb-3">
+                        <label className="text-align-left label" htmlFor='body'>Category</label>
+                        <input className="form-control"
+                            onChange={handleCategoryChange}
+                            name="categories"
+                            value={categories}
+                            placeholder="Category"
+                        />
+                    </div>
                     <div className="form-group text-left mb-3 mt-3">
                         {/* <label htmlFor='options'>Draft/Submitted</label> */}
                         <button type="submit"
@@ -95,8 +96,6 @@ function Form(props) {
                             value='SUBMIT'
                         >Submit</button>
                     </div>
-
-
                 </form>
             </div>
 

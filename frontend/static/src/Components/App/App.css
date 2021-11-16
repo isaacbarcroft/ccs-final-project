@@ -8,8 +8,10 @@
   display:grid;
 }
 .bookCardGroup {
-  /* grid-template-lumns: repeat(auto-fit, minmax(20px, 1fr)); */
-  grid-template-rows: auto;
+  display: grid !important;
+  grid-template-columns: 2fr 1fr 1fr !important;
+  /* grid-template-columns: repeat(auto-fit, minmax(20px, 1fr)); */
+  /* grid-template-rows: auto; */
 }
 .button {
    display: block;
@@ -109,11 +111,11 @@ button:focus{
   
 }
 
-/* .cardImg{
+.cardImg{
   max-height: 30%;
   width: 30%;
   height: 30%;
-} */
+}
 .cardImgP{
   max-height: 50%;
   width: 50%;
@@ -698,7 +700,7 @@ h5,
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  min-width: 300px;
   word-wrap: break-word;
   border: 1px solid rgba(0, 0, 0, .05);
   border-radius: .375rem;

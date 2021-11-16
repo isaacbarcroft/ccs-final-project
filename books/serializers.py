@@ -25,13 +25,15 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     user_name=serializers.ReadOnlyField(source= 'user.username',)
+    created_at=serializers.DateTimeField(format="%d-%m-%Y %H:%M:%S", read_only=True)
+    # updated_at=serializers.DateTimeField(format="%d-%m-%Y %H:%M:%S", read_only=True)
     # author_name=serializers.ReadOnlyField(source= 'author.username')
     group_name=serializers.ReadOnlyField(source= 'group.name')
     book_comments=CommentSerializer(many=True, read_only=True, source="comment")
 
     class Meta:
         model = Book
-        fields = ('id','user_name', 'author', 'title', 'description','group', 'image','categories','group_name', 'comments', 'page_count','finished', 'pages_read', 'avg_rating', 'book_comments')
+        fields = ('id','user_name', 'author', 'title', 'description','group', 'image','categories','group_name', 'comments', 'page_count','finished', 'pages_read', 'avg_rating', 'book_comments', 'created_at')
 
 
 class AllBookSerializer(serializers.ModelSerializer):

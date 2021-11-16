@@ -55,10 +55,21 @@ function Profile(props) {
     getMyBooks();
   }, [, props.isAuth])
 
+  console.log({ myBooks })
 
   async function deleteBook(event) {
+    // console.dir(event.currentTarget);
+    const id = event.currentTarget.id;
+
+    // const updatedBooks = [...myBooks]
+    // console.log({ updatedBooks })
+    // const index = updatedBooks.findIndex(book => book.id == id);
+    // console.log({ index })
+    // updatedBooks.splice(index, 1);
+    // setMyBooks(updatedBooks);
+
     console.log(event.target.id)
-    const response = await fetch(`/api_v1/books/${event.target.id}`, {
+    const response = await fetch(`/api_v1/books/${id}`, {
       method: 'DELETE',
       headers: {
         'X-CSRFToken': Cookies.get('csrftoken'),
@@ -68,7 +79,8 @@ function Profile(props) {
       throw new Error('Network response was not OK');
     } else {
       const updatedBooks = [...myBooks]
-      const index = updatedBooks.findIndex(book => book.id === event.target.id);
+      console.log({ updatedBooks })
+      const index = updatedBooks.findIndex(book => book.id == id);
       console.log({ index })
       updatedBooks.splice(index, 1);
       setMyBooks(updatedBooks);
@@ -112,6 +124,12 @@ function Profile(props) {
 
     if (typeof updatedBook.image !== File) {
       delete updatedBook.image;
+    }
+    if (!updatedBook.group) {
+      delete updatedBook.group;
+    }
+    if (!updatedBook.page_count) {
+      delete updatedBook.page_count;
     }
 
 
@@ -182,15 +200,16 @@ function Profile(props) {
     <>
       <div className='container'>
         <header>
-          <div>
-            <h1 style={{ fontFamily: 'Oswald' }} className="d-flex justify-content-left">My Library</h1>
-
-            <button className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Search</button>
+          <div style={{ alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}>
+            <div>
+              <h1 style={{ fontFamily: 'Oswald' }} className="d-flex justify-content-left">My Library</h1>
+              <button className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Search</button>
+            </div>
+            <div>
+              <StatCard totalpages={totalPages} total={total} />
+            </div>
           </div>
           {/* <div className="mt-3 shadow p-3 mb-5 bg-body col rounded mt-2 d-flex justify-content-start"> */}
-          <StatCard totalpages={totalPages} total={total} />
-
-
         </header>
         <div className="container" >
 

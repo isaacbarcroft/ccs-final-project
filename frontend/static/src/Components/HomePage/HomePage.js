@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import LeaderBoardCard from '../LeaderBoardCard/LeaderBoardCard';
 
 function LeaderBoard({ groups, users, books, isAuth }) {
 
@@ -47,7 +47,7 @@ function LeaderBoard({ groups, users, books, isAuth }) {
 
     //GROUP_HTML
     const groupHTML = groups.map(group => <div><h4>{group.name}</h4></div>)
-
+    const pagesReadHTML = next.map(total => <div>{total}</div>)
 
 
 
@@ -55,16 +55,16 @@ function LeaderBoard({ groups, users, books, isAuth }) {
     return (
         <>
             <div className="container">
-                <h1>Home Page</h1>
                 <div className='leaderboard mt-3 shadow p-3 mb-5 bg-body rounded mt-2'>
                     <h2>Leaderboard</h2>
+                    <LeaderBoardCard groups={groups} isAuth={isAuth} allBooks={allBooks} />
                     <p>Total Pages Read:{parseFloat(totalPages)}</p>
                     <p>Chatty Users</p>
                     <ul style={{ textDecoration: 'none' }}>
                         {activeUsers}
                     </ul>
                 </div>
-
+                {pagesReadHTML}
                 <div className="groups mt-3 shadow p-3 mb-5 bg-body rounded mt-2" >
                     <h2>Groups </h2>
                     {groupHTML}

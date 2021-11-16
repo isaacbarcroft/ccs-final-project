@@ -105,8 +105,8 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
                             <IconButton type='button' onClick={() => setEdit(false)}>
                                 <EditOffIcon type='button' onClick={() => setEdit(false)} />
                             </IconButton>
-                            <IconButton >
-                                <DeleteIcon type='button' id={currentBook.id} onClick={(e) => deleteBook(e)} />
+                            <IconButton onClick={(e) => deleteBook(e)} id={currentBook.id}>
+                                <DeleteIcon type='button' />
                             </IconButton>
                             {/* <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(false)}>Cancel</button>
                             <button type='button' id={currentBook.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button> */}

@@ -1,24 +1,35 @@
-import { IconButton } from "@mui/material";
 import NoteIcon from '@mui/icons-material/Note';
 import ImportContactsIcon from '@mui/icons-material/ImportContacts';
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple, green } from '@mui/material/colors';
+
+function LeaderBoardCard(props) {
 
 
-function StatCard(props) {
+    // const activeMembersHTML = props.activeUsers.map(user =>
+    //     <Avatar style={{ fontFamily: 'Mochiy Pop P One' }}
+    //         className="avatar" sx={{ bgcolor: green[500], width: 30, height: 30 }}>
+    //         {user.slice(0, 1).toUpperCase()}
+    //     </Avatar>
+    // )
+
+
+
     return (
         <>
-            <div style={{ position: 'relative', marginRight: '100px' }} className="header-body">
+            <div style={{ position: 'relative' }} className="header-body">
                 <div className="row" style={{ justifyContent: 'right' }}>
-                    <div style={{ marginRight: '150px' }} className="col-xl-3 col-lg-6">
+                    <div className="col-xl-3 col-lg-6">
                         <div className="card card-stats mb-4 mb-xl-0">
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col">
                                         <h5 className="card-title text-uppercase text-muted mb-0">PagesRead</h5>
-                                        <span className="h2 font-weight-bold mb-0">{parseInt(props.totalpages)}</span>
+                                        <span className="h2 font-weight-bold mb-0">number</span>
                                     </div>
                                     <div className="col-auto">
                                         <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                            <i className="fas fa-chart-bar"><NoteIcon /></i>
+                                            {/* {activeMembersHTML} */}
                                         </div>
                                     </div>
                                 </div>
@@ -35,11 +46,11 @@ function StatCard(props) {
                                 <div className="row">
                                     <div className="col">
                                         <h5 className="card-title text-uppercase text-muted mb-0">Books Read</h5>
-                                        <span className="h2 font-weight-bold mb-0">{props.total}</span>
+                                        <span className="h2 font-weight-bold mb-0">number</span>
                                     </div>
                                     <div className="col-auto">
                                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                            <i className="fas fa-chart-pie"><ImportContactsIcon /></i>
+                                            {/* {activeMembersHTML} */}
                                         </div>
                                     </div>
                                 </div>
@@ -56,4 +67,4 @@ function StatCard(props) {
     )
 }
 
-export default StatCard;
+export default LeaderBoardCard;

@@ -19,14 +19,16 @@ function Comment(props) {
         }));
     }
 
-    // console.log('com', props.book)
+    console.log('com', props.book)
 
-    async function editComment(event, text) {
+    async function editComment(event) {
+
         const newComment = {
             user_name: props.admin.username,
             book: props.book.title,
             body: editableComment.body,
         };
+
 
         const response = await fetch(`/api_v1/books/${props.book.id}/comments/${event.id}/`, {
             method: 'PUT',
@@ -37,26 +39,21 @@ function Comment(props) {
             body: JSON.stringify(newComment),
 
         });
+
+
         if (!response.ok) {
             throw new Error('Network response was not OK');
         } else {
             const data = await response.json();
             console.log({ data })
-            // const updatedBooks = [...myBooks]
-            // const index = updatedBooks.findIndex(book => book.id === event.target.id);
-            // updatedBooks.splice(index, 1);
-            // setMyBooks(updatedBooks);
 
-            const updatedComment = { ...props.book }; /// ?????
-            const comments = [...updatedComment.book_comments]
-            const index = comments.findIndex(comment => comment.id === event.id);
-            console.log(event.id)
-            console.log(data.id)
-            console.log({ index })
-            updatedComment[index] = data;
-            updatedComment.book_comments[index] = comments;
-            console.log(updatedComment)
-            props.setBook(updatedComment);
+            const updatedBook = { ...props.book };
+            const comments = [...updatedBook.book_comments]
+            const index = comments.findIndex(comment => comment.id === parseInt(data.id));
+            comments[index] = data;
+            updatedBook.book_comments = comments;
+            props.setBook(updatedBook);
+            setIsEditing(false)
         }
     }
 
@@ -72,7 +69,7 @@ function Comment(props) {
         } else {
             const updatedBook = { ...props.book };
             const comments = [...updatedBook.book_comments];
-            const index = comments.findIndex(comment => comment.id === event.id);
+            const index = comments.findIndex(comment => comment.id == event.id);
             comments.splice(index, 1)
             updatedBook.book_comments = comments;
             props.setBook(updatedBook);

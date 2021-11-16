@@ -119,11 +119,9 @@ function Groups(props) {
                         {/* {groupList} */}
                         {groupHTML}
                     </div>
-
-
                     <div className="col">
                         <div className='addGroup'>
-                            <h3 style={{ fontFamily: 'Oswald' }}>Add Group</h3>
+                            <h3 style={{ fontFamily: 'Oswald' }}>Start Group</h3>
                             <nav className='nav-bar'></nav>
                             <form className="group-form" onSubmit={handleSubmit} >
                                 <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{ width: '50%' }} />
