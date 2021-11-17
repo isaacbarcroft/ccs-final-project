@@ -8,12 +8,12 @@ function StatCard(props) {
             <div style={{ position: 'relative', marginRight: '100px' }} className="header-body">
                 <div className="row" style={{ justifyContent: 'right' }}>
                     <div style={{ marginRight: '150px' }} className="col-xl-3 col-lg-6">
-                        <div style={{ marginTop: '10px' }} className="card card-stats mb-4 mb-xl-0">
-                            <div className="card-body">
+                        <div style={{ marginTop: '10px', backgroundColor: 'rgba(255,255,255,0.7)' }} className="card card-stats mb-4 mb-xl-0">
+                            <div style={{ backgroundColor: 'rgba(255,255,255,0.7)' }} className="card-body">
                                 <div className="row">
                                     <div className="col">
                                         <h5 className="card-title text-uppercase text-muted mb-0">PagesRead</h5>
-                                        <span className="h2 font-weight-bold mb-0">{parseInt(props.totalpages)}</span>
+                                        <span className="h2 font-weight-bold mb-0">{props.totalpages}</span>
                                     </div>
                                     <div className="col-auto">
                                         <div className="icon icon-shape bg-danger text-white rounded-circle shadow">

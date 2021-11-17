@@ -85,7 +85,7 @@ function Groups(props) {
 
         return (
             <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/groups/${group.id}`}>
-                <div className="row group mt-3 shadow p-3 mb-5 bg-body rounded mt-3">
+                <div style={{ backgroundColor: 'rgba(255,255,255,0.7)', marginLeft: '5px' }} className="row group mt-3 shadow p-3 mb-5 rounded mt-3">
                     <div className="col bookDiv">
                         <div style={{ display: 'flex' }} >
                             <Avatar style={{ fontFamily: 'Mochiy Pop P One' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{nameHTML}</Avatar>
@@ -114,8 +114,9 @@ function Groups(props) {
         <>
             <div className="splashImg">
                 <div className="container " >
-                    <h1 style={{ fontFamily: 'Oswald', display: 'flex', marginTop: '10px' }}>Groups</h1>
-                    <div style={{ opacity: '0.8' }} className="row">
+
+                    <div style={{ backgroundColor: 'rgba(255,255,255,0.3)', marginTop: '10px', borderRadius: '5px' }} className="row">
+                        <h1 style={{ fontFamily: 'Oswald', display: 'flex', marginTop: '10px' }}>Groups</h1>
                         <div class="col-8">
                             {/* {groupList} */}
                             {groupHTML}

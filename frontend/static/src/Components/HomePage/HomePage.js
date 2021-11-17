@@ -43,18 +43,24 @@ function LeaderBoard({ groups, users, books, isAuth }) {
                 <div className="container">
                     <div className="row">
                         <div className="col-8">
-                            <div style={{ height: '70vh', overflow: 'scroll' }} className='leaderboard mt-3 shadow p-3 mb-5 bg-body rounded mt-2'>
+                            <div style={{ height: '70vh', overflow: 'scroll', backgroundColor: 'rgba(255,255,255,0.6)' }} className='leaderboard mt-3 shadow p-3 mb-5 rounded mt-2'>
                                 <h2 style={{ textAlign: 'left', fontFamily: 'Oswald' }} >Leaderboard</h2>
                                 <LeaderBoardCard style={{ flex: '1 1 250px' }} groups={groups} isAuth={isAuth} allUsers={allUsers} />
                             </div>
                         </div>
                         <div className="col-4">
-                            <div style={{ height: '25vh', overflow: 'scroll' }} className="groups mt-3 shadow p-3 mb-5 bg-body rounded mt-2" >
-                                <h2 style={{ textAlign: 'left', fontFamily: 'Oswald' }}>Groups </h2>
+                            <div style={{ height: '25vh', overflow: 'scroll', backgroundColor: 'rgba(255,255,255,0.6)' }} className="groups mt-3 shadow p-3 mb-5 rounded mt-2" >
+                                <div>
+                                    <h2 style={{ textAlign: 'left', fontFamily: 'Oswald' }}>Groups </h2>
+                                    <div className='border'></div>
+                                </div>
                                 {groupHTML}
                             </div>
-                            <div style={{ height: '25vh', overflow: 'scroll' }} className="groups mt-3 shadow p-3 mb-5 bg-body rounded mt-2" >
-                                <h2 style={{ textAlign: 'left', fontFamily: 'Oswald' }}>Users </h2>
+                            <div style={{ height: '25vh', overflow: 'scroll', backgroundColor: 'rgba(255,255,255,0.6)' }} className="groups mt-3 shadow p-3 mb-5 rounded mt-2" >
+                                <div>
+                                    <h2 style={{ textAlign: 'left', fontFamily: 'Oswald' }}>Users </h2>
+                                    <div className='border'></div>
+                                </div>
                                 {usersHTML}
                             </div>
                         </div>

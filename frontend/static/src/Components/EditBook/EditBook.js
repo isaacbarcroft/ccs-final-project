@@ -58,7 +58,7 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
 
 
     return (
-        <Card style={{ marginBottom: '30px', flexDirection: 'row' }}>
+        <Card style={{ marginBottom: '30px', flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.6)' }}>
 
             {currentBook.image ? <Card.Img className="cardImgP" src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
             <Card.Body>
@@ -77,7 +77,7 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
                 {currentBook.page_count ? <p>Total Pages: {currentBook.page_count}</p> : null}
             </Card.Body>
 
-            <div style={{ display: 'flex', alignItems: 'center' }} className="shadow p-3 bg-body rounded">
+            <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.6)' }} className="shadow p-3 rounded">
                 {edit ?
                     <div className='col'>
                         <form onSubmit={handleSubmit}>

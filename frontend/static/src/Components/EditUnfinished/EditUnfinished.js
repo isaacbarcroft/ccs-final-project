@@ -48,7 +48,7 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
     const optionsHTML = options.map(option => <option value={option}>{option}</option>)
 
     return (
-        <Card style={{ marginBottom: '30px', flexDirection: 'row' }}>
+        <Card style={{ marginBottom: '30px', flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.6)' }}>
             {currentBook.image ? <Card.Img className="cardImgP" src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
             <Card.Body>
                 <Card.Title>{currentBook.title}</Card.Title>
@@ -66,9 +66,9 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                 {currentBook.page_count ? <p>{currentBook.page_count} pages</p> : null}
             </Card.Body>
 
-            <div style={{ display: 'flex', alignItems: 'center' }} className="shadow p-3 bg-body rounded">
+            <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.6)' }} className="shadow p-3 rounded">
                 {edit ?
-                    <div className="col">
+                    <div style={{}} className="col">
                         <form onSubmit={handleSubmit}>
                             <textarea onChange={handleChange} type='text' value={currentBook.comments} name='comments' placeholder="Comments" />
                             <input type="number" placeholder="Pages Read:" name='pages_read' onChange={handleChange} max={currentBook.page_count} value={currentBook.pages_read} />
@@ -84,9 +84,6 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                             <IconButton id={currentBook.id} onClick={() => finishBook(currentBook)}>
                                 <BookmarkAdded id={currentBook.id} onClick={() => finishBook(currentBook)} />
                             </IconButton>
-                            {/* <button className="btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(false)}>Cancel</button>
-                            <button type="button" id={currentBook.id} onClick={(e) => deleteBook(e)} className="btn btn-dark mx-1 mb-5">Remove Book</button>
-                            <button type='button' id={currentBook.id} onClick={() => finishBook(currentBook)} className='btn btn-dark mx-1 mb-5'>Mark Complete</button> */}
                         </div>
                     </div>
                     :

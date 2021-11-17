@@ -185,8 +185,8 @@ function Group(props) {
                     <button style={{ marginTop: '5px' }} className="btn btn-dark backToGroups mt-2" onClick={redirect} >Back to Groups</button>
                 </div>
                 <div style={{ marginTop: '10px' }} className="row">
-                    <div style={{ paddingLeft: '50px', opacity: '0.8' }} className="col-8">
-                        <div style={{}} className="group mt-2 shadow p-5 mb-5 bg-body rounded" id={group?.id} >
+                    <div style={{ paddingLeft: '50px', }} className="col-8">
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.6)' }} className="group mt-2 shadow p-5 mb-5 rounded" id={group?.id} >
                             <div style={{ display: 'flex', flexDirection: 'row' }} >
                                 <Avatar style={{ fontFamily: 'Mochiy Pop P One' }}
                                     className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>

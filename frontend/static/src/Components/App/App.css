@@ -10,9 +10,16 @@
 .splashImg {
   /* height: 100vh; */
   background-attachment: fixed !important;
-  background: url("/Users/isaacbarcroft/Documents/ccs/homework/ccs-final-project/frontend/static/src/Media/books.jpeg") no-repeat;
-  background-size: 100%;
+  background: url("../../Media/books.jpeg") no-repeat;
+  background-size: 100% !important;
   /* position: relative; */
+}
+.splashImgMain {
+  height: 100vh;
+  background-attachment: fixed !important;
+  background: url("../../Media/books.jpeg") no-repeat;
+  background-size: 100% !important;
+  margin-top: -20px;
 }
 .bookCardGroup {
   display: grid !important;
@@ -152,7 +159,7 @@ button:focus{
 }
 
 body {
-  background-color: #f9f9fa
+  background-color: #f9f9fa;
 }
 
 .flex {

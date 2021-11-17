@@ -187,7 +187,7 @@ function Profile(props) {
           <header>
             <div style={{ alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}>
               <div>
-                <h1 style={{ fontFamily: 'Oswald' }} className="d-flex justify-content-left">My Library</h1>
+                <h1 style={{ fontFamily: 'Oswald', color: 'white' }} className="d-flex justify-content-left">My Library</h1>
                 <button className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Search</button>
               </div>
               <div style={{ marginTop: '10px' }}>

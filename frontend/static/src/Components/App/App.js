@@ -231,7 +231,7 @@ function App(props) {
       const data = await response.json();
       Cookies.remove('Authorization');
       setIsAuth(false)
-      history.push("/login")
+      history.push("/")
 
     }
     <Redirect path="/" />
