@@ -57,7 +57,7 @@ function Groups(props) {
     }
     //Comments
 
-    const groupList = props.groups.map(group =>
+    const groupList = props?.groups?.map(group =>
         <div>
             <button className="btn btn-dark" onClick={props.getGroupComments} key={group.name} type="button" value={group.id}>{group.name}</button>
         </div>);

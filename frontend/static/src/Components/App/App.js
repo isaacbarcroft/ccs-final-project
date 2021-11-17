@@ -116,27 +116,23 @@ function App(props) {
     }// return menuItemsAPI
     getGroups();
     console.log({ groups })
-  }, [])
+  }, [isAuth])
 
 
   // GET request using fetch with async/await
   async function getGroupComments(event) {
     console.log('etv', event.target.value) // group ID--- Need the Book ID
     const response = await fetch(`/api_v1/books/${event.target.value}/comments/`);
-
     const data = await response.json();
     const matchedBook = books?.find(book => {
       const bookIdString = book.id.toString()
       return bookIdString === event.target.value
     })
-    console.log({ data });
+
     setComments(data);
     setSelectedBook(matchedBook)
-    console.log({ matchedBook })
-    console.log('comments', comments);
     getGroupComments();
-    console.log({ comments })
-  }// return menuItemsAPI
+  }
 
 
 
