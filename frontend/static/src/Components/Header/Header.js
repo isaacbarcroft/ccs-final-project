@@ -8,7 +8,7 @@ function Header(props) {
     if (props.admin.is_staff && props.isAuth) {
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav">
+            <nav style={{ position: 'fixed' }} className="navbar navbar-expand-lg navbar-dark bg-dark nav">
                 <div style={{ display: 'flex', justifyContent: 'space-between' }} className="container">
                     <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px', color: "#4caf50" }} href="/">Book Brag</a>
                     <div className="username d-flex justify-content-center">
@@ -50,7 +50,7 @@ function Header(props) {
 
         return (
 
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav">
+            <nav style={{ position: 'sticky' }} className="navbar navbar-expand-lg navbar-dark bg-dark nav">
                 <div style={{ display: 'flex' }} className="container">
                     <a className="navbar-brand" style={{ fontFamily: 'Oswald', weight: 700, fontSize: '30px', color: "#4caf50" }} href="/">Book Brag</a>
 

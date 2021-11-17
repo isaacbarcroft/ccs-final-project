@@ -181,28 +181,31 @@ function Profile(props) {
 
   return (
     <>
-      <div className='container'>
-        <header>
-          <div style={{ alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}>
-            <div>
-              <h1 style={{ fontFamily: 'Oswald' }} className="d-flex justify-content-left">My Library</h1>
-              <button className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Search</button>
-            </div>
-            <div style={{ marginTop: '10px' }}>
-              <StatCard totalpages={totalPages} total={total} />
-            </div>
-          </div>
-        </header>
-        <div className="container" >
 
-          <div className="row">
-            <div className="col-6">
-              <h2 style={{ fontFamily: 'Oswald', fontSize: '30px' }} >In Progress</h2>
-              {unfinishedHTML}
+      <div className="splashImg">
+        <div className='container'>
+          <header>
+            <div style={{ alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}>
+              <div>
+                <h1 style={{ fontFamily: 'Oswald' }} className="d-flex justify-content-left">My Library</h1>
+                <button className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Search</button>
+              </div>
+              <div style={{ marginTop: '10px' }}>
+                <StatCard totalpages={totalPages} total={total} />
+              </div>
             </div>
-            <div className="col">
-              <h2 style={{ fontFamily: 'Oswald', fontSize: '30px' }}>Have Read</h2>
-              {booksListHTML}
+          </header>
+          <div className="container" >
+
+            <div className="row">
+              <div className="col-6">
+                <h2 style={{ fontFamily: 'Oswald', fontSize: '30px' }} >In Progress</h2>
+                {unfinishedHTML}
+              </div>
+              <div className="col">
+                <h2 style={{ fontFamily: 'Oswald', fontSize: '30px' }}>Have Read</h2>
+                {booksListHTML}
+              </div>
             </div>
           </div>
         </div>

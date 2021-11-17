@@ -8,11 +8,11 @@
   display:grid;
 }
 .splashImg {
-  height: 100vh;
-  overflow: hidden;
+  /* height: 100vh; */
+  background-attachment: fixed !important;
   background: url("/Users/isaacbarcroft/Documents/ccs/homework/ccs-final-project/frontend/static/src/Media/books.jpeg") no-repeat;
-  /* border: solid 1px white; */
-  position: relative;
+  background-size: 100%;
+  /* position: relative; */
 }
 .bookCardGroup {
   display: grid !important;

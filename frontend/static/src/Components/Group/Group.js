@@ -24,6 +24,12 @@ function Group(props) {
     const [comment, setComment] = useState('');
     const [comments, setComments] = useState();
 
+    let history = useHistory();
+
+    const redirect = () => {
+        history.push('/groups')
+    }
+
     // const currentGroup = props.groups.filter((group) => group.id === parseInt(id))[0]
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
 
@@ -148,7 +154,7 @@ function Group(props) {
     } else {
         booksHTML = group.books.map(book =>
 
-            <Card id={book.id} style={{ flex: '1 1 250px', marginTop: '30px', marginBottom: '30px', marginRight: '30px' }}>
+            <Card id={book.id} style={{ marginTop: '20px', marginBottom: '30px', marginRight: '30px' }} className="col-4">
                 <Link style={{ textDecoration: 'none' }} to={`/groups/${id}/books/${book.id}`}>
                     <Card.Img src={book.image} alt="book cover" />
                 </Link>
@@ -173,40 +179,43 @@ function Group(props) {
 
 
     return (
-
-        <div className="container">
-            <div className="row">
-                <div style={{ paddingLeft: '50px', marginTop: '55px' }} className="col-8">
-                    <div style={{}} className="group mt-2 shadow p-5 mb-5 bg-body rounded" id={group?.id} >
-                        <div style={{ display: 'flex', flexDirection: 'row' }} >
-                            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }}
-                                className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>
-                                {avatarHTML}
-                            </Avatar>
-                            <h2 style={{ fontSize: '30px', marginLeft: '5px' }} className='group'>{group?.name}</h2>
-                        </div>
-                        <div className="border"></div>
-                        {/* <button className="deleteGroup"
+        <div className="splashImg">
+            <div className="container">
+                <div style={{ display: 'flex', justifyContent: 'start' }}>
+                    <button style={{ marginTop: '5px' }} className="btn btn-dark backToGroups mt-2" onClick={redirect} >Back to Groups</button>
+                </div>
+                <div style={{ marginTop: '10px' }} className="row">
+                    <div style={{ paddingLeft: '50px', opacity: '0.8' }} className="col-8">
+                        <div style={{}} className="group mt-2 shadow p-5 mb-5 bg-body rounded" id={group?.id} >
+                            <div style={{ display: 'flex', flexDirection: 'row' }} >
+                                <Avatar style={{ fontFamily: 'Mochiy Pop P One' }}
+                                    className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>
+                                    {avatarHTML}
+                                </Avatar>
+                                <h2 style={{ fontSize: '30px', marginLeft: '5px' }} className='group'>{group?.name}</h2>
+                            </div>
+                            <div className="border"></div>
+                            {/* <button className="deleteGroup"
                             type='button' id={group?.id}
                             onClick={(event) => props.deleteGroup(event)}>Delete Group</button> */}
-                        <h3 style={{ textAlign: 'start', marginTop: '40px', fontFamily: 'Oswald' }}>Members: </h3>
-                        <ul>
-                            {membersHTML}
-                        </ul>
-                        <h3 style={{ textAlignLast: 'justify', fontFamily: 'Oswald' }}>Books: </h3>
-                        {/* <div className="container bookGroup" > */}
-                        <div style={{ display: 'flex', flexWrap: 'wrap' }} clasName="bookCardGroup">
-                            {booksHTML}
+                            <h3 style={{ textAlign: 'start', marginTop: '40px', fontFamily: 'Oswald' }}>Members: </h3>
+                            <ul>
+                                {membersHTML}
+                            </ul>
+                            <h3 style={{ textAlignLast: 'justify', fontFamily: 'Oswald' }}>Books: </h3>
+                            {/* <div className="container bookGroup" > */}
+                            <div style={{ display: 'flex', flexWrap: 'wrap' }} clasName="bookCardGroup row">
+                                {booksHTML}
+                            </div>
+                            {/* </div> */}
                         </div>
-                        {/* </div> */}
+                    </div>
+                    <div className="col-4 mt-2">
+                        <GroupBookSearch setBooks={props.setBooks} />
                     </div>
                 </div>
-                <div className="col-4 mt-2">
-                    <GroupBookSearch setBooks={props.setBooks} />
-                </div>
-
-            </div>
-        </div >
+            </div >
+        </div>
 
     )
 }

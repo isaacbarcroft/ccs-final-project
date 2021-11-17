@@ -112,26 +112,24 @@ function Groups(props) {
 
     return (
         <>
-
-            <div>
-                {/* <button className='btn btn-dark' onClick={redirect} >Book Search</button> */}
-            </div>
-            <div className="container" >
-                <h1 style={{ fontFamily: 'Oswald', display: 'flex', marginTop: '10px' }}>Groups</h1>
-                <div className="row">
-                    <div class="col-8">
-                        {/* {groupList} */}
-                        {groupHTML}
-                    </div>
-                    <div className="col">
-                        <div className='addGroup'>
-                            <h3 style={{ fontFamily: 'Oswald', textAlign: 'left', marginLeft: '40px' }}>Start Group</h3>
-                            <form className="group-form" onSubmit={handleSubmit} >
-                                <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{ width: '50%' }} />
-                                <button type='submit' className="btn btn-dark addGroup-btn mx-2">Add Group</button>
-                            </form>
+            <div className="splashImg">
+                <div className="container " >
+                    <h1 style={{ fontFamily: 'Oswald', display: 'flex', marginTop: '10px' }}>Groups</h1>
+                    <div style={{ opacity: '0.8' }} className="row">
+                        <div class="col-8">
+                            {/* {groupList} */}
+                            {groupHTML}
                         </div>
+                        <div className="col">
+                            <div className='addGroup'>
+                                <h3 style={{ fontFamily: 'Oswald', textAlign: 'left', marginLeft: '40px' }}>Start Group</h3>
+                                <form className="group-form" onSubmit={handleSubmit} >
+                                    <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{ width: '50%' }} />
+                                    <button type='submit' className="btn btn-dark addGroup-btn mx-2">Add Group</button>
+                                </form>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
