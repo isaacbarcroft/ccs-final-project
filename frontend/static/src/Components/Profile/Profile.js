@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import ReadMoreReact from 'read-more-react';
 import styled from 'styled-components';
 import Cookies from 'js-cookie';
 import BookCard from '../EditBook/EditBook'
 import BookCardUnfinished from '../EditUnfinished/EditUnfinished';
-import CircularProgress from '@mui/material/CircularProgress';
 import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import StatCard from '../StatCard/StatCard';
 
 function Profile(props) {
@@ -58,16 +55,7 @@ function Profile(props) {
   console.log({ myBooks })
 
   async function deleteBook(event) {
-    // console.dir(event.currentTarget);
     const id = event.currentTarget.id;
-
-    // const updatedBooks = [...myBooks]
-    // console.log({ updatedBooks })
-    // const index = updatedBooks.findIndex(book => book.id == id);
-    // console.log({ index })
-    // updatedBooks.splice(index, 1);
-    // setMyBooks(updatedBooks);
-
     console.log(event.target.id)
     const response = await fetch(`/api_v1/books/${id}`, {
       method: 'DELETE',
@@ -115,8 +103,6 @@ function Profile(props) {
 
     }
 
-
-    // setMyBooks(updatedBooks)
   }
   const handleUpdate = async (updatedBook) => {
 
@@ -189,9 +175,6 @@ function Profile(props) {
   const booksRead = myBooks?.map(book => book?.finished === true ? total++ : null);
   const totalPages = pagesRead ? pagesRead?.reduce((a, b) => a + b) : null;
 
-  // var sum = 0;
-  // for (var i = 0; i < pagesRead.length; i++) { sum += pagesRead[i]}
-
   if (!props.isAuth) {
     return <Redirect to="/login" />
   }
@@ -209,7 +192,6 @@ function Profile(props) {
               <StatCard totalpages={totalPages} total={total} />
             </div>
           </div>
-          {/* <div className="mt-3 shadow p-3 mb-5 bg-body col rounded mt-2 d-flex justify-content-start"> */}
         </header>
         <div className="container" >
 

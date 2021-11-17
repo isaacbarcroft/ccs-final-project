@@ -153,7 +153,7 @@ function Group(props) {
                     <Card.Img src={book.image} alt="book cover" />
                 </Link>
                 <Card.Body>
-                    <Card.Title>{book.title}</Card.Title>
+                    <Card.Title >{book.title}</Card.Title>
                     <Card.Subtitle>{book.author}</Card.Subtitle>
                 </Card.Body>
             </Card>
@@ -177,21 +177,23 @@ function Group(props) {
         <div className="container">
             <div className="row">
                 <div style={{ paddingLeft: '50px', marginTop: '55px' }} className="col-8">
-                    <div style={{ paddingLeft: '50px !important' }} className="group mt-2 shadow p-5 mb-5 bg-body rounded" id={group?.id} >
-                        <h2 className='groupTitle'>{group?.name}</h2>
-                        <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', left: '15px' }}
-                            className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>
-                            {avatarHTML}
-                        </Avatar>
+                    <div style={{}} className="group mt-2 shadow p-5 mb-5 bg-body rounded" id={group?.id} >
+                        <div style={{ display: 'flex', flexDirection: 'row' }} >
+                            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }}
+                                className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>
+                                {avatarHTML}
+                            </Avatar>
+                            <h2 style={{ fontSize: '30px', marginLeft: '5px' }} className='group'>{group?.name}</h2>
+                        </div>
                         <div className="border"></div>
                         {/* <button className="deleteGroup"
                             type='button' id={group?.id}
                             onClick={(event) => props.deleteGroup(event)}>Delete Group</button> */}
-                        <h3 style={{ textAlign: 'start', marginTop: '40px' }}>Members: </h3>
+                        <h3 style={{ textAlign: 'start', marginTop: '40px', fontFamily: 'Oswald' }}>Members: </h3>
                         <ul>
                             {membersHTML}
                         </ul>
-                        <h3 style={{ textAlignLast: 'justify' }}>Books: </h3>
+                        <h3 style={{ textAlignLast: 'justify', fontFamily: 'Oswald' }}>Books: </h3>
                         {/* <div className="container bookGroup" > */}
                         <div style={{ display: 'flex', flexWrap: 'wrap' }} clasName="bookCardGroup">
                             {booksHTML}

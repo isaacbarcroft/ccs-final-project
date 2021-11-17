@@ -1,11 +1,9 @@
 import ReadMoreReact from 'read-more-react';
 import styled from 'styled-components';
 import { useState } from 'react';
-import Spinner from 'react-bootstrap/Spinner';
 import { useHistory, Redirect } from 'react-router-dom';
 import Form from '../Form/Form';
-import BookComment from '../BookComment/BookComment';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 import Button from '@mui/material/Button';
 
 
@@ -28,8 +26,6 @@ function GroupBookSearch(props) {
 	}
 
 `
-
-
     function handleChange(e) {
         const { name, value } = e.target;
         // setCurrentBook(prevState => ({
@@ -37,16 +33,6 @@ function GroupBookSearch(props) {
         //     [name]: value,
         // }));
     }
-
-
-
-    // function handleBookList(event) {
-    //     event.preventDefault();
-    //     props.addBookToLibrary()
-    // }
-    // function handleBookLibrary() {
-
-    // }
 
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
 
@@ -95,8 +81,6 @@ function GroupBookSearch(props) {
                             onClick={handleClick('success')}>Add To Group
 
                         </Button>
-
-                        {/* <button className="btn btn-dark mx-1" type='submit' onClick={() => props.addBookGroup(bookToSubmit, false)}>Add to Group</button> */}
                     </form>
                 </div>)
         }

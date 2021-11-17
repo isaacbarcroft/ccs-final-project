@@ -21,7 +21,7 @@ function Header(props) {
                                 <NavLink className="" style={{ textDecoration: 'none' }} to='/leaderboard'>LeaderBoard</NavLink>
                             </li>
                             <li className="nav-item mx-1 mt-2">
-                                <NavLink style={{ textDecoration: 'none', color: 'white', fontFamily: 'Oswald' }} to='/profile'>Profile</NavLink>
+                                <NavLink style={{ textDecoration: 'none', color: 'white', fontFamily: 'Oswald' }} to='/profile'>My Library</NavLink>
                             </li>
 
                             {/* <li className="nav-item mt-2 mx-1">
@@ -61,7 +61,7 @@ function Header(props) {
                                     <NavLink className="" style={{ textDecoration: 'none', color: 'white', fontFamily: 'Oswald' }} to='/leaderboard'>LeaderBoard</NavLink>
                                 </li>
                                 <li className="nav-item mx-1">
-                                    <NavLink className="" style={{ textDecoration: 'none', color: 'white', fontFamily: 'Oswald' }} to='/profile'>Profile</NavLink>
+                                    <NavLink className="" style={{ textDecoration: 'none', color: 'white', fontFamily: 'Oswald' }} to='/profile'>My Library</NavLink>
                                 </li>
 
                                 {/* <li className="nav-item mt-2 mx-1">

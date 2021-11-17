@@ -77,7 +77,7 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
                 {currentBook.page_count ? <p>Total Pages: {currentBook.page_count}</p> : null}
             </Card.Body>
 
-            <div className=" mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
+            <div style={{ display: 'flex', alignItems: 'center' }} className="shadow p-3 bg-body rounded">
                 {edit ?
                     <div className='col'>
                         <form onSubmit={handleSubmit}>

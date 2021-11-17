@@ -80,26 +80,29 @@ function Groups(props) {
         const matches = group.name.match(/\b(\w)/g);
         const name = matches.join('')
         const nameHTML = name.toUpperCase();
-        const members = group.members.map(member => <div><h4>{member.username.toUpperCase()}</h4></div>)
+        const members = group.members.map(member => <div><h5>{member.username.toUpperCase()}</h5></div>)
         const title = group.books?.map(book => <div><h5>{book.title}</h5></div>)
 
         return (
             <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/groups/${group.id}`}>
                 <div className="row group mt-3 shadow p-3 mb-5 bg-body rounded mt-3">
                     <div className="col bookDiv">
-                        <Avatar style={{ fontFamily: 'Mochiy Pop P One', position: 'absolute', right: '10px' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{nameHTML}</Avatar>
-                        <h2 className='groupTitle'>{group.name}</h2>
-                        <div><h4 style={{ fontFamily: 'Oswald' }}>Books:</h4>
+                        <div style={{ display: 'flex' }} >
+                            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{nameHTML}</Avatar>
+                            <h2 className='groupTitle'>{group.name}</h2>
+                        </div>
+                        <div style={{ marginTop: '5px' }} className="border"></div>
+                        <div style={{ marginBottom: '5px' }}><h4 style={{ fontFamily: 'Oswald', textAlign: 'start' }}>Books:</h4>
                             <h5 style={{ fontStyle: 'italic' }}>{title}</h5>
                         </div>
-                        <div className="border"></div>
-                        <div className="col">
+                        <div style={{ marginTop: '5px', marginLeft: '150px', marginRight: '150px' }} className="border"></div>
+                        {/* <div className="col">
                             <p>{group.members?.username}</p>
-                        </div>
+                        </div> */}
 
                     </div>
-                    <h3 style={{ textAlign: 'start' }}>Members:
-                    </h3>
+                    <h4 style={{ textAlign: 'start', fontFamily: 'Oswald' }}>Members:
+                    </h4>
                     <p>{members}</p>
                     {group.members?.username !== props.admin.username ? (
                         <button style={{ position: 'absolute', bottom: '15px', width: '20%' }} className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
@@ -122,8 +125,7 @@ function Groups(props) {
                     </div>
                     <div className="col">
                         <div className='addGroup'>
-                            <h3 style={{ fontFamily: 'Oswald' }}>Start Group</h3>
-                            <nav className='nav-bar'></nav>
+                            <h3 style={{ fontFamily: 'Oswald', textAlign: 'left', marginLeft: '40px' }}>Start Group</h3>
                             <form className="group-form" onSubmit={handleSubmit} >
                                 <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{ width: '50%' }} />
                                 <button type='submit' className="btn btn-dark addGroup-btn mx-2">Add Group</button>

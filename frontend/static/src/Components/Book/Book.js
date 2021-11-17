@@ -2,19 +2,16 @@ import ReadMoreReact from 'read-more-react';
 import * as React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
-import Spinner from 'react-bootstrap/Spinner';
 import { useHistory, Redirect } from 'react-router-dom';
 import Form from '../Form/Form';
 import Button from '@mui/material/Button';
 import { SnackbarProvider, useSnackbar } from 'notistack';
-import CardHTML from '../Card/Card';
 import Card from 'react-bootstrap/Card';
 
 
 
 function Book(props) {
 
-    const [pages, setPages] = useState();
     const [search, setSearch] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
     const [open, setOpen] = useState(false);
@@ -25,8 +22,6 @@ function Book(props) {
 
         setOpen(false);
     };
-
-
 
     let history = useHistory();
 

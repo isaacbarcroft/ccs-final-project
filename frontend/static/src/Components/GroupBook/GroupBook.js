@@ -56,10 +56,6 @@ function GroupBook(props) {
         }
     }
 
-
-
-
-
     function handleChange(e) {
         const { name, value } = e.target;
         setComment(prevState => ({
@@ -82,9 +78,6 @@ function GroupBook(props) {
         return <div>Loading ...</div>
     }
 
-
-
-
     let booksHTML;
     let commentHTML;
     if (book) {
@@ -105,19 +98,6 @@ function GroupBook(props) {
                 <Comment setBook={setBook} book={book} comment={book_comment} admin={props.admin} />
             )
         })
-        // :
-        // <div>
-        //     <p className="commentBody">{book_comment.body}</p>
-        //     <p className="commentUser">{book_comment.user_name}</p>
-        //     {book_comment.user_name === props.admin.username ? (
-        //         <div>
-        //             <button className="btn delete-btn" value={book_comment.id} onClick={() => deleteComment(book_comment)}>Delete</button>
-        //             <button className="btn edit-btn" value={book_comment.id} onClick={() => setEdit(true)}>Edit</button>
-        //         </div>
-        //     ) : (null)
-        //     }
-        // </div >)
-
     }
 
     return (

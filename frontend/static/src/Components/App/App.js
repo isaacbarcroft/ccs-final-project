@@ -83,26 +83,26 @@ function App(props) {
 
   }
 
-  async function addMember(name) {
-    const newMember = {
-      members: name,
-    };
-    console.log(name);
-    const response = await fetch('/api_v1/groups/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': Cookies.get('csrftoken'),
-      },
-      body: JSON.stringify(newMember),
-    });
-    if (response.ok) {
-      console.log(response)
-      setGroups([...groups, newMember]);
-      console.log({ groups })
-      return response.json();
-    }
-  }
+  // async function addMember(name) {
+  //   const newMember = {
+  //     members: name,
+  //   };
+  //   console.log(name);
+  //   const response = await fetch('/api_v1/groups/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'X-CSRFToken': Cookies.get('csrftoken'),
+  //     },
+  //     body: JSON.stringify(newMember),
+  //   });
+  //   if (response.ok) {
+  //     console.log(response)
+  //     setGroups([...groups, newMember]);
+  //     console.log({ groups })
+  //     return response.json();
+  //   }
+  // }
 
   useEffect(() => {
 
@@ -238,7 +238,7 @@ function App(props) {
       history.push("/login")
 
     }
-    <Redirect path="/login" />
+    <Redirect path="/" />
   }
 
 
@@ -282,8 +282,10 @@ function App(props) {
           <LeaderBoard books={books} groups={groups} users={users} isAuth={isAuth} />
         </Route>
         <Route path='/'>
-          <SplashPage />
-          <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />
+
+          <SplashPage isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />
+          {/* <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} /> */}
+
         </Route>
 
       </Switch>

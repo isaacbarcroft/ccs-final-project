@@ -29,11 +29,6 @@ function LeaderBoardCard(props) {
                                         <i className="fas fa-chart-pie"><ImportContactsIcon /></i>
                                     </div>
                                 </div>
-                                {/* </div> */}
-                                {/* <p className="mt-3 mb-0 text-muted text-sm">
-                                    <span className="text-success mr-2"><i className="fa fa-arrow-up"></i> 3.48%</span>
-                                    <span className="text-nowrap">{user.username}</span>
-                                </p> */}
                             </div>
                         </div>
                     </div>
@@ -44,7 +39,6 @@ function LeaderBoardCard(props) {
 
     const pagesReadHTML = props.allUsers?.filter(book => book.username !== 'admin').map(user => {
         console.log(user)
-        // const members = user?.map(name => name.slice(0, 1).toUpperCase())
 
         return (
             <div style={{ position: 'relative', marginBottom: '10px' }} className="header-body">
@@ -62,10 +56,6 @@ function LeaderBoardCard(props) {
                                         <i className="fas fa-chart-pie"><NoteIcon /></i>
                                     </div>
                                 </div>
-                                {/* <p className="mt-3 mb-0 text-muted text-sm">
-                                    <span className="text-success mr-2"><i className="fa fa-arrow-up"></i> 3.48%</span>
-                                    <span className="text-nowrap">{user.username}</span>
-                                </p> */}
                             </div>
                         </div>
                     </div>
@@ -87,9 +77,6 @@ function LeaderBoardCard(props) {
                     {pagesReadHTML}
                 </div>
             </div>
-
-
-
         </>
     )
 }

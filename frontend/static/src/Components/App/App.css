@@ -7,6 +7,13 @@
 .bookGroup{
   display:grid;
 }
+.splashImg {
+  height: 100vh;
+  overflow: hidden;
+  background: url("/Users/isaacbarcroft/Documents/ccs/homework/ccs-final-project/frontend/static/src/Media/books.jpeg") no-repeat;
+  /* border: solid 1px white; */
+  position: relative;
+}
 .bookCardGroup {
   display: grid !important;
   grid-template-columns: 2fr 1fr 1fr !important;
@@ -82,9 +89,10 @@ button:focus{
   right: 10px;
 }
 .groupTitle{
-  position:absolute;
-  top: 10px;
-  left:70px;
+  /* position:absolute;
+  top: 0px;
+  left:55px; */
+  margin-left: 5px;
   font-size: 30px;
 }
 .avatar{
@@ -93,9 +101,9 @@ button:focus{
   /* top: 14px; */
 }
 .groupAvatar{
-  position: absolute;
+  /* position: absolute;
   top:10px;
-  left:0px;
+  left:0px; */
 }
 .leaderboardStat{
     display: flex;
@@ -1110,4 +1118,3 @@ p {
   font-weight: 300;
   line-height: 1.7;
 }
-

@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import Cookies from 'js-cookie';
 import ReadMoreReact from 'read-more-react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
@@ -54,7 +52,7 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
             {currentBook.image ? <Card.Img className="cardImgP" src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
             <Card.Body>
                 <Card.Title>{currentBook.title}</Card.Title>
-                <Card.Subtitle>{`Written by: ${currentBook.author}`}</Card.Subtitle>
+                <Card.Subtitle>{`${currentBook.author}`}</Card.Subtitle>
                 <Card.Text>{currentBook.description ?
                     <HoverText><ReadMoreReact text={currentBook.description}
                         min={25}
@@ -67,7 +65,8 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                 {currentBook.categories ? <p>Category: {currentBook.categories}</p> : null}
                 {currentBook.page_count ? <p>{currentBook.page_count} pages</p> : null}
             </Card.Body>
-            <div className=" mt-3 shadow p-3 mb-5 bg-body rounded mt-2">
+
+            <div style={{ display: 'flex', alignItems: 'center' }} className="shadow p-3 bg-body rounded">
                 {edit ?
                     <div className="col">
                         <form onSubmit={handleSubmit}>
@@ -113,7 +112,7 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                                 </Typography>
                             </Box>
                         </Box>
-                        <div style={{ display: 'flex' }} >
+                        <div style={{ display: 'flex', justifyContent: 'center' }} >
                             <IconButton id={currentBook.id} onClick={(e) => deleteBook(e)} >
                                 <DeleteIcon id={currentBook.id} onClick={(e) => deleteBook(e)} />
                             </IconButton>
