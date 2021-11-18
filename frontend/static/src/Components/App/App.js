@@ -16,6 +16,7 @@ import GroupBookSearch from '../GroupBookSearch/GroupBookSearch';
 import Group from '../Group/Group';
 import GroupBook from '../GroupBook/GroupBook';
 import SplashPage from '../SplashPage/SplashPage';
+import Four from '../404/404';
 
 function App(props) {
 
@@ -273,9 +274,14 @@ function App(props) {
         <Route path='/leaderboard'>
           <LeaderBoard books={books} groups={groups} users={users} isAuth={isAuth} />
         </Route>
-        <Route path='/'>
+        <Route exact path='/'>
           <SplashPage isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />
         </Route>
+        <Route path="*">
+          <Four />
+        </Route>
+
+
 
       </Switch>
       <ScrollTop
