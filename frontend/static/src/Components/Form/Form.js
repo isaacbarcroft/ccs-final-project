@@ -89,7 +89,9 @@ function Form(props) {
                     </div>
                     <div className="form-group text-left mb-3 mt-3">
                         {/* <label htmlFor='options'>Draft/Submitted</label> */}
-                        <button type="submit"
+                        <button
+                            style={{ backgroundColor: '#3B983B' }}
+                            type="submit"
                             className=" homeButton form-control  btn btn-dark"
                             id='articleOptions'
                             name='submit'

@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import EditOffIcon from '@mui/icons-material/EditOff';
 import SendIcon from '@mui/icons-material/Send';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { green } from '@mui/material/colors';
 
 
 function Comment(props) {
@@ -102,19 +103,20 @@ function Comment(props) {
 
                 : (
                     <div>
-                        <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">{props.comment.user_name}</span> <span class="direct-chat-timestamp pull-right">{props.comment.created_at}</span> </div>
-                        <div class="direct-chat-text"> {props.comment.body} </div>
-
+                        <div style={{ display: 'flex', justifyContent: 'start', flexDirection: 'column' }}>
+                            <div stylr={{ textAlignLast: 'left' }} class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">{props.comment.user_name}</span> <span class="direct-chat-timestamp pull-right">{props.comment.created_at}</span> </div>
+                            <div class="direct-chat-text"> {props.comment.body} </div>
+                        </div>
                         {/* <p className="commentBody">{props.comment.body}</p>
                         <p className="commentUser">{props.comment.user_name}</p> */}
                         {props.comment.user_name === props.admin.username ? (
                             <div>
                                 <IconButton aria-label="delete"
                                     value={props.comment.id} onClick={() => setIsEditing(true)}>
-                                    <EditIcon color="primary" />
+                                    <EditIcon color="info" />
                                 </IconButton >
                                 <IconButton value={props.comment.id} onClick={() => deleteComment(props.comment)}>
-                                    <DeleteIcon />
+                                    <DeleteIcon color="warning" />
                                 </IconButton>
                                 {/* <button className="btn delete-btn btn-dark" value={props.comment.id} onClick={() => deleteComment(props.comment)}>Delete</button>
                                 <button className="btn edit-btn btn-dark" value={props.comment.id} onClick={() => setIsEditing(true)}>Edit</button> */}

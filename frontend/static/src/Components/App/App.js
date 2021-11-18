@@ -237,11 +237,8 @@ function App(props) {
     <Redirect path="/" />
   }
 
-
-
   return (
     <div className="App">
-      {/* <CircularStatic /> */}
       <Header handleLogoutSubmit={handleLogoutSubmit} isAuth={isAuth} admin={admin} />
       <Switch>
         <Route path='/groupsearch'>
@@ -261,7 +258,6 @@ function App(props) {
         <Route path='/groups'>
           <Groups getGroupComments={getGroupComments} selectedBook={selectedBook} comments={comments} setComments={setComments} groups={groups} setGroups={setGroups} addGroup={addGroup} setBooks={setBooks} admin={admin} />
         </Route>
-
         <Route path="/login">
           <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />
         </Route>
@@ -278,16 +274,11 @@ function App(props) {
           <LeaderBoard books={books} groups={groups} users={users} isAuth={isAuth} />
         </Route>
         <Route path='/'>
-
           <SplashPage isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} />
-          {/* <Login isAuth={isAuth} setIsAuth={setIsAuth} users={users} setUsers={setUsers} /> */}
-
         </Route>
 
       </Switch>
-
       <ScrollTop
-
         text="^"
         distance={50}
         breakpoint={908}

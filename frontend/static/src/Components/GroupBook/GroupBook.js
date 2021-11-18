@@ -16,7 +16,6 @@ function GroupBook(props) {
         history.push(`/groups/${book.group}`)
     }
 
-
     useEffect(() => {
         getBook();
     }, []);
@@ -24,8 +23,6 @@ function GroupBook(props) {
     useEffect(() => {
         getBook()
     }, [comment])
-
-
 
     async function getBook() {
         const response = await fetch(`/api_v1/books/${id}`);
@@ -82,7 +79,7 @@ function GroupBook(props) {
     let commentHTML;
     if (book) {
         booksHTML =
-            <Card id={book.id} style={{ flexDirection: 'row', marginBottom: '30px', marginTop: '20px' }}>
+            <Card id={book.id} style={{ flexDirection: 'row', marginBottom: '30px', marginTop: '20px', backgroundColor: 'rgba(255,255,255,0.7)' }}>
                 <Card.Img className="cardImg" variant="top" src={book.image} />
                 <Card.Body>
                     <Card.Title style={{ fontSize: '25px' }}>{book.title}</Card.Title>
@@ -90,7 +87,6 @@ function GroupBook(props) {
                 </Card.Body>
 
             </Card>
-
 
         commentHTML = book?.book_comments.map(book_comment => {
             // console.log({ book_comment })
@@ -105,19 +101,18 @@ function GroupBook(props) {
             <div className="splashImg">
                 <header>
                     <div style={{ display: 'flex', marginLeft: '100px' }}>
-                        <button className="btn btn-dark backToGroups mt-2" onClick={redirect} >Back to Group</button>
+                        <button style={{ backgroundColor: '#3B983B' }} className="btn btn-dark backToGroups mt-2" onClick={redirect} >Back to Group</button>
                     </div>
                 </header>
                 <div className="container">
                     <div className="row">
-                        <div className="col-6">
+                        <div className="col-md-6">
                             {booksHTML}
                         </div>
                         <div className="col-md-6">
                             <div className="page-content page-container" id="page-content">
                                 <div className="padding">
                                     <div className="row container d-flex justify-content-center">
-
                                         <div className="box box-warning direct-chat direct-chat-warning">
                                             <div className="box-header with-border">
                                                 <div className="box-body">
@@ -138,27 +133,25 @@ function GroupBook(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="commentForm">
-                                <div class="box-footer">
-                                    <form className="Message-form" onSubmit={handleSubmit}>
-
-                                        <div class="input-group">
-                                            <textarea
+                            <div style={{ marginBottom: '30px', backgroundColor: 'rgba(255,255,255,0.6)' }} className="commentForm">
+                                <div style={{ backgroundColor: 'rgba(255,255,255,0.6)' }} className="box-footer">
+                                    <form style={{ backgroundColor: 'rgba(255,255,255,0.6)' }} className="Message-form" onSubmit={handleSubmit}>
+                                        <div style={{ backgroundColor: 'rgba(255,255,255,0.6)' }} className="input-group">
+                                            <textarea style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}
                                                 className="textArea form-control"
                                                 name="text"
                                                 value={comment}
                                                 type="text"
-                                                placeholder={book.title ? `thoughts on  #${book?.title}` : 'comment'}
+                                                placeholder={book.title ? `Thoughts on  #${book?.title}` : 'comment'}
                                                 onChange={handleTextChange}
                                                 cols="25"
                                                 rows="3"
                                             />
                                             <span class="input-group-btn">
                                                 <IconButton type="submit">
-                                                    <SendIcon type="button" className="btn-warning btn-flat" />
+                                                    <SendIcon type="submit" className="btn-text btn-flat" />
                                                 </IconButton>
                                             </span> </div>
-                                        {/* <button type="submit" className="submit_btn btn btn-dark mx-2">Submit</button> */}
                                     </form>
                                 </div>
                             </div>

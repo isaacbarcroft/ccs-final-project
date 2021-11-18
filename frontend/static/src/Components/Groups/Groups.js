@@ -88,10 +88,10 @@ function Groups(props) {
                 <div style={{ backgroundColor: 'rgba(255,255,255,0.7)', marginLeft: '5px' }} className="row group mt-3 shadow p-3 mb-5 rounded mt-3">
                     <div className="col bookDiv">
                         <div style={{ display: 'flex' }} >
-                            <Avatar style={{ fontFamily: 'Mochiy Pop P One' }} className="groupAvatar" sx={{ bgcolor: deepPurple[500] }}>{nameHTML}</Avatar>
+                            <Avatar style={{ fontFamily: 'Mochiy Pop P One', backgroundColor: '#983b6a' }} className="groupAvatar" >{nameHTML}</Avatar>
                             <h2 className='groupTitle'>{group.name}</h2>
                         </div>
-                        <div style={{ marginTop: '5px' }} className="border"></div>
+                        <div style={{ marginTop: '5px', color: 'black' }} className="border"></div>
                         <div style={{ marginBottom: '5px' }}><h4 style={{ fontFamily: 'Oswald', textAlign: 'start' }}>Books:</h4>
                             <h5 style={{ fontStyle: 'italic' }}>{title}</h5>
                         </div>
@@ -105,7 +105,7 @@ function Groups(props) {
                     </h4>
                     <p>{members}</p>
                     {group.members?.username !== props.admin.username ? (
-                        <button style={{ position: 'absolute', bottom: '15px', width: '20%' }} className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
+                        <button style={{ position: 'absolute', bottom: '15px', width: '20%', backgroundColor: '#3B983B' }} className='btn btn-dark joinGroupBtn' id={group.id} onClick={() => joinGroup(group.id, group.name)}>Join Group</button>
                     ) : (null)}
                 </div></NavLink >);
     })
@@ -118,7 +118,6 @@ function Groups(props) {
                     <div style={{ backgroundColor: 'rgba(255,255,255,0.3)', marginTop: '10px', borderRadius: '5px' }} className="row">
                         <h1 style={{ fontFamily: 'Oswald', display: 'flex', marginTop: '10px' }}>Groups</h1>
                         <div class="col-8">
-                            {/* {groupList} */}
                             {groupHTML}
                         </div>
                         <div className="col">
@@ -126,7 +125,7 @@ function Groups(props) {
                                 <h3 style={{ fontFamily: 'Oswald', textAlign: 'left', marginLeft: '40px' }}>Start Group</h3>
                                 <form className="group-form" onSubmit={handleSubmit} >
                                     <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{ width: '50%' }} />
-                                    <button type='submit' className="btn btn-dark addGroup-btn mx-2">Add Group</button>
+                                    <button style={{ backgroundColor: '#3B983B' }} type='submit' className="btn btn-dark addGroup-btn mx-2">Add Group</button>
                                 </form>
                             </div>
 

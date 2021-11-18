@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import Cookies from 'js-cookie';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import { Route, Redirect, withRouter, useHistory } from 'react-router-dom';
 
 
 function Login(props) {
+
+    let history = useHistory();
+    const redirect = () => {
+        history.push('/register')
+    }
+
     function handleInput(event) {
         const { name, value } = event.target;
         props.setUsers(prevState => ({
@@ -80,7 +86,7 @@ function Login(props) {
                 <div className="container">
                     <div className="row">
                         <div class="col text-center">
-                            <button type="button" className="homeButton btn btn-dark" style={{ fontFamily: 'Oswald' }} onClick={<Redirect to='/register' />}>Register</button>
+                            <button type="button" className="homeButton btn btn-dark" style={{ fontFamily: 'Oswald' }} onClick={redirect}>Register</button>
                         </div>
                     </div>
                 </div>

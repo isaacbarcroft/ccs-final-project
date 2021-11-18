@@ -80,7 +80,7 @@ function Book(props) {
 
             return (
 
-                <Card style={{ flexDirection: 'row', marginBottom: '30px' }}>
+                <Card style={{ flexDirection: 'row', marginBottom: '30px', backgroundColor: 'rgba(255,255,255,0.6)' }}>
                     {book.volumeInfo.imageLinks?.thumbnail ?
                         <Card.Img className="cardImg" variant="top" src={book.volumeInfo.imageLinks?.thumbnail} />
                         : <p style={{ width: '50%' }} >No Image Available</p>}
@@ -120,8 +120,8 @@ function Book(props) {
             <div className="container" >
                 <header style={{ display: 'flex', justifyContent: 'start' }}>
                     <div>
-                        <h1 style={{ fontFamily: 'Oswald' }}> Book Search</h1>
-                        <button style={{ marginTop: '5px' }} className="btn btn-dark mb-3" onClick={redirect} >Back to Profile</button>
+                        <h1 style={{ fontFamily: 'Oswald', color: 'whitesmoke' }}> Book Search</h1>
+                        <button style={{ marginTop: '5px', backgroundColor: '#3B983B' }} className="btn btn-dark mb-3" onClick={redirect} >Back to Profile</button>
                     </div>
                 </header>
                 <div className="row">

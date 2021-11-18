@@ -51,55 +51,55 @@ function Registration(props) {
     }
     return (
         <>
-            <h2 className='Registration-title mt-3 d-flex justify-content-center mt-3  shadow p-3 mb-5 bg-body rounded'>Register</h2>
-            <div className="shadow p-3 mb-5 bg-body rounded mt-2">
+            <div className="container container-md mt-4 shadow p-3 mb-5 bg-body rounded mt-2">
+                <h2 className='Registration-title mt-3 d-flex justify-content-center mt-3  shadow p-3 mb-5 bg-body rounded'>Register</h2>
+                <div className="shadow p-3 mb-5 bg-body rounded mt-2">
+                    <form className="form registrationForm d-flex justify-content-center mt-3" onSubmit={handleSubmit} >
+                        <div className="form-group form-control col-lg-1">
+                            <input type='text'
+                                className="form-user form-control  mt-3"
+                                id="username"
+                                placeholder="enter username"
+                                required
+                                name="username"
+                                onChange={handleChange}
+                                value={user.username}
+                            />
 
-                <form className="form registrationForm d-flex justify-content-center mt-3" onSubmit={handleSubmit} >
+                            <input type='text'
+                                className="form-control col-xs-4 mt-3"
+                                id='email'
+                                placeholder="enter email"
+                                required
+                                name="email"
+                                onChange={handleChange}
+                                value={user.email}
+                            />
 
-                    <div className="form-group form-control col-lg-1">
-                        <input type='text'
-                            className="form-user form-control  mt-3"
-                            id="username"
-                            placeholder="enter username"
-                            required
-                            name="username"
-                            onChange={handleChange}
-                            value={user.username}
-                        />
+                            <input type='password'
+                                className="form-control col-xs-4 mt-3"
+                                id='password1'
+                                placeholder="enter password"
+                                required
+                                name="password1"
+                                onChange={handleChange}
+                                value={user.password1}
+                            />
 
-                        <input type='text'
-                            className="form-control col-xs-4 mt-3"
-                            id='email'
-                            placeholder="enter email"
-                            required
-                            name="email"
-                            onChange={handleChange}
-                            value={user.email}
-                        />
+                            <input type='password'
+                                className="form-control col-xs-4 mt-3"
+                                id='password2'
+                                placeholder="confirm password"
+                                required
+                                name="password2"
+                                onChange={handleChange}
+                                value={user.password2}
+                            />
 
-                        <input type='password'
-                            className="form-control col-xs-4 mt-3"
-                            id='password1'
-                            placeholder="enter password"
-                            required
-                            name="password1"
-                            onChange={handleChange}
-                            value={user.password1}
-                        />
-
-                        <input type='password'
-                            className="form-control col-xs-4 mt-3"
-                            id='password2'
-                            placeholder="confirm password"
-                            required
-                            name="password2"
-                            onChange={handleChange}
-                            value={user.password2}
-                        />
-
-                        <button type="submit" className="registration-btn btn btn-dark d-flex justify-content-center mt-3" style={{ fontFamily: 'Oswald' }}>Register</button>
-                    </div>
-                </form>
+                            <button type="submit" className="registration-btn btn btn-dark d-flex justify-content-center mt-3" style={{ fontFamily: 'Oswald' }}>Register</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </>
     )

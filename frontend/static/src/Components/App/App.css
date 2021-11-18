@@ -1,6 +1,12 @@
 .App {
   text-align: center;
 }
+#root {
+  min-height: 100vh;
+  background-attachment: fixed !important;
+  background: url("../../Media/books.jpeg") no-repeat;
+  background-size: 100% !important;
+}
 .label{
   text-align: start !important;
 }
@@ -8,7 +14,7 @@
   display:grid;
 }
 .splashImg {
-  /* height: 100vh; */
+ 
   background-attachment: fixed !important;
   background: url("../../Media/books.jpeg") no-repeat;
   background-size: 100% !important;
@@ -24,8 +30,6 @@
 .bookCardGroup {
   display: grid !important;
   grid-template-columns: 2fr 1fr 1fr !important;
-  /* grid-template-columns: repeat(auto-fit, minmax(20px, 1fr)); */
-  /* grid-template-rows: auto; */
 }
 .button {
    display: block;
@@ -75,7 +79,7 @@ color:#3d4f0c;
 button:hover,
 button:focus{
   font-size:20px !important;
-  color: #3c3e41 !important;
+  color: #3B983B!important;
   background-color: white !important;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19) !important;
   transform: translateY(-0.25em) !important;
@@ -96,21 +100,12 @@ button:focus{
   right: 10px;
 }
 .groupTitle{
-  /* position:absolute;
-  top: 0px;
-  left:55px; */
   margin-left: 5px;
   font-size: 30px;
 }
 .avatar{
   font-family: 'Mochiy Pop P One', sans-serif;
   position: absolute;
-  /* top: 14px; */
-}
-.groupAvatar{
-  /* position: absolute;
-  top:10px;
-  left:0px; */
 }
 .leaderboardStat{
     display: flex;
@@ -124,9 +119,9 @@ button:focus{
 .textArea{
   padding: 12px 20px;
   box-sizing: border-box;
-  border: 2px solid #f39c12;
+  border: 2px solid #3B983B;
   resize: none;
-  background-color:aliceblue;
+  background-color: rgba(255,255,255,0.7);
   border-radius: 3px;
   
 }
@@ -181,17 +176,17 @@ body {
 }
 
 .padding {
-  padding: 2rem
+  margin-top: 20px
 }
 
 .box.box-warning {
-  border-top-color: #f39c12
+  border-top-color: #3B983B
 }
 
 .box {
   position: relative;
   border-radius: 5px;
-  background: aliceblue;
+  background-color: rgba(255,255,255,0.7);
   border-top: 3px solid #d2d6de;
   margin-bottom: 20px;
   width: 100%;
@@ -255,7 +250,7 @@ body {
 .alert-warning,
 .label-warning,
 .modal-warning .modal-body {
-  background-color: #f39c12 !important
+  background-color: #3B983B !important
 }
 
 .bg-yellow {
@@ -461,8 +456,8 @@ body {
 }
 
 .direct-chat-warning .right>.direct-chat-text {
-  background: #f39c12;
-  border-color: #f39c12;
+  background: #3B983B;
+  border-color: #3B983B;
   color: #fff
 }
 
@@ -503,10 +498,10 @@ body {
   margin-left: -1px
 }
 
-.btn-warning {
+.btn-text {
   color: #fff;
-  background-color: #f0ad4e;
-  border-color: #eea236
+  background-color: #3B983B;
+  border-color: #3B983B
 }
 
 
@@ -560,7 +555,7 @@ button:focus {
 
 input,
 button {
-  font-family: inherit;
+font-family: inherit;
   font-size: inherit;
   line-height: inherit;
   margin: 0;
@@ -758,7 +753,7 @@ button.bg-info:focus {
 }
 
 .bg-warning {
-  background-color: #fb6340 !important;
+  background-color: rgba(255,255,255,0.6) !important;
 }
 
 a.bg-warning:hover,
@@ -882,7 +877,7 @@ a.text-success:focus {
 }
 
 .text-warning {
-  color: #fb6340 !important;
+  color: rgba(255,255,255,0.6) !important;
 }
 
 a.text-warning:hover,

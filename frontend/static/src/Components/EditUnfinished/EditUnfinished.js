@@ -26,7 +26,7 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
 
     const readMore = <div style={{ color: 'blue' }} className="readMore">Read More</div>
     const [edit, setEdit] = useState(false);
-    const [currentBook, setCurrentBook] = useState(book);
+    const [currentBook, setCurrentBook] = useState({ ...book });
 
     function handleChange(e) {
         const { name, value } = e.target;
@@ -75,7 +75,6 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                             <IconButton type='submit'>
                                 <DoneIcon type='submit' />
                             </IconButton>
-                            {/* <button className="btn btn-dark mx-1" type='submit'>Update</button> */}
                         </form>
                         <div className="col">
                             <IconButton type='button' onClick={() => setEdit(false)}>
@@ -117,7 +116,6 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
                                 <EditIcon type='button' onClick={() => setEdit(true)} />
                             </IconButton>
                         </div>
-                        {/* <button className=" editBTN btn btn-dark mx-1 mb-5" type='button' onClick={() => setEdit(true)}>Edit</button> */}
                     </div>
                 }
             </div>

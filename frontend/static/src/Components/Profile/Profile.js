@@ -104,7 +104,8 @@ function Profile(props) {
     }
 
   }
-  const handleUpdate = async (updatedBook) => {
+  const handleUpdate = async (book) => {
+    const updatedBook = { ...book };
 
     delete updatedBook.finished;
 
@@ -170,49 +171,49 @@ function Profile(props) {
     : null)
 
 
-  const pagesRead = myBooks?.map(book => book?.finished === true ? book.page_count : 0);
+  const pagesRead = myBooks?.map(book => book.pages_read);
   let total = 0;
   const booksRead = myBooks?.map(book => book?.finished === true ? total++ : null);
-  const totalPages = pagesRead ? pagesRead?.reduce((a, b) => a + b) : null;
+  const totalPages = pagesRead ? pagesRead?.reduce((a, b) => a + b, 0) : null;
+
 
   if (!props.isAuth) {
     return <Redirect to="/login" />
-  }
+  } else if (!myBooks) {
+    return <h1>Complete your library here</h1>
+  } else
 
-  return (
-    <>
-
-      <div className="splashImg">
-        <div className='container'>
-          <header>
-            <div style={{ alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}>
-              <div>
-                <h1 style={{ fontFamily: 'Oswald', color: 'white' }} className="d-flex justify-content-left">My Library</h1>
-                <button className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Search</button>
+    return (
+      <>
+        <div className="splashImg">
+          <div className='container'>
+            <header>
+              <div style={{ alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}>
+                <div>
+                  <h1 style={{ fontFamily: 'Oswald', color: 'white' }} className="d-flex justify-content-left">My Library</h1>
+                  <button style={{ backgroundColor: '#3B983B' }} className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Find Book</button>
+                </div>
+                <div style={{ marginTop: '10px' }}>
+                  <StatCard totalpages={totalPages} total={total} />
+                </div>
               </div>
-              <div style={{ marginTop: '10px' }}>
-                <StatCard totalpages={totalPages} total={total} />
-              </div>
-            </div>
-          </header>
-          <div className="container" >
-
-            <div className="row">
-              <div className="col-6">
-                <h2 style={{ fontFamily: 'Oswald', fontSize: '30px' }} >In Progress</h2>
-                {unfinishedHTML}
-              </div>
-              <div className="col">
-                <h2 style={{ fontFamily: 'Oswald', fontSize: '30px' }}>Have Read</h2>
-                {booksListHTML}
+            </header>
+            <div className="container" >
+              <div className="row">
+                <div className="col-6">
+                  <h2 style={{ fontFamily: 'Oswald', fontSize: '30px', color: 'white' }} >In Progress</h2>
+                  {unfinishedHTML}
+                </div>
+                <div style={{ marginBottom: '30px' }} className="col">
+                  <h2 style={{ fontFamily: 'Oswald', fontSize: '30px', color: 'white' }}>Have Read</h2>
+                  {booksListHTML}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-    </>
-  )
+      </>
+    )
 }
 
 export default Profile;
