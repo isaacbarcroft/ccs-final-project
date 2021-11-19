@@ -238,10 +238,21 @@ function App(props) {
     <Redirect path="/" />
   }
 
+  const NavRoute = ({ exact, path, component: Component }) => (
+    <Route exact={exact} path={path} render={(props) => (
+      <div>
+        <Header />
+        <Component {...props} />
+      </div>
+    )} />
+  )
+
+
   return (
     <div className="App">
       <Header handleLogoutSubmit={handleLogoutSubmit} isAuth={isAuth} admin={admin} />
       <Switch>
+
         <Route path='/groupsearch'>
           <GroupBookSearch books={books} addBookToLibrary={addBookToLibrary}
             groups={groups} addBookForLater={addBookForLater}
@@ -280,10 +291,8 @@ function App(props) {
         <Route path="*">
           <Four />
         </Route>
-
-
-
       </Switch>
+
       <ScrollTop
         text="^"
         distance={50}

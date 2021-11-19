@@ -119,17 +119,17 @@ function Book(props) {
 
             <div className="container" >
                 <header style={{ display: 'flex', justifyContent: 'start' }}>
-                    <div>
-                        <h1 style={{ fontFamily: 'Oswald', color: 'whitesmoke' }}> Book Search</h1>
+                    <div style={{ marginTop: '10px' }}>
+                        <h1 style={{ fontFamily: 'Oswald', color: 'whitesmoke', marginLeft: '20px' }}> Book Search</h1>
                         <button style={{ marginTop: '5px', backgroundColor: '#3B983B' }} className="btn btn-dark mb-3" onClick={redirect} >Back to Profile</button>
                     </div>
                 </header>
                 <div className="row">
-                    <div className="col-8 mt-3">
+                    <div className="col-6 mt-3 mx-3">
                         {/* <CardHTML books={props.books} /> */}
                         {bookHTML}
                     </div>
-                    <div className="col-4 shadow p-3 mb-5 bg-body rounded">
+                    <div className="col-4">
                         <Form setBooks={props.setBooks} />
                     </div>
                 </div>

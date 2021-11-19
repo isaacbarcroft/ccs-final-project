@@ -58,7 +58,7 @@ const BookCard = ({ book, deleteBook, options, handleUpdate }) => {
 
 
     return (
-        <Card style={{ marginBottom: '30px', flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.6)' }}>
+        <Card style={{ marginBottom: '30px', flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.7)' }}>
             {currentBook.image ? <Card.Img className="cardImgP" src={currentBook.image} alt="" /> : <p style={{ width: '50%' }} className='noImage t-3 shadow p-3 mb-5 bg-body rounded mt-2 ds-flex justify-content-center'>No Image Available</p>}
             <Card.Body>
                 <Card.Title>{currentBook.title}</Card.Title>

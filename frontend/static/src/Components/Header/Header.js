@@ -18,7 +18,7 @@ function Header(props) {
                     <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                         <ul className="navbar-nav ml-auto text-light">
                             <li className="nav-item mt-2 mx-1">
-                                <NavLink className="" style={{ textDecoration: 'none' }} to='/leaderboard'>LeaderBoard</NavLink>
+                                <NavLink className="" style={{ textDecoration: 'none' }} to='/leaderboard'>Leaderboard</NavLink>
                             </li>
                             <li className="nav-item mx-1 mt-2">
                                 <NavLink style={{ textDecoration: 'none', color: 'white', fontFamily: 'Oswald' }} to='/profile'>My Library</NavLink>
@@ -58,7 +58,7 @@ function Header(props) {
                         <div className="collapse navbar-collapse nav justify-content-end text-light" id="navbarResponsive">
                             <ul style={{ display: 'flex', alignItems: 'center' }} className="navbar-nav ml-auto text-light">
                                 <li className="nav-item mx-1">
-                                    <NavLink className="" style={{ textDecoration: 'none', color: 'white', fontFamily: 'Oswald' }} to='/leaderboard'>LeaderBoard</NavLink>
+                                    <NavLink className="" style={{ textDecoration: 'none', color: 'white', fontFamily: 'Oswald' }} to='/leaderboard'>Leaderboard</NavLink>
                                 </li>
                                 <li className="nav-item mx-1">
                                     <NavLink className="" style={{ textDecoration: 'none', color: 'white', fontFamily: 'Oswald' }} to='/profile'>My Library</NavLink>
@@ -120,7 +120,7 @@ function Header(props) {
                             <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/login'>Login</NavLink>
                         </li>
                         <li className="btn-link">
-                            <button style={{ textDecoration: 'none', color: 'white' }} className="btn btn-link logout text-light" type="button" onClick={() => props.handleLogoutSubmit()}>Logout</button>
+                            <p style={{ textDecoration: 'none', color: 'white' }} className="btn btn-link logout text-light" type="button" onClick={() => props.handleLogoutSubmit()}>Logout</p>
                         </li>
                     </ul>
                 </div>

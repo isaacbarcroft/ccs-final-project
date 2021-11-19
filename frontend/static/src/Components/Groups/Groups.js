@@ -92,7 +92,7 @@ function Groups(props) {
                             <h2 className='groupTitle'>{group.name}</h2>
                         </div>
                         <div style={{ marginTop: '5px', color: 'black' }} className="border"></div>
-                        <div style={{ marginBottom: '5px' }}><h4 style={{ fontFamily: 'Oswald', textAlign: 'start' }}>Books:</h4>
+                        <div style={{ marginBottom: '5px' }}><h4 style={{ fontFamily: 'Oswald', textAlign: 'start', marginLeft: '50px' }}>Books:</h4>
                             <h5 style={{ fontStyle: 'italic' }}>{title}</h5>
                         </div>
                         <div style={{ marginTop: '5px', marginLeft: '150px', marginRight: '150px' }} className="border"></div>
@@ -101,7 +101,7 @@ function Groups(props) {
                         </div> */}
 
                     </div>
-                    <h4 style={{ textAlign: 'start', fontFamily: 'Oswald' }}>Members:
+                    <h4 style={{ textAlign: 'start', fontFamily: 'Oswald', marginLeft: '50px' }}>Members:
                     </h4>
                     <p>{members}</p>
                     {group.members?.username !== props.admin.username ? (
@@ -115,16 +115,16 @@ function Groups(props) {
             <div className="splashImg">
                 <div className="container " >
 
-                    <div style={{ backgroundColor: 'rgba(255,255,255,0.3)', marginTop: '10px', borderRadius: '5px' }} className="row">
-                        <h1 style={{ fontFamily: 'Oswald', display: 'flex', marginTop: '10px' }}>Groups</h1>
-                        <div class="col-8">
+                    <div style={{ display: 'flex', backgroundColor: 'rgba(255,255,255,0.3)', marginTop: '10px', borderRadius: '5px' }} className="row">
+                        <h1 style={{ fontFamily: 'Oswald', display: 'flex', marginTop: '30px', marginLeft: '40px' }}>Groups</h1>
+                        <div style={{ marginLeft: '40px' }} class="col-6">
                             {groupHTML}
                         </div>
-                        <div className="col">
-                            <div className='addGroup'>
+                        <div className="col-4">
+                            <div style={{ marginLeft: '100px' }} className='addGroup'>
                                 <h3 style={{ fontFamily: 'Oswald', textAlign: 'left', marginLeft: '40px' }}>Start Group</h3>
                                 <form className="group-form" onSubmit={handleSubmit} >
-                                    <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{ width: '50%' }} />
+                                    <input type='text' placeholder="Add Group" name="new-group" onChange={handleChange} style={{ width: '50%', padding: '7px' }} />
                                     <button style={{ backgroundColor: '#3B983B' }} type='submit' className="btn btn-dark addGroup-btn mx-2">Add Group</button>
                                 </form>
                             </div>

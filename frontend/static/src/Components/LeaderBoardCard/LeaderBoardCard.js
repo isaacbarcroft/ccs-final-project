@@ -13,7 +13,7 @@ function LeaderBoardCard(props) {
         // const members = user?.map(name => name.slice(0, 1).toUpperCase())
 
         return (
-            <div style={{ position: 'relative', marginBottom: '10px' }} className="header-body">
+            <div style={{ position: 'relative', marginBottom: '10px', marginLeft: '50px' }} className="header-body">
                 <div className="row" style={{ justifyContent: 'left' }}>
                     <div className="col-xl-3 col-lg-6">
                         <div className="card card-stats mb-4 mb-xl-0 ">
@@ -69,11 +69,11 @@ function LeaderBoardCard(props) {
         <>
             <div className="row">
                 <div className="col-6">
-                    <h3 style={{ textAlign: 'left', marginLeft: '20px', fontFamily: 'Oswald' }} >Book Totals</h3>
+                    <h3 style={{ textAlign: 'left', marginLeft: '20px', fontFamily: 'Oswald', marginLeft: '50px' }} >Book Totals</h3>
                     {booksReadHTML}
                 </div>
                 <div className="col-6">
-                    <h3 style={{ textAlign: 'left', marginLeft: '20px', fontFamily: 'Oswald' }} >Page Totals</h3>
+                    <h3 style={{ textAlign: 'left', fontFamily: 'Oswald' }} >Page Totals</h3>
                     {pagesReadHTML}
                 </div>
             </div>

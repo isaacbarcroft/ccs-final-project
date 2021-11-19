@@ -44,7 +44,7 @@ function LeaderBoard({ groups, users, books, isAuth }) {
                     <div className="row">
                         <div className="col-8">
                             <div style={{ height: '70vh', overflow: 'scroll', backgroundColor: 'rgba(255,255,255,0.6)' }} className='leaderboard mt-3 shadow p-3 mb-5 rounded mt-2'>
-                                <h2 style={{ textAlign: 'left', fontFamily: 'Oswald' }} >Leaderboard</h2>
+                                <h2 style={{ textAlign: 'left', fontFamily: 'Oswald', marginBottom: '30px', marginLeft: '30px', marginTop: '10px' }} >Leaderboard</h2>
                                 <LeaderBoardCard style={{ flex: '1 1 250px' }} groups={groups} isAuth={isAuth} allUsers={allUsers} />
                             </div>
                         </div>

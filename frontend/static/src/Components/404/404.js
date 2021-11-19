@@ -4,9 +4,8 @@ function Four(props) {
 
     let history = useHistory();
     const redirect = () => {
-        history.goBack()
+        history.push('/leaderboard')
     }
-
 
 
     return (

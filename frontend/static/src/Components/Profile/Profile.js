@@ -188,7 +188,7 @@ function Profile(props) {
         <div className="splashImg">
           <div className='container'>
             <header>
-              <div style={{ alignItems: 'center', justifyContent: 'space-between', display: 'flex' }}>
+              <div style={{ alignItems: 'center', justifyContent: 'space-between', display: 'flex', margin: '50px 0' }}>
                 <div>
                   <h1 style={{ fontFamily: 'Oswald', color: 'white' }} className="d-flex justify-content-left">My Library</h1>
                   <button style={{ backgroundColor: '#3B983B' }} className='btn btn-dark mt-2 d-flex justify-content-right' onClick={redirect} >Find Book</button>
@@ -200,12 +200,12 @@ function Profile(props) {
             </header>
             <div className="container" >
               <div className="row">
-                <div className="col-6">
-                  <h2 style={{ fontFamily: 'Oswald', fontSize: '30px', color: 'white' }} >In Progress</h2>
+                <div style={{ marginBottom: '30px' }} className="col-6">
+                  <h2 style={{ fontFamily: 'Oswald', fontSize: '50px', color: 'white' }} >In Progress</h2>
                   {unfinishedHTML}
                 </div>
                 <div style={{ marginBottom: '30px' }} className="col">
-                  <h2 style={{ fontFamily: 'Oswald', fontSize: '30px', color: 'white' }}>Have Read</h2>
+                  <h2 style={{ fontFamily: 'Oswald', fontSize: '50px', color: 'white' }}>Completed</h2>
                   {booksListHTML}
                 </div>
               </div>
