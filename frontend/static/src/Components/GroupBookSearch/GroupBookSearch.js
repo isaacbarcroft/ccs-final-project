@@ -41,7 +41,7 @@ function GroupBookSearch(props) {
                 title: book.volumeInfo.title,
                 description: book.volumeInfo.description?.toString(),
                 categories: book.volumeInfo.categories?.toString(),
-                page_count: book.volumeInfo.pageCount,
+                page_count: book.volumeInfo?.pageCount,
                 group: props.group.name,
                 finished: false,
 

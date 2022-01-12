@@ -52,11 +52,8 @@ function Profile(props) {
     getMyBooks();
   }, [, props.isAuth])
 
-  console.log({ myBooks })
-
   async function deleteBook(event) {
     const id = event.currentTarget.id;
-    console.log(event.target.id)
     const response = await fetch(`/api_v1/books/${id}`, {
       method: 'DELETE',
       headers: {
@@ -67,9 +64,7 @@ function Profile(props) {
       throw new Error('Network response was not OK');
     } else {
       const updatedBooks = [...myBooks]
-      console.log({ updatedBooks })
       const index = updatedBooks.findIndex(book => book.id == id);
-      console.log({ index })
       updatedBooks.splice(index, 1);
       setMyBooks(updatedBooks);
     }

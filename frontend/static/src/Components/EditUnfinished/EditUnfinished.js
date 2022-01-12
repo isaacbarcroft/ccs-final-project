@@ -41,10 +41,7 @@ const BookCardUnfinished = ({ book, deleteBook, options, handleUpdate, finishBoo
         handleUpdate(currentBook);
         setEdit(false);
     }
-    const total = currentBook.page_count ? Math.round(parseInt(currentBook.pages_read / currentBook.page_count * 100)) : null
-        ('count', currentBook.page_count)
-        ('read', parseInt(currentBook.pages_read))
-        ({ total })
+    const total = currentBook.page_count ? Math.round(parseInt(currentBook.pages_read / currentBook.page_count * 100)) : 0;
     const optionsHTML = options.map(option => <option value={option}>{option}</option>)
 
     return (

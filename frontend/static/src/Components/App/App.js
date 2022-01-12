@@ -44,7 +44,6 @@ function App(props) {
     const newGroup = {
       name: name,
     };
-    console.log(name);
     const response = await fetch('/api_v1/groups/', {
       method: 'POST',
       headers: {
@@ -64,8 +63,6 @@ function App(props) {
 
 
   async function deleteGroup(event) {
-    console.log(event.target.id);
-    console.log('delete function');
     const response = await fetch(`/api_v1/groups/${event.target.id}/`, {
       method: 'DELETE',
       headers: {
@@ -84,45 +81,21 @@ function App(props) {
 
   }
 
-  // async function addMember(name) {
-  //   const newMember = {
-  //     members: name,
-  //   };
-  //   console.log(name);
-  //   const response = await fetch('/api_v1/groups/', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'X-CSRFToken': Cookies.get('csrftoken'),
-  //     },
-  //     body: JSON.stringify(newMember),
-  //   });
-  //   if (response.ok) {
-  //     console.log(response)
-  //     setGroups([...groups, newMember]);
-  //     console.log({ groups })
-  //     return response.json();
-  //   }
-  // }
-
   useEffect(() => {
 
     // GET request using fetch with async/await
     async function getGroups() {
       const response = await fetch('/api_v1/groups/');
       const data = await response.json();
-      console.log({ data });
       setGroups(data);
-      console.log('groups', groups);
+
     }// return menuItemsAPI
     getGroups();
-    console.log({ groups })
   }, [isAuth])
 
 
   // GET request using fetch with async/await
   async function getGroupComments(event) {
-    console.log('etv', event.target.value) // group ID--- Need the Book ID
     const response = await fetch(`/api_v1/books/${event.target.value}/comments/`);
     const data = await response.json();
     const matchedBook = books?.find(book => {
@@ -142,16 +115,11 @@ function App(props) {
     const checkAuth = async () => {
       const response = await fetch('/rest-auth/user/');
       if (!response.ok) {
-        console.log('not ok')
         setIsAuth(false);
       } else {
         const data = await response.json();
         setAdmin(data)
-        // console.log({response})
-        console.log({ data })
         setIsAuth(true);
-        console.log({ admin })
-        console.log(admin.is_staff)
       }
     }
     checkAuth()
@@ -162,13 +130,7 @@ function App(props) {
 
   //addBookToList
   async function addBookToLibrary(bookToSubmit, finished, pageRead) {
-    console.log({ finished })
-
-
     bookToSubmit.finished = finished
-
-
-    console.log({ bookToSubmit })
     const response = await fetch('/api_v1/books/', {
       method: 'POST',
       headers: {
@@ -178,19 +140,10 @@ function App(props) {
       body: JSON.stringify(bookToSubmit),
     });
     if (response.ok) {
-      console.log(response)
-      // setBooks([...books, newBook]);
-      // console.log({books})
-      // return response.json(); 
     }
   }
 
   async function addBookForLater(author, title, description, image, categories, pages) {
-    console.log({ author })
-    console.log({ title })
-    console.log({ description })
-    // console.log({title})
-    console.log({ categories })
     const newBook = {
       author,
       title,
@@ -210,7 +163,7 @@ function App(props) {
       body: JSON.stringify(newBook),
     });
     if (response.ok) {
-      console.log(response)
+
     }
   }
 
@@ -228,7 +181,6 @@ function App(props) {
     if (!response) {
       console.log(response);
     } else {
-      console.log(response)
       const data = await response.json();
       Cookies.remove('Authorization');
       setIsAuth(false)
